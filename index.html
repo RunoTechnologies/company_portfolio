@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runo Technologies | AI-Powered App Development</title>
+    <meta name="description"
+        content="Runo Technologies - Building complex mobile and web applications powered by cutting-edge AI technology.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-gradient-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    <div class="grid-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="10" fill="url(#logo-gradient)" />
+                        <path d="M12 20L18 14L24 20L18 26L12 20Z" fill="white" />
+                        <path d="M20 16L26 10L32 16L26 22L20 16Z" fill="white" opacity="0.7" />
+                        <defs>
+                            <linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#00D4AA" />
+                                <stop offset="100%" stop-color="#7B61FF" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">Runo</span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#process" class="nav-link">Process</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn-primary">
+                    <span>Start Project</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge animate-fade-up">
+                    <span class="badge-dot"></span>
+                    <span>AI-Powered Development Studio</span>
+                </div>
+                <h1 class="hero-title animate-fade-up delay-1">
+                    We Build
+                    <span class="gradient-text">Intelligent</span>
+                    Apps That Scale
+                </h1>
+                <p class="hero-description animate-fade-up delay-2">
+                    Runo Technologies transforms ambitious ideas into powerful mobile and web applications.
+                    We leverage cutting-edge AI to create experiences that users love.
+                </p>
+                <div class="hero-cta animate-fade-up delay-3">
+                    <a href="#contact" class="btn btn-primary btn-lg">
+                        <span>Start Your Project</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <a href="#work" class="btn btn-secondary btn-lg">
+                        <span>View Our Work</span>
+                    </a>
+                </div>
+                <div class="hero-stats animate-fade-up delay-4">
+                    <div class="stat">
+                        <span class="stat-number" data-target="50">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="98">0</span><span class="stat-suffix">%</span>
+                        <span class="stat-label">Client Satisfaction</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="12">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">AI Models Deployed</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual animate-fade-up delay-2">
+                <div class="hero-card-stack">
+                    <div class="floating-card card-1">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <span>Full-Stack Development</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <div class="card-icon purple">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                                <path
+                                    d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <span>AI Integration</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <div class="card-icon amber">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor"
+                                    stroke-width="2" />
+                                <line x1="12" y1="18" x2="12" y2="18" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <span>Mobile Apps</span>
+                    </div>
+                    <div class="hero-dashboard">
+                        <div class="dashboard-header">
+                            <div class="dashboard-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span class="dashboard-title">Runo AI Dashboard</span>
+                        </div>
+                        <div class="dashboard-content">
+                            <div class="dashboard-sidebar">
+                                <div class="sidebar-item active"></div>
+                                <div class="sidebar-item"></div>
+                                <div class="sidebar-item"></div>
+                                <div class="sidebar-item"></div>
+                            </div>
+                            <div class="dashboard-main">
+                                <div class="chart-area">
+                                    <div class="chart-bars">
+                                        <div class="bar" style="--height: 40%"></div>
+                                        <div class="bar" style="--height: 65%"></div>
+                                        <div class="bar" style="--height: 45%"></div>
+                                        <div class="bar" style="--height: 80%"></div>
+                                        <div class="bar" style="--height: 55%"></div>
+                                        <div class="bar" style="--height: 90%"></div>
+                                        <div class="bar" style="--height: 70%"></div>
+                                    </div>
+                                </div>
+                                <div class="metrics-row">
+                                    <div class="metric-card">
+                                        <span class="metric-value">2.4K</span>
+                                        <span class="metric-label">Users</span>
+                                    </div>
+                                    <div class="metric-card">
+                                        <span class="metric-value">94%</span>
+                                        <span class="metric-label">Accuracy</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <section class="trusted-section">
+        <div class="container">
+            <p class="trusted-label">Trusted by innovative teams worldwide</p>
+            <div class="trusted-logos">
+                <div class="logo-item">TechCorp</div>
+                <div class="logo-item">Innovate.io</div>
+                <div class="logo-item">DataFlow</div>
+                <div class="logo-item">CloudNine</div>
+                <div class="logo-item">NexGen</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag animate-on-scroll">Our Services</span>
+                <h2 class="section-title animate-on-scroll">
+                    End-to-end solutions for
+                    <span class="gradient-text">modern businesses</span>
+                </h2>
+                <p class="section-description animate-on-scroll">
+                    From concept to deployment, we handle every aspect of your digital product with precision and
+                    creativity.
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll" data-delay="0">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="4" y="8" width="40" height="28" rx="4" stroke="currentColor" stroke-width="3" />
+                            <path d="M4 16H44" stroke="currentColor" stroke-width="3" />
+                            <circle cx="10" cy="12" r="1.5" fill="currentColor" />
+                            <circle cx="15" cy="12" r="1.5" fill="currentColor" />
+                            <circle cx="20" cy="12" r="1.5" fill="currentColor" />
+                            <path d="M12 40H36" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Web Applications</h3>
+                    <p class="service-description">
+                        Scalable, responsive web apps built with React, Next.js, and cutting-edge frameworks that
+                        deliver exceptional user experiences.
+                    </p>
+                    <ul class="service-features">
+                        <li>Progressive Web Apps</li>
+                        <li>Real-time Features</li>
+                        <li>Cloud Infrastructure</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll" data-delay="100">
+                    <div class="service-icon purple">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="12" y="4" width="24" height="40" rx="4" stroke="currentColor" stroke-width="3" />
+                            <path d="M20 8H28" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                            <circle cx="24" cy="38" r="2" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Mobile Development</h3>
+                    <p class="service-description">
+                        Native and cross-platform mobile apps for iOS and Android that feel intuitive and perform
+                        flawlessly.
+                    </p>
+                    <ul class="service-features">
+                        <li>React Native & Flutter</li>
+                        <li>Native iOS & Android</li>
+                        <li>App Store Optimization</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll" data-delay="200">
+                    <div class="service-icon amber">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="3" />
+                            <path d="M24 4V12M24 36V44M44 24H36M12 24H4" stroke="currentColor" stroke-width="3"
+                                stroke-linecap="round" />
+                            <path d="M38.1 9.9L32.5 15.5M15.5 32.5L9.9 38.1M38.1 38.1L32.5 32.5M15.5 15.5L9.9 9.9"
+                                stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">AI Integration</h3>
+                    <p class="service-description">
+                        Embed intelligent features into your products—from chatbots to predictive analytics and computer
+                        vision.
+                    </p>
+                    <ul class="service-features">
+                        <li>LLM Integration</li>
+                        <li>Custom ML Models</li>
+                        <li>Intelligent Automation</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll" data-delay="300">
+                    <div class="service-icon rose">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M24 4L4 14V34L24 44L44 34V14L24 4Z" stroke="currentColor" stroke-width="3"
+                                stroke-linejoin="round" />
+                            <path d="M4 14L24 24M24 24L44 14M24 24V44" stroke="currentColor" stroke-width="3" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Product Design</h3>
+                    <p class="service-description">
+                        User-centered design that combines aesthetics with functionality. From wireframes to polished
+                        interfaces.
+                    </p>
+                    <ul class="service-features">
+                        <li>UX Research</li>
+                        <li>UI Design Systems</li>
+                        <li>Interactive Prototypes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section" id="process">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag animate-on-scroll">Our Process</span>
+                <h2 class="section-title animate-on-scroll">
+                    From vision to reality in
+                    <span class="gradient-text">four steps</span>
+                </h2>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step animate-on-scroll" data-delay="0">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Discovery</h3>
+                        <p>We dive deep into your business goals, user needs, and technical requirements to create a
+                            solid foundation.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="visual-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" />
+                                <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-connector"></div>
+                <div class="process-step animate-on-scroll" data-delay="100">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Design</h3>
+                        <p>Our designers craft intuitive interfaces and experiences that delight users and align with
+                            your brand.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="visual-icon purple">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 19L19 12L22 15L15 22L12 19Z" stroke="currentColor" stroke-width="2"
+                                    stroke-linejoin="round" />
+                                <path d="M18 13L16.5 5.5L2 2L5.5 16.5L13 18L18 13Z" stroke="currentColor"
+                                    stroke-width="2" stroke-linejoin="round" />
+                                <circle cx="10" cy="10" r="2" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-connector"></div>
+                <div class="process-step animate-on-scroll" data-delay="200">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Development</h3>
+                        <p>Our engineers build robust, scalable solutions using modern technologies and best practices.
+                        </p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="visual-icon amber">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M16 18L22 12L16 6" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M8 6L2 12L8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-connector"></div>
+                <div class="process-step animate-on-scroll" data-delay="300">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Launch & Scale</h3>
+                        <p>We deploy your product and provide ongoing support to ensure it grows with your business.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="visual-icon rose">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M4.5 16.5C3 15 3 12.5 4.5 11L11 4.5C12.5 3 15 3 16.5 4.5L19.5 7.5C21 9 21 11.5 19.5 13L13 19.5C11.5 21 9 21 7.5 19.5L4.5 16.5Z"
+                                    stroke="currentColor" stroke-width="2" />
+                                <path d="M9 15L15 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M14.5 4L20 9.5" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work/Portfolio Section -->
+    <section class="work-section" id="work">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag animate-on-scroll">Our Work</span>
+                <h2 class="section-title animate-on-scroll">
+                    Projects that make an
+                    <span class="gradient-text">impact</span>
+                </h2>
+            </div>
+            <div class="work-grid">
+                <div class="work-card large animate-on-scroll">
+                    <div class="work-image">
+                        <div class="work-placeholder gradient-1">
+                            <div class="app-mockup">
+                                <div class="mockup-header"></div>
+                                <div class="mockup-content">
+                                    <div class="mockup-card"></div>
+                                    <div class="mockup-card"></div>
+                                    <div class="mockup-list">
+                                        <div class="list-item"></div>
+                                        <div class="list-item"></div>
+                                        <div class="list-item"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-category">FinTech • Mobile App</span>
+                        <h3>QuantumPay</h3>
+                        <p>AI-powered expense tracking and financial insights for modern professionals.</p>
+                    </div>
+                </div>
+                <div class="work-card animate-on-scroll" data-delay="100">
+                    <div class="work-image">
+                        <div class="work-placeholder gradient-2">
+                            <div class="app-mockup small">
+                                <div class="mockup-header"></div>
+                                <div class="mockup-content">
+                                    <div class="mockup-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-category">Healthcare • Web Platform</span>
+                        <h3>MediSync</h3>
+                        <p>Patient management system with AI diagnostics support.</p>
+                    </div>
+                </div>
+                <div class="work-card animate-on-scroll" data-delay="200">
+                    <div class="work-image">
+                        <div class="work-placeholder gradient-3">
+                            <div class="app-mockup small">
+                                <div class="mockup-header"></div>
+                                <div class="mockup-content">
+                                    <div class="mockup-grid"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-category">E-commerce • Mobile & Web</span>
+                        <h3>Artisan Market</h3>
+                        <p>Marketplace connecting local artisans with global customers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag animate-on-scroll">Testimonials</span>
+                <h2 class="section-title animate-on-scroll">
+                    What our clients
+                    <span class="gradient-text">say about us</span>
+                </h2>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card animate-on-scroll" data-delay="0">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7ZM21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" />
+                            </svg>
+                        </div>
+                        <p>"Runo Technologies transformed our vision into a product that exceeded all expectations.
+                            Their AI expertise and attention to detail are unmatched."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <span>SK</span>
+                        </div>
+                        <div class="author-info">
+                            <strong>Sarah Kim</strong>
+                            <span>CEO, QuantumPay</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll" data-delay="100">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7ZM21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" />
+                            </svg>
+                        </div>
+                        <p>"The team's ability to integrate complex AI features seamlessly into our platform was
+                            remarkable. They delivered on time and within budget."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar purple">
+                            <span>MR</span>
+                        </div>
+                        <div class="author-info">
+                            <strong>Michael Rodriguez</strong>
+                            <span>CTO, MediSync Health</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll" data-delay="200">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7ZM21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" />
+                            </svg>
+                        </div>
+                        <p>"Working with Runo felt like having an extended team that truly cared about our success.
+                            Highly recommend for any ambitious project."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar amber">
+                            <span>EC</span>
+                        </div>
+                        <div class="author-info">
+                            <strong>Elena Chen</strong>
+                            <span>Founder, Artisan Market</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="cta-card animate-on-scroll">
+                <div class="cta-content">
+                    <h2>Ready to build something amazing?</h2>
+                    <p>Let's discuss your project and explore how we can bring your vision to life with AI-powered
+                        solutions.</p>
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Tell us about your project..." rows="4"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <span>Send Message</span>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M18 2L9 11M18 2L12 18L9 11M18 2L2 8L9 11" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+                <div class="cta-visual">
+                    <div class="cta-decoration">
+                        <div class="decoration-ring ring-1"></div>
+                        <div class="decoration-ring ring-2"></div>
+                        <div class="decoration-ring ring-3"></div>
+                        <div class="decoration-center">
+                            <svg viewBox="0 0 48 48" fill="none">
+                                <path d="M24 4L4 14V34L24 44L44 34V14L24 4Z" stroke="currentColor" stroke-width="2"
+                                    stroke-linejoin="round" />
+                                <path d="M4 14L24 24M24 24L44 14M24 24V44" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="40" height="40" rx="10" fill="url(#logo-gradient-footer)" />
+                                <path d="M12 20L18 14L24 20L18 26L12 20Z" fill="white" />
+                                <path d="M20 16L26 10L32 16L26 22L20 16Z" fill="white" opacity="0.7" />
+                                <defs>
+                                    <linearGradient id="logo-gradient-footer" x1="0" y1="0" x2="40" y2="40">
+                                        <stop offset="0%" stop-color="#00D4AA" />
+                                        <stop offset="100%" stop-color="#7B61FF" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <span class="logo-text">Runo</span>
+                    </a>
+                    <p>Building intelligent applications that transform businesses and delight users.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#services">Services</a>
+                        <a href="#process">Process</a>
+                        <a href="#work">Work</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <a href="#">Web Development</a>
+                        <a href="#">Mobile Apps</a>
+                        <a href="#">AI Integration</a>
+                        <a href="#">Product Design</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <a href="#">Twitter</a>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">GitHub</a>
+                        <a href="#">Dribbble</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Runo Technologies. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
