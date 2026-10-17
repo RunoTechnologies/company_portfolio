@@ -1,16 +1,18 @@
 ---
-// Dots travelling the figure-eight loop. Each is a SMIL animateMotion; the negative begin spreads
-// them along the path, so at t=0 (and when paused under reduced motion) the loop is already full.
-const N = 78;
-const dots = Array.from({ length: N }, (_, k) => {
-  const big = k % 7 === 0;
-  return {
-    r: big ? 3.2 : +(1.6 + (k % 3) * 0.5).toFixed(1),
-    opacity: big ? '.95' : (0.35 + (k % 5) * 0.12).toFixed(2),
-    dur: `${11 + (k % 4) * 1.5}s`,
-    begin: `${(-(k / N) * 14).toFixed(3)}s`,
-  };
-});
+// Admin chores ride three lanes through a scan line: left of it each is a chore, right of it the
+// same task comes out done. Both copies share one SMIL timeline and are clipped at the line, so a
+// task changes as it crosses. Negative begins spread the tasks, so at t=0 (and when paused under
+// reduced motion) every lane is already full.
+const W = 220;
+const LANES = [
+  { y: 70, dur: 12, tasks: [['Chase timesheet', 'Timesheet approved'], ['Check right to work', 'RTW verified']] },
+  { y: 160, dur: 14, tasks: [['Call to confirm shift', 'Shift confirmed'], ['Re-key candidate', 'Profile synced']] },
+  { y: 250, dur: 13, tasks: [['Screen applicant', 'Applicant screened'], ['Build invoice', 'Invoice sent']] },
+];
+const chips = LANES.flatMap((l, i) => l.tasks.map(([todo, done], j) => ({
+  y: l.y, todo, done, dur: `${l.dur}s`,
+  begin: `${(-((j / l.tasks.length) + i * 0.17) * l.dur).toFixed(2)}s`,
+})));
 
 const POINTS = [
   { icon: 'focus', title: 'Staffing is all we do', text: 'We only build for staffing and recruiting desks, so the first call starts from your vocabulary, not ours.' },
@@ -27,13 +29,36 @@ const POINTS = [
         <p>Most desks lose a day a week to chasing, checking and re-keying. We build the automation that does it, and we stay until the team trusts it.</p>
       </div>
       <div class="vis">
-        <svg id="loop" viewBox="0 0 600 300" aria-hidden="true">
-          <path id="lp" d="M300 150C360 60 520 60 520 150S360 240 300 150 80 240 80 150 240 60 300 150Z" fill="none" stroke="#11b3c8" stroke-opacity=".25" stroke-width="1.5" />
-          {dots.map((d) => (
-            <circle r={d.r} fill="#11b3c8" fill-opacity={d.opacity}>
-              <animateMotion dur={d.dur} begin={d.begin} repeatCount="indefinite"><mpath href="#lp" xlink:href="#lp" /></animateMotion>
-            </circle>
-          ))}
+        <svg id="flow" viewBox="0 0 480 320" aria-hidden="true">
+          <defs>
+            <clipPath id="todo" clipPathUnits="userSpaceOnUse"><rect x="-10" y="0" width="250" height="320" /></clipPath>
+            <clipPath id="done" clipPathUnits="userSpaceOnUse"><rect x="240" y="0" width="250" height="320" /></clipPath>
+            <linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#11b3c8" stop-opacity="0" /><stop offset=".5" stop-color="#11b3c8" stop-opacity=".22" /><stop offset="1" stop-color="#11b3c8" stop-opacity="0" /></linearGradient>
+          </defs>
+          {LANES.map((l) => <line x1="0" x2="480" y1={l.y} y2={l.y} stroke="#cfd8e3" stroke-dasharray="2 6" />)}
+          <g clip-path="url(#todo)">
+            {chips.map((c) => (
+              <g>
+                <animateTransform attributeName="transform" type="translate" values={`-${W} ${c.y};480 ${c.y}`} dur={c.dur} begin={c.begin} repeatCount="indefinite" />
+                <rect y="-22" width={W} height="44" rx="22" fill="#fff" stroke="#cfd8e3" />
+                <circle cx="24" r="8" fill="none" stroke="#8a94a6" stroke-width="1.5" />
+                <text x="42" y="5" font-size="15" font-weight="700" fill="#6b7689">{c.todo}</text>
+              </g>
+            ))}
+          </g>
+          <g clip-path="url(#done)">
+            {chips.map((c) => (
+              <g>
+                <animateTransform attributeName="transform" type="translate" values={`-${W} ${c.y};480 ${c.y}`} dur={c.dur} begin={c.begin} repeatCount="indefinite" />
+                <rect y="-22" width={W} height="44" rx="22" fill="#0b1526" />
+                <circle cx="24" r="9" fill="#11b3c8" />
+                <path d="M20 0l3 3 5-6" fill="none" stroke="#0b1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <text x="42" y="5" font-size="15" font-weight="700" fill="#fff">{c.done}</text>
+              </g>
+            ))}
+          </g>
+          <rect x="220" y="14" width="40" height="292" fill="url(#beam)" />
+          <line x1="240" x2="240" y1="14" y2="306" stroke="#11b3c8" stroke-width="2" stroke-linecap="round" />
         </svg>
       </div>
     </div>
@@ -79,10 +104,10 @@ const POINTS = [
 
 <script>
   import { reduce } from '../scripts/motion.js';
-  // CSS cannot stop SMIL; hold the loop at its full starting frame instead.
-  const loop = document.getElementById('loop') as SVGSVGElement | null;
-  if (reduce && loop) {
-    loop.pauseAnimations();
-    loop.setCurrentTime(0);
+  // CSS cannot stop SMIL; hold the lanes at their full starting frame instead.
+  const flow = document.getElementById('flow') as SVGSVGElement | null;
+  if (reduce && flow) {
+    flow.pauseAnimations();
+    flow.setCurrentTime(0);
   }
 </script>
