@@ -1,18 +1,23 @@
 ---
 // Admin chores ride three lanes through a scan line: left of it each is a chore, right of it the
-// same task comes out done. Both copies share one SMIL timeline and are clipped at the line, so a
-// task changes as it crosses. Negative begins spread the tasks, so at t=0 (and when paused under
-// reduced motion) every lane is already full.
-const W = 220;
+// same task comes out done. Each chip has a copy in two half-width panes clipped at the line, so a
+// task changes as it crosses. The chips move with CSS transforms, which the compositor runs off the
+// main thread; SMIL repainted the whole figure on the main thread and hitched whenever other page
+// scripts ran. Lengths are in figure units (480 x 320) converted to cqi in the styles.
 const LANES = [
   { y: 70, dur: 12, tasks: [['Chase timesheet', 'Timesheet approved'], ['Check right to work', 'RTW verified']] },
   { y: 160, dur: 14, tasks: [['Call to confirm shift', 'Shift confirmed'], ['Re-key candidate', 'Profile synced']] },
   { y: 250, dur: 13, tasks: [['Screen applicant', 'Applicant screened'], ['Build invoice', 'Invoice sent']] },
 ];
-const chips = LANES.flatMap((l, i) => l.tasks.map(([todo, done], j) => ({
-  y: l.y, todo, done, dur: `${l.dur}s`,
-  begin: `${(-((j / l.tasks.length) + i * 0.17) * l.dur).toFixed(2)}s`,
-})));
+// A chip is 220 wide and travels from x=-220 to x=480. Negative delays spread the tasks; --x is the
+// same starting frame as a static offset, so under reduced motion every lane is still full.
+const chips = LANES.flatMap((l, i) => l.tasks.map(([todo, done], j) => {
+  const p = (j / l.tasks.length + i * 0.17) % 1;
+  return {
+    todo, done,
+    style: `top:${(l.y / 320) * 100}%;--t:${l.dur}s;--d:${(-p * l.dur).toFixed(2)}s;--x:${(((-220 + 700 * p) / 220) * 100).toFixed(2)}%`,
+  };
+}));
 
 const POINTS = [
   { icon: 'focus', title: 'Staffing is all we do', text: 'We only build for staffing and recruiting desks, so the first call starts from your vocabulary, not ours.' },
@@ -29,37 +34,19 @@ const POINTS = [
         <p>Most desks lose a day a week to chasing, checking and re-keying. We build the automation that does it, and we stay until the team trusts it.</p>
       </div>
       <div class="vis">
-        <svg id="flow" viewBox="0 0 480 320" aria-hidden="true">
-          <defs>
-            <clipPath id="todo" clipPathUnits="userSpaceOnUse"><rect x="-10" y="0" width="250" height="320" /></clipPath>
-            <clipPath id="done" clipPathUnits="userSpaceOnUse"><rect x="240" y="0" width="250" height="320" /></clipPath>
-            <linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#11b3c8" stop-opacity="0" /><stop offset=".5" stop-color="#11b3c8" stop-opacity=".22" /><stop offset="1" stop-color="#11b3c8" stop-opacity="0" /></linearGradient>
-          </defs>
-          {LANES.map((l) => <line x1="0" x2="480" y1={l.y} y2={l.y} stroke="#cfd8e3" stroke-dasharray="2 6" />)}
-          <g clip-path="url(#todo)">
+        <div class="stage" aria-hidden="true">
+          {LANES.map((l) => <i class="lane" style={`top:${(l.y / 320) * 100}%`}></i>)}
+          <div class="pane todo">
+            {chips.map((c) => <span class="chip" style={c.style}><b class="tick"></b>{c.todo}</span>)}
+          </div>
+          <div class="pane done">
             {chips.map((c) => (
-              <g>
-                <animateTransform attributeName="transform" type="translate" values={`-${W} ${c.y};480 ${c.y}`} dur={c.dur} begin={c.begin} repeatCount="indefinite" />
-                <rect y="-22" width={W} height="44" rx="22" fill="#fff" stroke="#cfd8e3" />
-                <circle cx="24" r="8" fill="none" stroke="#8a94a6" stroke-width="1.5" />
-                <text x="42" y="5" font-size="15" font-weight="700" fill="#6b7689">{c.todo}</text>
-              </g>
+              <span class="chip" style={c.style}><b class="tick"><svg viewBox="-9 -9 18 18"><path d="M-4 0l3 3 5-6" /></svg></b>{c.done}</span>
             ))}
-          </g>
-          <g clip-path="url(#done)">
-            {chips.map((c) => (
-              <g>
-                <animateTransform attributeName="transform" type="translate" values={`-${W} ${c.y};480 ${c.y}`} dur={c.dur} begin={c.begin} repeatCount="indefinite" />
-                <rect y="-22" width={W} height="44" rx="22" fill="#0b1526" />
-                <circle cx="24" r="9" fill="#11b3c8" />
-                <path d="M20 0l3 3 5-6" fill="none" stroke="#0b1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <text x="42" y="5" font-size="15" font-weight="700" fill="#fff">{c.done}</text>
-              </g>
-            ))}
-          </g>
-          <rect x="220" y="14" width="40" height="292" fill="url(#beam)" />
-          <line x1="240" x2="240" y1="14" y2="306" stroke="#11b3c8" stroke-width="2" stroke-linecap="round" />
-        </svg>
+          </div>
+          <i class="beam"></i>
+          <i class="line"></i>
+        </div>
       </div>
     </div>
     <div class="three">
@@ -84,7 +71,23 @@ const POINTS = [
   .col p:last-child{font-size:17px;max-width:520px}
   .vis{position:relative;overflow:hidden;isolation:isolate}
   .vis::before{content:"";position:absolute;inset:-10%;background:radial-gradient(ellipse at center,var(--pale) 0%,rgba(255,255,255,0) 65%);pointer-events:none}
-  .vis svg{position:relative;width:100%;height:auto}
+  /* one figure unit is 100cqi/480 */
+  .stage{position:relative;aspect-ratio:3/2;container-type:inline-size}
+  .lane{position:absolute;left:0;right:0;height:1px;background:repeating-linear-gradient(90deg,var(--rail) 0 2px,transparent 2px 8px)}
+  .pane{position:absolute;top:0;bottom:0;width:50%;overflow:hidden}
+  .todo{left:0}
+  .done{left:50%}
+  .done .chip{left:-100%}
+  .chip{position:absolute;left:0;width:45.833cqi;height:9.167cqi;margin-top:-4.583cqi;padding-left:3.125cqi;display:flex;align-items:center;gap:1.875cqi;border-radius:999px;box-sizing:border-box;font-size:3.125cqi;font-weight:700;white-space:nowrap;transform:translateX(var(--x));animation:ride var(--t) linear var(--d) infinite;will-change:transform}
+  .todo .chip{background:#fff;border:1px solid var(--rail);color:var(--muted)}
+  .done .chip{background:var(--ink);color:#fff}
+  .tick{flex:none;width:3.75cqi;height:3.75cqi;border-radius:50%;display:grid;place-items:center}
+  .todo .tick{border:.3125cqi solid var(--dim);transform:scale(.89)}
+  .done .tick{background:var(--ac)}
+  .tick svg{width:100%;height:100%;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .beam{position:absolute;top:4.375%;bottom:4.375%;left:calc(50% - 4.167cqi);width:8.333cqi;background:linear-gradient(90deg,rgba(17,179,200,0),rgba(17,179,200,.22),rgba(17,179,200,0))}
+  .line{position:absolute;top:4.375%;bottom:4.375%;left:calc(50% - .208cqi);width:.417cqi;border-radius:1cqi;background:var(--ac)}
+  @keyframes ride{from{transform:translateX(-100%)}to{transform:translateX(218.182%)}}
   .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
   .three>div{position:relative;padding:36px 32px 0;display:grid;gap:12px;align-content:start}
   .three>div+div{border-left:1px solid var(--line)}
@@ -101,13 +104,3 @@ const POINTS = [
     .n{right:0;top:28px}
   }
 </style>
-
-<script>
-  import { reduce } from '../scripts/motion.js';
-  // CSS cannot stop SMIL; hold the lanes at their full starting frame instead.
-  const flow = document.getElementById('flow') as SVGSVGElement | null;
-  if (reduce && flow) {
-    flow.pauseAnimations();
-    flow.setCurrentTime(0);
-  }
-</script>
