@@ -3,19 +3,32 @@
 // same task comes out done. Each chip has a copy in two half-width panes clipped at the line, so a
 // task changes as it crosses. The chips move with CSS transforms, which the compositor runs off the
 // main thread; SMIL repainted the whole figure on the main thread and hitched whenever other page
-// scripts ran. Lengths are in figure units (480 x 320) converted to cqi in the styles.
+// scripts ran. Chips wait, then glide in one eased hop: slow constant drift showed every dropped
+// or pixel-snapped frame as a judder. Lengths are in figure units (480 x 320) converted to cqi in
+// the styles.
 const LANES = [
   { y: 70, dur: 12, tasks: [['Chase timesheet', 'Timesheet approved'], ['Check right to work', 'RTW verified']] },
   { y: 160, dur: 14, tasks: [['Call to confirm shift', 'Shift confirmed'], ['Re-key candidate', 'Profile synced']] },
   { y: 250, dur: 13, tasks: [['Screen applicant', 'Applicant screened'], ['Build invoice', 'Invoice sent']] },
 ];
-// A chip is 220 wide and travels from x=-220 to x=480. Negative delays spread the tasks; --x is the
-// same starting frame as a static offset, so under reduced motion every lane is still full.
+// A chip is 220 wide and makes three hops per cycle (the `ride` keyframes): in from x=-220 to a
+// todo stop just left of the line, across to a done stop just right of it, then out to x=480.
+// Each hop crosses a whole chip width, so no chip ever rests astride the line. Negative delays
+// spread the tasks; --x is the same starting frame as a static offset, so under reduced motion
+// every lane still shows its tasks. Lane partners sit half a cycle apart and never overlap.
+const STOPS = [[0, -220], [0.2, -220], [1 / 3, 13.333], [0.5333, 13.333], [2 / 3, 246.667], [0.8667, 246.667], [1, 480]];
+const at = (p) => {
+  for (let k = 1; k < STOPS.length; k++) {
+    const [a, x0] = STOPS[k - 1], [b, x1] = STOPS[k];
+    if (p <= b) { const t = (p - a) / (b - a); return x0 + (x1 - x0) * t * t * (3 - 2 * t); }
+  }
+  return 480;
+};
 const chips = LANES.flatMap((l, i) => l.tasks.map(([todo, done], j) => {
-  const p = (j / l.tasks.length + i * 0.17) % 1;
+  const p = (j / l.tasks.length + 0.27 + i * 0.04) % 1;
   return {
     todo, done,
-    style: `top:${(l.y / 320) * 100}%;--t:${l.dur}s;--d:${(-p * l.dur).toFixed(2)}s;--x:${(((-220 + 700 * p) / 220) * 100).toFixed(2)}%`,
+    style: `top:${(l.y / 320) * 100}%;--t:${l.dur}s;--d:${(-p * l.dur).toFixed(2)}s;--x:${((at(p) / 220) * 100).toFixed(2)}%`,
   };
 }));
 
@@ -78,7 +91,7 @@ const POINTS = [
   .todo{left:0}
   .done{left:50%}
   .done .chip{left:-100%}
-  .chip{position:absolute;left:0;width:45.833cqi;height:9.167cqi;margin-top:-4.583cqi;padding-left:3.125cqi;display:flex;align-items:center;gap:1.875cqi;border-radius:999px;box-sizing:border-box;font-size:3.125cqi;font-weight:700;white-space:nowrap;transform:translateX(var(--x));animation:ride var(--t) linear var(--d) infinite;will-change:transform}
+  .chip{position:absolute;left:0;width:45.833cqi;height:9.167cqi;margin-top:-4.583cqi;padding-left:3.125cqi;display:flex;align-items:center;gap:1.875cqi;border-radius:999px;box-sizing:border-box;font-size:3.125cqi;font-weight:700;white-space:nowrap;transform:translateX(var(--x));animation:ride var(--t) cubic-bezier(.65,0,.35,1) var(--d) infinite;will-change:transform}
   .todo .chip{background:#fff;border:1px solid var(--rail);color:var(--muted)}
   .done .chip{background:var(--ink);color:#fff}
   .tick{flex:none;width:3.75cqi;height:3.75cqi;border-radius:50%;display:grid;place-items:center}
@@ -87,7 +100,7 @@ const POINTS = [
   .tick svg{width:100%;height:100%;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   .beam{position:absolute;top:4.375%;bottom:4.375%;left:calc(50% - 4.167cqi);width:8.333cqi;background:linear-gradient(90deg,rgba(17,179,200,0),rgba(17,179,200,.22),rgba(17,179,200,0))}
   .line{position:absolute;top:4.375%;bottom:4.375%;left:calc(50% - .208cqi);width:.417cqi;border-radius:1cqi;background:var(--ac)}
-  @keyframes ride{from{transform:translateX(-100%)}to{transform:translateX(218.182%)}}
+  @keyframes ride{0%,20%{transform:translateX(-100%)}33.333%,53.333%{transform:translateX(6.061%)}66.667%,86.667%{transform:translateX(112.121%)}100%{transform:translateX(218.182%)}}
   .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
   .three>div{position:relative;padding:36px 32px 0;display:grid;gap:12px;align-content:start}
   .three>div+div{border-left:1px solid var(--line)}
