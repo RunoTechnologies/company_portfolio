@@ -1,16 +1,16 @@
 ---
 import { CAL_URL, SOLUTIONS } from '../config';
 
-const DETAIL: Record<string, { icon: string; text: string; link: string }> = {
-  sourcing: { icon: 'search', text: 'Candidates sourced below Indeed and LinkedIn cost, from niche pools and your own re-engaged database.', link: 'See sourcing' },
-  'show-up': { icon: 'accept', text: 'Enrichment, a warm-up sequence and automated replies that turn offers into accepted shifts.', link: 'See the sequence' },
-  screening: { icon: 'shield', text: 'Identity, work-history and duplicate checks before a recruiter spends a minute on a profile.', link: 'See screening' },
-  clients: { icon: 'pipe', text: 'Automated outreach and enrichment that opens the week with qualified client conversations.', link: 'See outreach' },
-  'back-office': { icon: 'sheet', text: 'Timesheets, invoicing and compliance that run without a coordinator chasing them.', link: 'See back office' },
-  crm: { icon: 'crm', text: 'A CRM shaped to your desk when the one you have is the problem.', link: 'See the CRM' },
+const DETAIL: Record<string, { icon: string; text: string }> = {
+  sourcing: { icon: 'search', text: 'Candidates sourced below Indeed and LinkedIn cost, from niche pools and your own re-engaged database.' },
+  'show-up': { icon: 'accept', text: 'Enrichment, a warm-up sequence and automated replies that turn offers into accepted shifts.' },
+  screening: { icon: 'shield', text: 'Identity, work-history and duplicate checks before a recruiter spends a minute on a profile.' },
+  clients: { icon: 'pipe', text: 'Automated outreach and enrichment that opens the week with qualified client conversations.' },
+  'back-office': { icon: 'sheet', text: 'Timesheets, invoicing and compliance that run without a coordinator chasing them.' },
+  crm: { icon: 'crm', text: 'A CRM shaped to your desk when the one you have is the problem.' },
 };
 ---
-<section class="sec build">
+<section class="sec build" id="solutions">
   <div class="wrap">
     <div class="head">
       <h2><svg class="ic"><use href="#i-layers" /></svg>What we build</h2>
@@ -20,12 +20,11 @@ const DETAIL: Record<string, { icon: string; text: string; link: string }> = {
       {SOLUTIONS.map((s, i) => {
         const d = DETAIL[s.id];
         return (
-          <div class="card">
+          <div class="card" id={s.id}>
             <svg class="ic"><use href={`#i-${d.icon}`} /></svg>
             <span class="n">{String(i + 1).padStart(2, '0')}</span>
             <h3>{s.label}</h3>
             <p>{d.text}</p>
-            <a class="alink" href={`/solutions#${s.id}`}>{d.link} <svg class="arr"><use href="#i-arrow" /></svg></a>
           </div>
         );
       })}
