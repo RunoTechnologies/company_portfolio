@@ -6,7 +6,7 @@ const STEPS = [
   { phase: 'ADOPT', title: 'Optimise and hand over', sub: 'Make it stick.', checks: ['A month beside the team on live traffic', 'Weekly numbers against the target', 'Handover when the desk trusts it'] },
 ];
 ---
-<section class="sec band proc" id="process">
+<section class="sec proc" id="process">
   <div class="wrap">
     <div class="head">
       <div class="col">
@@ -31,7 +31,7 @@ const STEPS = [
   .wrap{display:grid;gap:48px}
   .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;position:relative;padding-top:28px}
   .steps::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--rail)}
-  .step::before{content:"";position:absolute;top:-37px;left:50%;width:11px;height:11px;border-radius:50%;background:var(--ac);border:3px solid var(--tint);transform:translateX(-50%)}
+  .step::before{content:"";position:absolute;top:-37px;left:50%;width:11px;height:11px;border-radius:50%;background:var(--ac);border:3px solid var(--bg);transform:translateX(-50%)}
   .phase{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
   .phase b{color:var(--act);font-weight:700}
   .sub{color:var(--ink);font-weight:700;font-size:15px}
