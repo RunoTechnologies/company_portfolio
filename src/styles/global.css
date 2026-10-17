@@ -28,7 +28,11 @@ svg{display:block}
 .wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 .sec{padding-block:96px}
 .tail{padding-block:0 96px}
-.band{background:var(--tint)}
+/* navy bands, like the hero: section text goes light, the white cards inside keep the ink */
+.band{background:var(--ink);color:#c5cdd9}
+.band h2{color:#fff}
+.band .eyebrow{color:var(--ac)}
+.band .note,.band .caps{color:var(--dim)}
 .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
 .head .col{display:grid;gap:14px;max-width:720px}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -58,7 +62,7 @@ svg{display:block}
 
 /* cards */
 .card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:grid;gap:14px;align-content:start}
-.band .card{background:#fff}
+.band .card{background:#fff;color:var(--body)}
 .card p{font-size:15px}
 .card .alink{margin-top:4px}
 .n{position:absolute;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
