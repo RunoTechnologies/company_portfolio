@@ -1,19 +1,41 @@
 ---
-// A tinted strip of plain-text names: the sectors served, or the stack we build on.
-interface Props { label: string; items: string[]; stack?: boolean }
-const { label, items, stack = false } = Astro.props;
+// A tinted strip of plain-text names: the sectors served, or past clients on a sliding belt.
+interface Props { label: string; items: string[]; slide?: boolean }
+const { label, items, slide = false } = Astro.props;
+// Each belt half must outrun the widest viewport, so short lists repeat; speed stays ~5 s per name.
+const loop = Array.from({ length: Math.max(1, Math.ceil(12 / items.length)) }, () => items).flat();
 ---
 <section class="band">
-  <div class:list={['wrap', 'marks', { stack }]}>
+  <div class:list={['wrap', 'marks', { slide }]}>
     <p class="caps">{label}</p>
-    <ul class="row">{items.map((i) => <li>{i}</li>)}</ul>
+    {slide ? (
+      <div class="belt" style={`--dur:${loop.length * 5}s`}>
+        <div class="track">
+          <ul class="row">{loop.map((i, k) => <li class:list={{ rep: k >= items.length }} aria-hidden={k >= items.length ? 'true' : undefined}>{i}</li>)}</ul>
+          <ul class="row" aria-hidden="true">{loop.map((i) => <li>{i}</li>)}</ul>
+        </div>
+      </div>
+    ) : (
+      <ul class="row">{items.map((i) => <li>{i}</li>)}</ul>
+    )}
   </div>
 </section>
 
 <style>
   .marks{padding-block:56px;display:grid;gap:28px;justify-items:center;text-align:center}
   .row{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 44px;font-size:22px;font-weight:800;letter-spacing:-.02em;color:#a0a9b8}
-  .stack .row{font-size:20px;color:#7f8999;font-weight:700}
-  @media (max-width:900px){.row{gap:14px 36px;font-size:20px}}
-  @media (max-width:560px){.row{font-size:18px;gap:10px 24px}}
+  .belt{justify-self:stretch;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .track{display:flex;width:max-content;animation:belt var(--dur) linear infinite}
+  .belt:hover .track{animation-play-state:paused}
+  /* the trailing pad matches the gap, so the seam between halves is invisible */
+  .slide .row{flex-wrap:nowrap;white-space:nowrap;padding-right:44px}
+  @keyframes belt{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  @media (max-width:900px){.row{gap:14px 36px;font-size:20px}.slide .row{padding-right:36px}}
+  @media (max-width:560px){.row{font-size:18px;gap:10px 24px}.slide .row{padding-right:24px}}
+  @media (prefers-reduced-motion:reduce){
+    .belt{-webkit-mask-image:none;mask-image:none}
+    .track{width:auto;justify-content:center}
+    .slide .row{flex-wrap:wrap;white-space:normal;padding-right:0}
+    .row[aria-hidden],.rep{display:none}
+  }
 </style>

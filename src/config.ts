@@ -5,13 +5,16 @@ export const DESCRIPTION =
   'Sourcing, screening, follow-up and back-office automation for staffing and recruiting firms.';
 
 export const NAV = [
-  { label: 'Solutions', href: '/solutions' },
-  { label: 'Process', href: '/process' },
+  { label: 'Solutions', href: '/#solutions' },
+  { label: 'Process', href: '/#process' },
   { label: 'Case studies', href: '/case-studies' },
   { label: 'About', href: '/about' },
 ];
 
-// Anchors on /solutions, shared by the home-page build grid and the footer.
+// Placeholders: replace with past clients' names before launch.
+export const CLIENTS = ['Client 01', 'Client 02', 'Client 03', 'Client 04', 'Client 05', 'Client 06'];
+
+// Build-grid card anchors on the home page, shared with the footer.
 export const SOLUTIONS = [
   { id: 'sourcing', label: 'Talent sourcing' },
   { id: 'show-up', label: 'Acceptance and show-up' },

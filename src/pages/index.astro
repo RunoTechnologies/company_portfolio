@@ -10,16 +10,16 @@ import CtaBand from '../components/CtaBand.astro';
 import Feedback from '../components/Feedback.astro';
 import Engage from '../components/Engage.astro';
 import BookingBand from '../components/BookingBand.astro';
-import { COMPANY } from '../config';
+import { CLIENTS, COMPANY } from '../config';
 ---
 <Base title={`${COMPANY}: automation for staffing and recruiting firms`}>
   <Hero />
+  <Marks slide label="Past clients" items={CLIENTS} />
+  <Why />
   <Marks
     label="Built for the desks that run on volume"
     items={['Light industrial', 'Healthcare', 'Logistics', 'Hospitality', 'Admin and clerical', 'Executive search']}
   />
-  <Why />
-  <Marks stack label="The stack we build on" items={['Anthropic', 'OpenAI', 'Twilio', 'Postgres', 'n8n', 'Cal.com']} />
   <BuildGrid />
   <Steps />
   <Results />
