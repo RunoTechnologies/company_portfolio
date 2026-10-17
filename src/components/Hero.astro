@@ -16,7 +16,7 @@ const STATUS = [
     <h1><span class="dim">Less chasing.</span><span>More placements.</span></h1>
     <p class="lede">Runotech builds the automation behind your desk: sourcing that <b>costs less than Indeed and LinkedIn</b>, screening that <b>keeps fraudulent applicants out</b>, follow-up that gets people to accept and show up, and a back office that <b>runs itself</b>.</p>
     <div class="cta">
-      <a class="btn" href={CAL_URL}>Book a free intro call<span class="chip"><svg class="arr"><use href="#i-arrow" /></svg></span></a>
+      <a class="btn light" href={CAL_URL}>Book a free intro call<span class="chip"><svg class="arr"><use href="#i-arrow" /></svg></span></a>
       <a class="tlink" href="/#process">How the process works <svg class="arr"><use href="#i-arrow" /></svg></a>
     </div>
     <p class="fine">30 minutes. We look at your pipeline and name the bottlenecks worth automating.</p>
@@ -29,15 +29,19 @@ const STATUS = [
 </section>
 
 <style>
-  .hero{position:relative;overflow:hidden;padding-block:120px 96px;text-align:center}
-  .glow{position:absolute;left:50%;top:-220px;width:1200px;height:820px;transform:translateX(-50%);background:radial-gradient(ellipse at center,#d8f3f8 0%,#e8f4fb 35%,rgba(255,255,255,0) 70%);pointer-events:none}
+  /* navy like the CTA band, so the page opens and closes on the same ground */
+  .hero{position:relative;overflow:hidden;padding-block:120px 96px;text-align:center;background:var(--ink);color:#c5cdd9}
+  .glow{position:absolute;left:50%;top:-220px;width:1200px;height:820px;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(17,179,200,.3) 0%,rgba(17,179,200,.12) 35%,rgba(17,179,200,0) 70%);pointer-events:none}
   .wrap{position:relative;container-type:inline-size;display:grid;justify-items:center;gap:28px}
-  h1{font-size:clamp(34px,7vw,92px);font-size:clamp(34px,13cqi,92px);line-height:1.02;letter-spacing:-.035em}
+  .eyebrow{color:var(--ac)}
+  h1{color:#fff;font-size:clamp(34px,7vw,92px);font-size:clamp(34px,13cqi,92px);line-height:1.02;letter-spacing:-.035em}
   h1 span{display:block}
   h1 .dim{color:var(--dim)}
+  .lede b{color:#fff}
+  .tlink{color:#fff}
   .cta{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
-  .fine{font-size:13px;color:var(--muted);margin-top:-12px}
-  .strip{width:100%;max-width:720px;display:flex;align-items:center;gap:14px;padding:12px 20px;border:1px solid var(--line);border-radius:28px;background:#fff;text-align:left;box-shadow:0 10px 30px -18px rgba(11,21,38,.25)}
+  .fine{font-size:13px;color:var(--dim);margin-top:-12px}
+  .strip{width:100%;max-width:720px;display:flex;align-items:center;gap:14px;padding:12px 20px;border:1px solid var(--line);border-radius:28px;background:#fff;text-align:left;box-shadow:0 10px 30px -18px rgba(0,0,0,.6)}
   .pulse{flex:0 0 10px;width:10px;height:10px;border-radius:50%;background:var(--ac);box-shadow:0 0 0 0 rgba(17,179,200,.5);animation:pulse 2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(17,179,200,.5)}70%{box-shadow:0 0 0 9px rgba(17,179,200,0)}100%{box-shadow:0 0 0 0 rgba(17,179,200,0)}}
   .lines{flex:1;min-width:0;display:grid}

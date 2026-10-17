@@ -1,11 +1,11 @@
 ---
-// A tinted strip of names on a belt sliding left to right.
+// A navy strip of names on a belt sliding left to right, continuing the hero.
 interface Props { label: string; items: string[] }
 const { label, items } = Astro.props;
 // Each belt half must outrun the widest viewport, so short lists repeat; speed stays ~5 s per name.
 const loop = Array.from({ length: Math.max(1, Math.ceil(12 / items.length)) }, () => items).flat();
 ---
-<section class="band">
+<section class="navy">
   <div class="wrap marks">
     <p class="caps">{label}</p>
     <div class="belt" style={`--dur:${loop.length * 5}s`}>
@@ -18,8 +18,10 @@ const loop = Array.from({ length: Math.max(1, Math.ceil(12 / items.length)) }, (
 </section>
 
 <style>
+  .navy{background:var(--ink);border-top:1px solid rgba(255,255,255,.08)}
   .marks{padding-block:56px;display:grid;gap:28px;justify-items:center;text-align:center}
-  .row{display:flex;justify-content:center;gap:16px 44px;font-size:22px;font-weight:800;letter-spacing:-.02em;color:#a0a9b8}
+  .row{display:flex;justify-content:center;gap:16px 44px;font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--dim)}
+  .caps{color:var(--dim)}
   .belt{justify-self:stretch;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
   .track{display:flex;width:max-content;animation:belt var(--dur) linear infinite}
   .belt:hover .track{animation-play-state:paused}
