@@ -1,5 +1,5 @@
 // Placeholders: replace with the trading name and the real Cal.com handle and event slug.
-export const COMPANY = 'Runotech';
+export const COMPANY = 'Runo Technologies';
 export const CAL_URL = 'https://cal.com/runotech/intro';
 export const DESCRIPTION =
   'Sourcing, screening, follow-up and back-office automation for staffing and recruiting firms.';
