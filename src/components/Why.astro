@@ -1,0 +1,88 @@
+---
+// Dots travelling the figure-eight loop. Each is a SMIL animateMotion; the negative begin spreads
+// them along the path, so at t=0 (and when paused under reduced motion) the loop is already full.
+const N = 78;
+const dots = Array.from({ length: N }, (_, k) => {
+  const big = k % 7 === 0;
+  return {
+    r: big ? 3.2 : +(1.6 + (k % 3) * 0.5).toFixed(1),
+    opacity: big ? '.95' : (0.35 + (k % 5) * 0.12).toFixed(2),
+    dur: `${11 + (k % 4) * 1.5}s`,
+    begin: `${(-(k / N) * 14).toFixed(3)}s`,
+  };
+});
+
+const POINTS = [
+  { icon: 'focus', title: 'Staffing is all we do', text: 'We only build for staffing and recruiting desks, so the first call starts from your vocabulary, not ours.' },
+  { icon: 'loop', title: 'One method across the whole order', text: 'Sourcing, screening, confirmation, timesheets, invoicing: one pipeline, instrumented end to end.' },
+  { icon: 'target', title: 'Outcome-driven by design', text: 'Every build names the number it moves before we start and reports it weekly after launch.' },
+];
+---
+<section class="sec why">
+  <div class="wrap">
+    <div class="top">
+      <div class="col">
+        <p class="eyebrow dot">Why Runotech</p>
+        <h2>Everyone is hiring recruiters to do admin. <span class="ac">We automate the admin instead.</span></h2>
+        <p>Most desks lose a day a week to chasing, checking and re-keying. We build the automation that does it, and we stay until the team trusts it.</p>
+      </div>
+      <div class="vis">
+        <svg id="loop" viewBox="0 0 600 300" aria-hidden="true">
+          <path id="lp" d="M300 150C360 60 520 60 520 150S360 240 300 150 80 240 80 150 240 60 300 150Z" fill="none" stroke="#11b3c8" stroke-opacity=".25" stroke-width="1.5" />
+          {dots.map((d) => (
+            <circle r={d.r} fill="#11b3c8" fill-opacity={d.opacity}>
+              <animateMotion dur={d.dur} begin={d.begin} repeatCount="indefinite"><mpath href="#lp" xlink:href="#lp" /></animateMotion>
+            </circle>
+          ))}
+        </svg>
+      </div>
+    </div>
+    <div class="three">
+      {POINTS.map((p, i) => (
+        <div>
+          <svg class="ic"><use href={`#i-${p.icon}`} /></svg>
+          <span class="n">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{p.title}</h3>
+          <p>{p.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .wrap{container-type:inline-size;display:grid;gap:64px}
+  .top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+  .col{display:grid;gap:22px}
+  h2{font-size:clamp(32px,6vw,54px);font-size:clamp(32px,4.9cqi,54px);line-height:1.06}
+  h2 .ac{color:var(--act)}
+  .col p:last-child{font-size:17px;max-width:520px}
+  .vis{position:relative;overflow:hidden;isolation:isolate}
+  .vis::before{content:"";position:absolute;inset:-10%;background:radial-gradient(ellipse at center,var(--pale) 0%,rgba(255,255,255,0) 65%);pointer-events:none}
+  .vis svg{position:relative;width:100%;height:auto}
+  .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+  .three>div{position:relative;padding:36px 32px 0;display:grid;gap:12px;align-content:start}
+  .three>div+div{border-left:1px solid var(--line)}
+  .three>div:first-child{padding-left:0}
+  .three>div:last-child{padding-right:0}
+  .n{top:36px;right:32px}
+  .three>div:last-child .n{right:0}
+  .three h3,.three p{max-width:300px}
+  .three p{font-size:15px}
+  @media (max-width:900px){
+    .top,.three{grid-template-columns:minmax(0,1fr)}
+    .three>div{padding:28px 0}
+    .three>div+div{border-left:0;border-top:1px solid var(--line)}
+    .n{right:0;top:28px}
+  }
+</style>
+
+<script>
+  import { reduce } from '../scripts/motion.js';
+  // CSS cannot stop SMIL; hold the loop at its full starting frame instead.
+  const loop = document.getElementById('loop') as SVGSVGElement | null;
+  if (reduce && loop) {
+    loop.pauseAnimations();
+    loop.setCurrentTime(0);
+  }
+</script>

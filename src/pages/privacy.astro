@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import NotYet from '../components/NotYet.astro';
+import { COMPANY } from '../config';
+---
+<Base title={`Privacy: ${COMPANY}`}>
+  <NotYet
+    label="Privacy"
+    title="Privacy policy."
+    lede="The privacy policy goes here before launch: what the site and the booking form collect, who processes it, and how to ask for it to be removed."
+  />
+</Base>

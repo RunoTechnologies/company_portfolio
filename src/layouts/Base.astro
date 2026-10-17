@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import Mark from '../components/Mark.astro';
+import Sprite from '../components/Sprite.astro';
+import { CAL_URL, COMPANY, DESCRIPTION, NAV, SOLUTIONS } from '../config';
+
+interface Props { title: string; description?: string }
+const { title, description = DESCRIPTION } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light only">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <Sprite />
+
+  <header class="nav">
+    <div class="wrap nav-in">
+      <a class="brand" href="/" aria-label={`${COMPANY}, home`}><Mark />{COMPANY}</a>
+      <nav class="links" aria-label="Primary">
+        {NAV.map((n) => (
+          <a href={n.href} aria-current={path === n.href ? 'page' : undefined}>{n.label}</a>
+        ))}
+      </nav>
+      <div class="nav-r">
+        <a class="how" href="/#engage">How we work</a>
+        <a class="pill" href={CAL_URL}>Book a call <svg class="arr"><use href="#i-arrow" /></svg></a>
+        <details class="menu">
+          <summary aria-label="Open menu">Menu<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg></summary>
+          <div class="sheet">
+            {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
+            <a href="/#engage">How we work</a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="fgrid">
+        <div>
+          <a class="brand" href="/"><Mark />{COMPANY}</a>
+          <p>{DESCRIPTION}</p>
+        </div>
+        <div>
+          <h4>Pages</h4>
+          <ul>{NAV.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
+        </div>
+        <div>
+          <h4>Solutions</h4>
+          <ul>{SOLUTIONS.map((s) => <li><a href={`/solutions#${s.id}`}>{s.label}</a></li>)}</ul>
+        </div>
+      </div>
+      <p class="fbot">© {year} {COMPANY} · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // A same-page link in the mobile menu would otherwise leave the sheet open over the content.
+    const menu = document.querySelector<HTMLDetailsElement>('.menu');
+    menu?.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('.sheet a')) menu.open = false;
+    });
+  </script>
+</body>
+</html>

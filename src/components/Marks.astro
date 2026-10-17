@@ -1,0 +1,19 @@
+---
+// A tinted strip of plain-text names: the sectors served, or the stack we build on.
+interface Props { label: string; items: string[]; stack?: boolean }
+const { label, items, stack = false } = Astro.props;
+---
+<section class="band">
+  <div class:list={['wrap', 'marks', { stack }]}>
+    <p class="caps">{label}</p>
+    <ul class="row">{items.map((i) => <li>{i}</li>)}</ul>
+  </div>
+</section>
+
+<style>
+  .marks{padding-block:56px;display:grid;gap:28px;justify-items:center;text-align:center}
+  .row{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 44px;font-size:22px;font-weight:800;letter-spacing:-.02em;color:#a0a9b8}
+  .stack .row{font-size:20px;color:#7f8999;font-weight:700}
+  @media (max-width:900px){.row{gap:14px 36px;font-size:20px}}
+  @media (max-width:560px){.row{font-size:18px;gap:10px 24px}}
+</style>

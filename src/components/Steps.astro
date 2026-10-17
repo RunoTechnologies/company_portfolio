@@ -1,0 +1,47 @@
+---
+// The five-step engagement folded into three phases.
+const STEPS = [
+  { phase: 'DECIDE', title: 'Intro call and audit', sub: 'Decide what to fund.', checks: ['Free 30-minute intro call', 'One-week pipeline audit', 'A ranked list of automations'], link: 'Decide what to fund' },
+  { phase: 'BUILD', title: 'Design and deploy', sub: 'Build it right.', checks: ['Custom solutions designed with your team', 'Deployed in two-week slices', 'One-page notes a coordinator can read'], link: 'See how we build' },
+  { phase: 'ADOPT', title: 'Optimise and hand over', sub: 'Make it stick.', checks: ['A month beside the team on live traffic', 'Weekly numbers against the target', 'Handover when the desk trusts it'], link: 'See the handover' },
+];
+---
+<section class="sec band proc">
+  <div class="wrap">
+    <div class="head">
+      <div class="col">
+        <p class="eyebrow dot">Our method</p>
+        <h2>Decide what to automate. Build it right. Make it stick.</h2>
+      </div>
+      <a class="alink" href="/process">How the process works <svg class="arr"><use href="#i-arrow" /></svg></a>
+    </div>
+    <div class="steps">
+      {STEPS.map((s, i) => (
+        <div class="card step">
+          <p class="phase">{String(i + 1).padStart(2, '0')} <b>{s.phase}</b></p>
+          <h3>{s.title}</h3>
+          <p class="sub">{s.sub}</p>
+          <ul class="checks">{s.checks.map((c) => <li><svg class="ic"><use href="#i-check" /></svg>{c}</li>)}</ul>
+          <a class="alink" href="/process">{s.link} <svg class="arr"><use href="#i-arrow" /></svg></a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .wrap{display:grid;gap:48px}
+  .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;position:relative;padding-top:28px}
+  .steps::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--rail)}
+  .step::before{content:"";position:absolute;top:-37px;left:50%;width:11px;height:11px;border-radius:50%;background:var(--ac);border:3px solid var(--tint);transform:translateX(-50%)}
+  .phase{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
+  .phase b{color:var(--act);font-weight:700}
+  .sub{color:var(--ink);font-weight:700;font-size:15px}
+  .checks{display:grid;gap:10px;font-size:15px;padding-block:6px}
+  .checks li{display:flex;gap:12px;align-items:flex-start}
+  .checks .ic{flex:0 0 18px;width:18px;height:18px;margin-top:4px}
+  @media (max-width:900px){
+    .steps{grid-template-columns:minmax(0,1fr);padding-top:0}
+    .steps::before,.step::before{display:none}
+  }
+</style>

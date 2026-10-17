@@ -1,0 +1,55 @@
+---
+import { CAL_URL, SOLUTIONS } from '../config';
+
+const DETAIL: Record<string, { icon: string; text: string; link: string }> = {
+  sourcing: { icon: 'search', text: 'Candidates sourced below Indeed and LinkedIn cost, from niche pools and your own re-engaged database.', link: 'See sourcing' },
+  'show-up': { icon: 'accept', text: 'Enrichment, a warm-up sequence and automated replies that turn offers into accepted shifts.', link: 'See the sequence' },
+  screening: { icon: 'shield', text: 'Identity, work-history and duplicate checks before a recruiter spends a minute on a profile.', link: 'See screening' },
+  clients: { icon: 'pipe', text: 'Automated outreach and enrichment that opens the week with qualified client conversations.', link: 'See outreach' },
+  'back-office': { icon: 'sheet', text: 'Timesheets, invoicing and compliance that run without a coordinator chasing them.', link: 'See back office' },
+  crm: { icon: 'crm', text: 'A CRM shaped to your desk when the one you have is the problem.', link: 'See the CRM' },
+};
+---
+<section class="sec build">
+  <div class="wrap">
+    <div class="head">
+      <h2><svg class="ic"><use href="#i-layers" /></svg>What we build</h2>
+      <p class="note">Tailored to your desk</p>
+    </div>
+    <div class="grid">
+      {SOLUTIONS.map((s, i) => {
+        const d = DETAIL[s.id];
+        return (
+          <div class="card">
+            <svg class="ic"><use href={`#i-${d.icon}`} /></svg>
+            <span class="n">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{s.label}</h3>
+            <p>{d.text}</p>
+            <a class="alink" href={`/solutions#${s.id}`}>{d.link} <svg class="arr"><use href="#i-arrow" /></svg></a>
+          </div>
+        );
+      })}
+    </div>
+    <div class="audit">
+      <svg class="ic"><use href="#i-audit" /></svg>
+      <div class="t">
+        <p class="caps">Not sure where to begin?</p>
+        <h3>Start with the free audit</h3>
+        <p>A week on your pipeline data; you get a written list of what to automate first.</p>
+      </div>
+      <a class="alink" href={CAL_URL}>Book the audit <svg class="arr"><use href="#i-arrow" /></svg></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wrap{display:grid;gap:36px}
+  h2{display:inline-flex;align-items:center;gap:14px}
+  h2 .ic{width:28px;height:28px}
+  .audit{background:var(--tint);border:1px solid var(--line);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .audit>.ic{width:32px;height:32px}
+  .t{flex:1;min-width:min(220px,100%);display:grid;gap:4px}
+  .t .caps{color:var(--act)}
+  h3{font-size:22px}
+  .t p:last-child{font-size:15px}
+</style>
