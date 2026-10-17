@@ -35,13 +35,11 @@ const year = new Date().getFullYear();
         ))}
       </nav>
       <div class="nav-r">
-        <a class="how" href="/#engage">How we work</a>
         <a class="pill" href={CAL_URL}>Book a call <svg class="arr"><use href="#i-arrow" /></svg></a>
         <details class="menu">
           <summary aria-label="Open menu">Menu<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg></summary>
           <div class="sheet">
             {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
-            <a href="/#engage">How we work</a>
           </div>
         </details>
       </div>

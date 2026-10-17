@@ -27,7 +27,8 @@ svg{display:block}
 /* layout */
 .wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 .sec{padding-block:96px}
-.tail{padding-block:0 96px}
+/* both tail cards follow a navy band, so they need their own white margin to stand apart */
+.tail{padding-block:96px}
 /* navy bands, like the hero: section text goes light, the white cards inside keep the ink */
 .band{background:var(--ink);color:#c5cdd9}
 .band h2{color:#fff}
@@ -78,9 +79,8 @@ svg{display:block}
 .brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:19px;color:var(--ink);letter-spacing:-.02em;white-space:nowrap}
 .brand svg{width:28px;height:28px;flex:none}
 .links{display:flex;gap:30px;font-size:14px;font-weight:700;color:var(--body)}
-.links a:hover,.links a[aria-current="page"],.how:hover{color:var(--ink)}
+.links a:hover,.links a[aria-current="page"]{color:var(--ink)}
 .nav-r{display:flex;align-items:center;gap:22px}
-.how{font-size:14px;font-weight:700;color:var(--body);white-space:nowrap}
 .menu{display:none;position:relative}
 .menu summary{list-style:none;cursor:pointer;width:42px;height:42px;border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;color:var(--ink);font-size:0}
 .menu summary::-webkit-details-marker{display:none}
@@ -113,11 +113,11 @@ footer{border-top:1px solid var(--line);padding-block:56px 32px}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:900px){
-  .links,.how{display:none}
+  .links{display:none}
   .menu{display:block}
   .grid,.fgrid{grid-template-columns:minmax(0,1fr)}
   .sec{padding-block:72px}
-  .tail{padding-block:0 72px}
+  .tail{padding-block:72px}
 }
 @media (max-width:560px){
   .nav-in{gap:12px}

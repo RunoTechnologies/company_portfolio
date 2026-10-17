@@ -9,14 +9,12 @@ import { CAL_URL } from '../config';
 </section>
 
 <style>
-  /* the band above is navy too, so the card needs its own white margin to stand apart */
-  .tail{padding-top:96px}
   .dark{background:var(--ink);color:#fff;border-radius:24px;padding:48px 52px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;position:relative;overflow:hidden}
   .dark::before{content:"";position:absolute;right:-120px;top:-160px;width:420px;height:420px;background:radial-gradient(circle,rgba(17,179,200,.35),rgba(17,179,200,0) 65%)}
   h2{color:#fff;font-size:clamp(26px,3vw,36px);max-width:620px;position:relative}
   h2 .ac{color:var(--ac)}
   .btn{position:relative}
-  @media (max-width:900px){.tail{padding-top:72px}.dark{padding:40px 32px}}
+  @media (max-width:900px){.dark{padding:40px 32px}}
   /* the label wraps rather than overflowing the card on a narrow phone */
   @media (max-width:560px){h2{font-size:26px}.btn{white-space:normal}}
 </style>
