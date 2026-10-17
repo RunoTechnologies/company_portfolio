@@ -1,5 +1,5 @@
 ---
-import { CAL_URL, SOLUTIONS } from '../config';
+import { SOLUTIONS } from '../config';
 
 const DETAIL: Record<string, { icon: string; text: string }> = {
   sourcing: { icon: 'search', text: 'Candidates sourced below Indeed and LinkedIn cost, from niche pools and your own re-engaged database.' },
@@ -29,15 +29,6 @@ const DETAIL: Record<string, { icon: string; text: string }> = {
         );
       })}
     </div>
-    <div class="audit">
-      <svg class="ic"><use href="#i-audit" /></svg>
-      <div class="t">
-        <p class="caps">Not sure where to begin?</p>
-        <h3>Start with the free audit</h3>
-        <p>A week on your pipeline data; you get a written list of what to automate first.</p>
-      </div>
-      <a class="alink" href={CAL_URL}>Book the audit <svg class="arr"><use href="#i-arrow" /></svg></a>
-    </div>
   </div>
 </section>
 
@@ -45,10 +36,5 @@ const DETAIL: Record<string, { icon: string; text: string }> = {
   .wrap{display:grid;gap:36px}
   h2{display:inline-flex;align-items:center;gap:14px}
   h2 .ic{width:28px;height:28px}
-  .audit{background:#fff;color:var(--body);border:1px solid var(--line);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-  .audit>.ic{width:32px;height:32px}
-  .t{flex:1;min-width:min(220px,100%);display:grid;gap:4px}
-  .t .caps{color:var(--act)}
   h3{font-size:22px}
-  .t p:last-child{font-size:15px}
 </style>
