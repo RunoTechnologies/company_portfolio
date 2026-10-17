@@ -1,0 +1,51 @@
+---
+// Illustrative targets. The markup carries the final values; the count-up only replays them on scroll.
+const FIGURES = [
+  { to: 31, prefix: '−', suffix: '%', text: 'Cost per sourced candidate, against Indeed and LinkedIn spend' },
+  { to: 17, prefix: '+', suffix: '%', text: 'Offer acceptance after enrichment and a warm-up sequence' },
+  { to: 23, prefix: '+', suffix: '%', text: 'Interview and first-shift show-up rate' },
+  { to: 39, prefix: '−', suffix: '%', text: 'Fraudulent or duplicate applicants reaching a recruiter' },
+  { to: 2, prefix: '', suffix: '×', text: 'Qualified client conversations per month from automated outreach' },
+  { to: 34, prefix: '−', suffix: '%', text: 'Coordinator hours on timesheets, invoicing and compliance' },
+];
+---
+<section class="sec res">
+  <div class="wrap">
+    <div class="head">
+      <div class="col">
+        <p class="eyebrow dot">Results</p>
+        <h2>What changes when the admin is automated</h2>
+      </div>
+      <p class="note">Illustrative targets from the solution set. Client figures replace these before launch.</p>
+    </div>
+    <div class="grid">
+      {FIGURES.map((f) => (
+        <div class="card stat">
+          <b class="num" data-to={f.to} data-prefix={f.prefix} data-suffix={f.suffix}>{f.prefix}{f.to}{f.suffix}</b>
+          <p>{f.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .wrap{display:grid;gap:40px}
+  .stat{padding:30px 28px}
+  .num{display:block;font-size:56px;line-height:1;font-weight:800;letter-spacing:-.04em;color:var(--act);font-variant-numeric:tabular-nums}
+  @media (max-width:560px){.num{font-size:48px}}
+</style>
+
+<script>
+  import { countUp, reduce } from '../scripts/motion.js';
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        io.unobserve(e.target);
+        countUp(e.target as HTMLElement, 1200);
+      }
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.res .num').forEach((el) => io.observe(el));
+  }
+</script>

@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import NotYet from '../components/NotYet.astro';
+import BookingBand from '../components/BookingBand.astro';
+import { COMPANY } from '../config';
+---
+<Base title={`About: ${COMPANY}`}>
+  <NotYet
+    label="About"
+    title="Who you will be in the room with."
+    lede="This page will carry who we are, how we work, and what we build with."
+  />
+  <BookingBand />
+</Base>

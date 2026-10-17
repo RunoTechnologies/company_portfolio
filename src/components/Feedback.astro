@@ -1,0 +1,75 @@
+---
+const QUOTES = [
+  { q: 'We stopped paying for Indeed sponsorships in month two. The sourced pool was cheaper and the candidates actually picked up.', who: 'Owner, light-industrial staffing, 40 recruiters' },
+  { q: 'Show-up rate went from a coin flip to something we can plan a shift around.', who: 'Director of operations, healthcare staffing' },
+  { q: 'The screening step alone saved my team a day a week of chasing people who never existed.', who: 'Branch manager, logistics staffing' },
+  { q: 'I was sceptical of anything with AI in the name. This is just good plumbing.', who: 'Managing partner, executive search' },
+];
+---
+<section class="sec band quo">
+  <div class="wrap">
+    <div class="head">
+      <div class="col">
+        <p class="eyebrow dot">Feedback</p>
+        <h2>From owners and ops leads</h2>
+      </div>
+      <p class="note">Placeholder quotes until the first case studies are signed off.</p>
+    </div>
+    <div class="view">
+      <div class="track">
+        {QUOTES.map((x) => (
+          <figure class="qcard">
+            <blockquote><q>{x.q}</q></blockquote>
+            <figcaption class="who">{x.who}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+    <div class="dots">
+      {QUOTES.map((_, i) => <button type="button" class:list={{ on: i === 0 }} aria-label={`Show quote ${i + 1}`}></button>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .wrap{display:grid;gap:40px}
+  .view{overflow:hidden}
+  .track{display:flex;gap:20px;transition:transform .7s cubic-bezier(.4,0,.2,1)}
+  .qcard{flex:0 0 calc((100% - 40px)/3);min-width:0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px 28px;display:grid;gap:22px;align-content:space-between}
+  blockquote{margin:0}
+  q{quotes:"\201C" "\201D";font-size:20px;line-height:1.45;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+  .who{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+  .dots{display:flex;gap:8px;justify-content:center}
+  .dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:var(--rail);cursor:pointer}
+  .dots button.on{background:var(--ac)}
+  @media (max-width:1100px){.qcard{flex-basis:calc((100% - 20px)/2)}}
+  @media (max-width:560px){.qcard{flex-basis:100%}}
+</style>
+
+<script>
+  import { reduce } from '../scripts/motion.js';
+  const view = document.querySelector<HTMLElement>('.quo .view');
+  const track = document.querySelector<HTMLElement>('.quo .track');
+  if (view && track) {
+    const cards = [...track.children] as HTMLElement[];
+    const dots = [...document.querySelectorAll<HTMLButtonElement>('.quo .dots button')];
+    let idx = 0;
+    let hold = false;
+    const stepW = () => cards[0].offsetWidth + 20;
+    const visible = () => Math.max(1, Math.round(view.clientWidth / stepW()));
+    const maxIdx = () => cards.length - visible();
+    const render = () => {
+      const m = maxIdx();
+      if (idx > m) idx = 0;
+      track.style.transform = `translateX(${-idx * stepW()}px)`;
+      dots.forEach((d, i) => { d.hidden = i > m; d.classList.toggle('on', i === idx); });
+    };
+    render();
+    // Recompute the step only: phones fire resize when the address bar moves, which must not rewind.
+    addEventListener('resize', render);
+    dots.forEach((d, i) => d.addEventListener('click', () => { idx = i; render(); }));
+    for (const e of ['mouseenter', 'touchstart', 'focusin']) view.addEventListener(e, () => { hold = true; }, { passive: true });
+    for (const e of ['mouseleave', 'touchend', 'focusout']) view.addEventListener(e, () => { hold = false; }, { passive: true });
+    if (!reduce) setInterval(() => { if (hold) return; idx = idx >= maxIdx() ? 0 : idx + 1; render(); }, 5000);
+  }
+</script>

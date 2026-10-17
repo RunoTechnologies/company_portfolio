@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import NotYet from '../components/NotYet.astro';
+import { COMPANY } from '../config';
+---
+<Base title={`Terms: ${COMPANY}`}>
+  <NotYet
+    label="Terms"
+    title="Terms of service."
+    lede="The engagement terms go here before launch: scope, fees, data handling and how either side ends the work."
+  />
+</Base>
