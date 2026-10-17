@@ -4,7 +4,7 @@ import { CAL_URL } from '../config';
 <section class="wrap tail">
   <div class="dark">
     <h2>We know which admin is worth automating and which is not. <span class="ac">Let's talk about your desk.</span></h2>
-    <a class="btn light" href={CAL_URL}>Talk to Runotech<span class="chip"><svg class="arr"><use href="#i-arrow" /></svg></span></a>
+    <a class="btn light" href={CAL_URL}>Talk to Runo Technologies<span class="chip"><svg class="arr"><use href="#i-arrow" /></svg></span></a>
   </div>
 </section>
 
@@ -17,5 +17,6 @@ import { CAL_URL } from '../config';
   h2 .ac{color:var(--ac)}
   .btn{position:relative}
   @media (max-width:900px){.tail{padding-top:72px}.dark{padding:40px 32px}}
-  @media (max-width:560px){h2{font-size:26px}}
+  /* the label wraps rather than overflowing the card on a narrow phone */
+  @media (max-width:560px){h2{font-size:26px}.btn{white-space:normal}}
 </style>
