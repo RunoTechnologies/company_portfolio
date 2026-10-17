@@ -51,7 +51,7 @@ const POINTS = [
     </div>
     <div class="three">
       {POINTS.map((p, i) => (
-        <div>
+        <div style={`--i:${i}`}>
           <svg class="ic"><use href={`#i-${p.icon}`} /></svg>
           <span class="n">{String(i + 1).padStart(2, '0')}</span>
           <h3>{p.title}</h3>
@@ -97,6 +97,18 @@ const POINTS = [
   .three>div:last-child .n{right:0}
   .three h3,.three p{max-width:300px}
   .three p{font-size:15px}
+  /* The script sets data-anim only when motion is allowed, so without it the cards just show. */
+  .three>div{transition:opacity .7s ease calc(var(--i) * .15s),translate .7s cubic-bezier(.2,.7,.2,1) calc(var(--i) * .15s)}
+  .three[data-anim]:not(.in)>div{opacity:0;translate:0 40px}
+  .three>div::before{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  .three .ic,.three .n{transition:transform .3s ease,color .3s ease}
+  @media (hover:hover){
+    .three>div:hover::before{transform:scaleX(1)}
+    .three>div:hover .n{color:var(--act)}
+  }
+  @media (hover:hover) and (prefers-reduced-motion:no-preference){
+    .three>div:hover .ic{transform:scale(1.15) rotate(-8deg)}
+  }
   @media (max-width:900px){
     .top,.three{grid-template-columns:minmax(0,1fr)}
     .three>div{padding:28px 0}
@@ -104,3 +116,17 @@ const POINTS = [
     .n{right:0;top:28px}
   }
 </style>
+
+<script>
+  import { reduce } from '../scripts/motion.js';
+  const row = document.querySelector('.why .three') as HTMLElement | null;
+  if (row && !reduce && 'IntersectionObserver' in window) {
+    row.dataset.anim = '';
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      row.classList.add('in');
+    }, { threshold: 0.25 });
+    io.observe(row);
+  }
+</script>

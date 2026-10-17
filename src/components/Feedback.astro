@@ -70,6 +70,10 @@ const QUOTES = [
     dots.forEach((d, i) => d.addEventListener('click', () => { idx = i; render(); }));
     for (const e of ['mouseenter', 'touchstart', 'focusin']) view.addEventListener(e, () => { hold = true; }, { passive: true });
     for (const e of ['mouseleave', 'touchend', 'focusout']) view.addEventListener(e, () => { hold = false; }, { passive: true });
-    if (!reduce) setInterval(() => { if (hold) return; idx = idx >= maxIdx() ? 0 : idx + 1; render(); }, 5000);
+    // Each slide commits a frame on the main thread for its whole transition, which hitches the
+    // other sections' animations, so the carousel only advances while it is on screen.
+    let away = false;
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { away = !e.isIntersecting; }).observe(view);
+    if (!reduce) setInterval(() => { if (hold || away) return; idx = idx >= maxIdx() ? 0 : idx + 1; render(); }, 5000);
   }
 </script>
