@@ -65,6 +65,12 @@ svg{display:block}
 @keyframes arr-through{0%{transform:translateX(0)}45%{transform:translateX(26px)}46%{transform:translateX(-26px)}100%{transform:translateX(0)}}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:var(--ac);color:var(--ink);font-weight:700;font-size:14px;white-space:nowrap}
 .pill .arr{width:14px;height:14px}
+/* The pill pulses the chip's ring while its arrow fades out to the right and back in from the left. */
+@media (hover:hover){
+  .pill:hover{animation:chip-ring .7s ease-out}
+  .pill:hover .arr{animation:arr-fade-through .5s cubic-bezier(.5,0,.2,1)}
+}
+@keyframes arr-fade-through{0%{transform:translateX(0)}45%{transform:translateX(10px);opacity:0}46%{transform:translateX(-10px);opacity:0}100%{transform:translateX(0);opacity:1}}
 .tlink{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);font-size:15px}
 
 /* cards */
