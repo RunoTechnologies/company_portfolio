@@ -65,6 +65,13 @@ svg{display:block}
 @keyframes arr-through{0%{transform:translateX(0)}45%{transform:translateX(26px)}46%{transform:translateX(-26px)}100%{transform:translateX(0)}}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:var(--ac);color:var(--ink);font-weight:700;font-size:14px;white-space:nowrap}
 .pill .arr{width:14px;height:14px}
+/* The pill pulses a tighter ring than the chip's while its arrow fades out to the right and back in from the left. */
+@media (hover:hover){
+  .pill:hover{animation:pill-ring .7s ease-out}
+  .pill:hover .arr{animation:arr-fade-through .5s cubic-bezier(.5,0,.2,1)}
+}
+@keyframes pill-ring{from{box-shadow:0 0 0 0 rgba(17,179,200,.55)}to{box-shadow:0 0 0 6px rgba(17,179,200,0)}}
+@keyframes arr-fade-through{0%{transform:translateX(0)}45%{transform:translateX(10px);opacity:0}46%{transform:translateX(-10px);opacity:0}100%{transform:translateX(0);opacity:1}}
 .tlink{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);font-size:15px}
 
 /* cards */
@@ -86,6 +93,9 @@ svg{display:block}
 .brand svg{width:28px;height:28px;flex:none}
 .links{display:flex;gap:30px;font-size:14px;font-weight:700;color:var(--body)}
 .links a:hover,.links a[aria-current="page"]{color:var(--ink)}
+.links a{position:relative}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1);will-change:transform}
+@media (hover:hover){.links a:hover::after{transform:scaleX(1)}}
 .nav-r{display:flex;align-items:center;gap:22px}
 .menu{display:none;position:relative}
 .menu summary{list-style:none;cursor:pointer;width:42px;height:42px;border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;color:var(--ink);font-size:0}
