@@ -39,6 +39,15 @@ const QUOTES = [
   blockquote{margin:0}
   q{quotes:"\201C" "\201D";font-size:20px;line-height:1.45;font-weight:700;color:var(--ink);letter-spacing:-.02em}
   .who{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+  /* the track clips anything that moves out of the card, so the quote marks and byline rule carry the hover */
+  .qcard{transition:border-color .3s ease}
+  q::before,q::after{transition:color .3s ease}
+  .who::before{content:"";display:inline-block;vertical-align:middle;width:24px;height:2px;margin-right:12px;background:var(--rail) linear-gradient(var(--ac),var(--ac)) no-repeat left/0 100%;transition:background-size .35s cubic-bezier(.2,.7,.2,1)}
+  @media (hover:hover){
+    .qcard:hover{border-color:var(--ac)}
+    .qcard:hover q::before,.qcard:hover q::after{color:var(--ac)}
+    .qcard:hover .who::before{background-size:100% 100%}
+  }
   .dots{display:flex;gap:8px;justify-content:center}
   .dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:var(--rail);cursor:pointer}
   .dots button.on{background:var(--ac)}

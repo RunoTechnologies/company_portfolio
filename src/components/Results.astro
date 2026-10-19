@@ -34,6 +34,15 @@ const FIGURES = [
   .stat{padding:30px 28px}
   .num{display:block;font-size:56px;line-height:1;font-weight:800;letter-spacing:-.04em;color:var(--act);font-variant-numeric:tabular-nums}
   @media (max-width:560px){.num{font-size:48px}}
+  /* the figure is the point, so it is what grows; the card takes the accent tint */
+  .stat{transition:background-color .3s ease,border-color .3s ease}
+  .num{transform-origin:left bottom;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  @media (hover:hover){
+    .stat:hover{background:var(--pale);border-color:var(--ac)}
+  }
+  @media (hover:hover) and (prefers-reduced-motion:no-preference){
+    .stat:hover .num{transform:scale(1.1)}
+  }
 </style>
 
 <script>

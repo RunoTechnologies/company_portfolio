@@ -37,4 +37,25 @@ const DETAIL: Record<string, { icon: string; text: string }> = {
   h2{display:inline-flex;align-items:center;gap:14px}
   h2 .ic{width:28px;height:28px}
   h3{font-size:22px}
+  /* An accent glow follows the pointer (the script sets --x and --y); isolation keeps it
+     above the card's own background and below its content. */
+  .card{isolation:isolate}
+  .card::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:radial-gradient(circle 180px at var(--x,50%) var(--y,50%),rgba(17,179,200,.22),transparent 70%);opacity:0;transition:opacity .3s ease}
+  .card .ic,.card h3{transition:translate .3s cubic-bezier(.2,.7,.2,1)}
+  @media (hover:hover){
+    .card:hover::before{opacity:1}
+  }
+  @media (hover:hover) and (prefers-reduced-motion:no-preference){
+    .card:hover .ic,.card:hover h3{translate:0 -3px}
+  }
 </style>
+
+<script>
+  for (const card of document.querySelectorAll<HTMLElement>('.build .card')) {
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--x', `${e.clientX - r.left}px`);
+      card.style.setProperty('--y', `${e.clientY - r.top}px`);
+    }, { passive: true });
+  }
+</script>

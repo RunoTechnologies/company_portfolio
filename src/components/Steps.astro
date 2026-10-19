@@ -38,6 +38,20 @@ const STEPS = [
   .checks{display:grid;gap:10px;font-size:15px;padding-block:6px}
   .checks li{display:flex;gap:12px;align-items:flex-start}
   .checks .ic{flex:0 0 18px;width:18px;height:18px;margin-top:4px}
+  /* a step lights its stop on the rail and ticks off its checks in turn */
+  .step{transition:border-color .3s ease}
+  .step::before{transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease}
+  .checks .ic{transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+  .checks li:nth-child(2) .ic{transition-delay:.06s}
+  .checks li:nth-child(3) .ic{transition-delay:.12s}
+  @media (hover:hover){
+    .step:hover{border-color:var(--ac)}
+    .step:hover::before{box-shadow:0 0 0 6px rgba(17,179,200,.25)}
+  }
+  @media (hover:hover) and (prefers-reduced-motion:no-preference){
+    .step:hover::before{transform:translateX(-50%) scale(1.3)}
+    .step:hover .checks .ic{transform:scale(1.25)}
+  }
   @media (max-width:900px){
     .steps{grid-template-columns:minmax(0,1fr);padding-top:0}
     .steps::before,.step::before{display:none}
