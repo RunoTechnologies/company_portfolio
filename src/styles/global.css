@@ -86,6 +86,9 @@ svg{display:block}
 .brand svg{width:28px;height:28px;flex:none}
 .links{display:flex;gap:30px;font-size:14px;font-weight:700;color:var(--body)}
 .links a:hover,.links a[aria-current="page"]{color:var(--ink)}
+.links a{position:relative}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1);will-change:transform}
+@media (hover:hover){.links a:hover::after{transform:scaleX(1)}}
 .nav-r{display:flex;align-items:center;gap:22px}
 .menu{display:none;position:relative}
 .menu summary{list-style:none;cursor:pointer;width:42px;height:42px;border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;color:var(--ink);font-size:0}
