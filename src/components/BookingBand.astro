@@ -2,10 +2,24 @@
 import { CAL_URL } from '../config';
 ---
 <section class="wrap tail">
-  <div class="book">
-    <h2>Book the free intro call.</h2>
-    <p>Thirty minutes on your current pipeline: where candidates drop, where recruiters lose hours, and which of it is worth automating first. You leave with a written list either way.</p>
+  <div class="dark">
+    <div class="copy">
+      <h2>Thirty minutes on where your pipeline loses candidates and hours. <span class="ac">Book the free intro call.</span></h2>
+      <small>Free · 30 min · you leave with a written list either way</small>
+    </div>
     <a class="btn light" href={CAL_URL}><span class="lbl">Open the calendar</span><span class="chip"><svg class="arr"><use href="#i-arrow" /></svg></span></a>
-    <small>Free · 30 min · scheduled through Cal.com</small>
   </div>
 </section>
+
+<style>
+  .dark{background:var(--ink);color:#fff;border-radius:24px;padding:48px 52px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;position:relative;overflow:hidden}
+  .dark::before{content:"";position:absolute;right:-120px;top:-160px;width:420px;height:420px;background:radial-gradient(circle,rgba(17,179,200,.35),rgba(17,179,200,0) 65%)}
+  .copy{display:grid;gap:14px;max-width:620px;position:relative}
+  h2{color:#fff;font-size:clamp(26px,3vw,36px)}
+  h2 .ac{color:var(--ac)}
+  small{font-size:13px;color:var(--dim)}
+  .btn{position:relative}
+  @media (max-width:900px){.dark{padding:40px 32px}}
+  /* the label wraps rather than overflowing the card on a narrow phone */
+  @media (max-width:560px){h2{font-size:26px}.btn{white-space:normal}}
+</style>

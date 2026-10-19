@@ -6,7 +6,7 @@ const QUOTES = [
   { q: 'I was sceptical of anything with AI in the name. This is just good plumbing.', who: 'Managing partner, executive search' },
 ];
 ---
-<section class="sec band quo">
+<section class="sec quo">
   <div class="wrap">
     <div class="head">
       <div class="col">
@@ -35,10 +35,10 @@ const QUOTES = [
   .wrap{display:grid;gap:40px}
   .view{overflow:hidden}
   .track{display:flex;gap:20px;transition:transform .7s cubic-bezier(.4,0,.2,1)}
-  .qcard{flex:0 0 calc((100% - 40px)/3);min-width:0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px 28px;display:grid;gap:22px;align-content:space-between}
+  .qcard{flex:0 0 calc((100% - 40px)/3);min-width:0;background:var(--ink);border:1px solid var(--ink);border-radius:16px;padding:32px 28px;display:grid;gap:22px;align-content:space-between}
   blockquote{margin:0}
-  q{quotes:"\201C" "\201D";font-size:20px;line-height:1.45;font-weight:700;color:var(--ink);letter-spacing:-.02em}
-  .who{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+  q{quotes:"\201C" "\201D";font-size:20px;line-height:1.45;font-weight:700;color:#fff;letter-spacing:-.02em}
+  .who{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--dim)}
   /* the track clips anything that moves out of the card, so the quote marks and byline rule carry the hover */
   .qcard{transition:border-color .3s ease}
   q::before,q::after{transition:color .3s ease}
