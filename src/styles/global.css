@@ -27,8 +27,8 @@ svg{display:block}
 /* layout */
 .wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 .sec{padding-block:96px}
-/* both tail cards follow a navy band, so they need their own white margin to stand apart */
-.tail{padding-block:96px}
+/* the booking card follows a white section, whose bottom padding already sets the gap above it */
+.tail{padding-block:0 96px}
 /* navy bands, like the hero: section text goes light, the white cards inside keep the ink */
 .band{background:var(--ink);color:#c5cdd9}
 .band h2{color:#fff}
@@ -118,12 +118,6 @@ svg{display:block}
 .menu .sheet a{padding:10px 14px;border-radius:10px;font-weight:700;font-size:15px;color:var(--ink)}
 .menu .sheet a:hover{background:var(--tint)}
 
-/* booking panel */
-.book{background:var(--ink);color:#c5cdd9;border-radius:24px;padding:72px 32px;display:grid;justify-items:center;text-align:center;gap:22px}
-.book p{max-width:640px;font-size:17px}
-.book h2{color:#fff}
-.book small{font-size:13px;color:var(--dim)}
-
 /* placeholder pages */
 .notyet .wrap{container-type:inline-size;display:grid;gap:24px;justify-items:start}
 .notyet h1{max-width:900px;font-size:clamp(34px,5vw,60px);font-size:clamp(34px,8cqi,60px);line-height:1.05;letter-spacing:-.035em}
@@ -146,7 +140,7 @@ footer{border-top:1px solid var(--line);padding-block:56px 32px}
   .menu{display:block}
   .grid,.fgrid{grid-template-columns:minmax(0,1fr)}
   .sec{padding-block:72px}
-  .tail{padding-block:72px}
+  .tail{padding-block:0 72px}
 }
 @media (max-width:560px){
   .nav-in{gap:12px}
@@ -157,7 +151,6 @@ footer{border-top:1px solid var(--line);padding-block:56px 32px}
   .pill{padding:9px 14px;font-size:13px}
   .menu summary{width:38px;height:38px}
   .lede{font-size:16px}
-  .book{padding:56px 24px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
