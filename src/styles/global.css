@@ -53,8 +53,7 @@ svg{display:block}
 /* links and buttons */
 .alink{color:var(--act);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .alink .arr{width:14px;height:14px}
-.btn{display:inline-flex;align-items:center;gap:16px;padding:6px 6px 6px 24px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;font-size:15px;white-space:nowrap;transition:transform .2s}
-.btn:hover{transform:translateY(-1px)}
+.btn{display:inline-flex;align-items:center;gap:16px;padding:6px 6px 6px 24px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;font-size:15px;white-space:nowrap}
 .btn.light{background:#fff;color:var(--ink)}
 .chip{width:36px;height:36px;border-radius:50%;background:var(--ac);display:grid;place-items:center;color:var(--ink);overflow:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
 /* On hover the chip swells and pulses a ring while its arrow exits right and re-enters from the left. */
