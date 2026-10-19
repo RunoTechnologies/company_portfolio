@@ -25,7 +25,13 @@ import { CAL_URL } from '../config';
   h1 span{display:block}
   h1 .dim{color:var(--dim)}
   .lede b{color:#fff}
-  .tlink{color:#fff}
+  .tlink{position:relative;color:#fff}
+  .tlink::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1);will-change:transform}
+  .btn{transition:color .2s}
+  @media (hover:hover){
+    .tlink:hover::after{transform:scaleX(1)}
+    .btn:hover{color:var(--ac)}
+  }
   .cta{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
   .fine{font-size:13px;color:var(--dim);margin-top:-12px}
   @media (max-width:900px){.hero{padding-block:72px 64px}}

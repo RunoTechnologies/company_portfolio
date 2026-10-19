@@ -53,10 +53,16 @@ svg{display:block}
 /* links and buttons */
 .alink{color:var(--act);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .alink .arr{width:14px;height:14px}
-.btn{display:inline-flex;align-items:center;gap:16px;padding:6px 6px 6px 24px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;font-size:15px;white-space:nowrap;transition:transform .2s}
-.btn:hover{transform:translateY(-1px)}
+.btn{display:inline-flex;align-items:center;gap:16px;padding:6px 6px 6px 24px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;font-size:15px;white-space:nowrap}
 .btn.light{background:#fff;color:var(--ink)}
-.chip{width:36px;height:36px;border-radius:50%;background:var(--ac);display:grid;place-items:center;color:var(--ink)}
+.chip{width:36px;height:36px;border-radius:50%;background:var(--ac);display:grid;place-items:center;color:var(--ink);overflow:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+/* On hover the chip swells and pulses a ring while its arrow exits right and re-enters from the left. */
+@media (hover:hover){
+  .btn:hover .chip{transform:scale(1.12);animation:chip-ring .7s ease-out}
+  .btn:hover .chip .arr{animation:arr-through .5s cubic-bezier(.5,0,.2,1)}
+}
+@keyframes chip-ring{from{box-shadow:0 0 0 0 rgba(17,179,200,.55)}to{box-shadow:0 0 0 12px rgba(17,179,200,0)}}
+@keyframes arr-through{0%{transform:translateX(0)}45%{transform:translateX(26px)}46%{transform:translateX(-26px)}100%{transform:translateX(0)}}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:var(--ac);color:var(--ink);font-weight:700;font-size:14px;white-space:nowrap}
 .pill .arr{width:14px;height:14px}
 .tlink{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);font-size:15px}
