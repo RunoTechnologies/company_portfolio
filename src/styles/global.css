@@ -70,7 +70,7 @@ svg{display:block}
   .pill:hover{animation:pill-ring .7s ease-out}
   .pill:hover .arr{animation:arr-fade-through .5s cubic-bezier(.5,0,.2,1)}
 }
-@keyframes pill-ring{from{box-shadow:0 0 0 0 rgba(17,179,200,.55)}to{box-shadow:0 0 0 6px rgba(17,179,200,0)}}
+@keyframes pill-ring{from{box-shadow:0 0 0 0 rgba(17,179,200,.9)}to{box-shadow:0 0 0 5px rgba(17,179,200,0)}}
 @keyframes arr-fade-through{0%{transform:translateX(0)}45%{transform:translateX(10px);opacity:0}46%{transform:translateX(-10px);opacity:0}100%{transform:translateX(0);opacity:1}}
 .tlink{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);font-size:15px}
 
