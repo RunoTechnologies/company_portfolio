@@ -91,6 +91,16 @@ svg{display:block}
 .nav-in{height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:19px;color:var(--ink);letter-spacing:-.02em;white-space:nowrap}
 .brand svg{width:28px;height:28px;flex:none}
+/* In the nav, the name draws the links' accent underline while the mark tilts and its accent dot swells on hover. */
+.nav .brand span{position:relative}
+.nav .brand span::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1);will-change:transform}
+.nav .brand svg{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.nav .brand circle{transform-box:fill-box;transform-origin:center;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){
+  .nav .brand:hover span::after{transform:scaleX(1)}
+  .nav .brand:hover svg{transform:rotate(-8deg)}
+  .nav .brand:hover circle{transform:scale(1.35)}
+}
 .links{display:flex;gap:30px;font-size:14px;font-weight:700;color:var(--body)}
 .links a:hover,.links a[aria-current="page"]{color:var(--ink)}
 .links a{position:relative}
