@@ -29,7 +29,6 @@ const start = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD
           <div class="fix">
             <p><b>Automated:</b> {c.fix}</p>
             <div class="foot">
-              <span class="measure">We measure: {c.measure}</span>
               <span class="view">View case study <svg class="arr"><use href="#i-arrow" /></svg></span>
             </div>
           </div>
@@ -67,8 +66,7 @@ const start = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD
   .stakes b{color:#fff}
   .fix{padding:20px 28px 24px;display:grid;gap:10px;background:rgba(17,179,200,.12);border-top:1px solid rgba(255,255,255,.12);transition:background-color .3s ease}
   .fix p{color:#fff}
-  .foot{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
-  .measure{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ac)}
+  .foot{display:flex;justify-content:flex-end}
   .view{flex:none;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;white-space:nowrap;transition:opacity .25s ease,translate .25s cubic-bezier(.2,.7,.2,1)}
   .view .arr{width:14px;height:14px}
   .case:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
