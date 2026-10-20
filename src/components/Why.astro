@@ -99,7 +99,7 @@ const POINTS = [
   /* The script sets data-anim only when motion is allowed, so without it the cards just show. */
   .three>div{transition:opacity .7s ease calc(var(--i) * .15s),translate .7s cubic-bezier(.2,.7,.2,1) calc(var(--i) * .15s)}
   .three[data-anim]:not(.in)>div{opacity:0;translate:0 40px}
-  .three>div::before{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  .three>div::before{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1);will-change:transform}
   .three .ic,.three .n{transition:transform .3s ease,color .3s ease}
   @media (hover:hover){
     .three>div:hover::before{transform:scaleX(1)}
