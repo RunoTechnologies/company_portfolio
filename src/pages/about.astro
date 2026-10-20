@@ -1,14 +1,57 @@
 ---
 import Base from '../layouts/Base.astro';
-import NotYet from '../components/NotYet.astro';
 import BookingBand from '../components/BookingBand.astro';
-import { COMPANY } from '../config';
+import { COMPANY, FOUNDER } from '../config';
 ---
 <Base title={`About: ${COMPANY}`}>
-  <NotYet
-    label="About"
-    title="Who you will be in the room with."
-    lede="This page will carry who we are, how we work, and what we build with."
-  />
+  <section class="band top">
+    <div class="wrap">
+      <p class="eyebrow dot">About</p>
+      <h1>Who you will be in the room with.</h1>
+      <p class="lede">{COMPANY} is founder-led. The engineer on your first call is the one who designs and builds your automation.</p>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap founder">
+      <img src={FOUNDER.photo} alt={`${FOUNDER.name}, founder of ${COMPANY}`} width="800" height="1000" loading="eager" />
+      <div class="bio">
+        <p class="eyebrow dot">Founder</p>
+        <h2>{FOUNDER.name}</h2>
+        <p class="role">{FOUNDER.role}</p>
+        <p>A whole working life in technology, and today an AI engineer. {FOUNDER.name.split(' ')[0]} founded {COMPANY} to bring that engineering to staffing and recruiting firms, where sourcing, screening, follow-up and back-office work still take most of a consultant’s week.</p>
+        <p>Every build starts from how your desk actually works and ends with a number you can check against the week before.</p>
+        <div class="certs">
+          <p class="caps">AI certifications</p>
+          <ul>
+            {FOUNDER.certs.map((c) => (
+              <li class="card"><svg class="ic" aria-hidden="true"><use href="#i-shield" /></svg><b>{c}</b></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
   <BookingBand />
 </Base>
+
+<style>
+  .top{padding-block:96px 88px}
+  .top .wrap{container-type:inline-size;display:grid;gap:22px;justify-items:start}
+  h1{color:#fff;max-width:900px;font-size:clamp(34px,8cqi,60px);line-height:1.05;letter-spacing:-.035em}
+  .founder{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:center}
+  img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:24px;background:var(--tint)}
+  .bio{display:grid;gap:18px;justify-items:start}
+  .role{margin-top:-8px;font-weight:700;color:var(--act)}
+  .bio > p:not(.eyebrow):not(.role){max-width:620px;font-size:17px}
+  .certs{display:grid;gap:12px;width:100%;margin-top:10px}
+  .certs ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .certs .card{display:flex;align-items:center;padding:16px 18px;gap:10px}
+  .certs .ic{flex:none}
+  .certs b{color:var(--ink);font-size:15px;line-height:1.3}
+  @media (max-width:900px){
+    .top{padding-block:72px 64px}
+    .founder{grid-template-columns:minmax(0,1fr);gap:40px}
+    img{max-width:440px}
+  }
+  @media (max-width:560px){.certs ul{grid-template-columns:minmax(0,1fr)}}
+</style>

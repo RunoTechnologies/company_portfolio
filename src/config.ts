@@ -12,6 +12,14 @@ export const NAV = [
   { label: 'About', href: '/about' },
 ];
 
+// The about page's founder block; the photo is a 4:5 crop in public/.
+export const FOUNDER = {
+  name: 'Aleksandar Radovic',
+  role: 'Founder and AI engineer',
+  photo: '/founder.jpg',
+  certs: ['Anthropic', 'Microsoft', 'Amazon Web Services'],
+};
+
 // Logos are white-on-transparent marks in public/clients/, drawn in the strip's text colour;
 // ratio is the mark's width over its height.
 export const CLIENTS = [
