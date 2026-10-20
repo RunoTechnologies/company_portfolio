@@ -1,16 +1,146 @@
 ---
 import Base from '../../layouts/Base.astro';
-import NotYet from '../../components/NotYet.astro';
+import Logo from '../../components/Logo.astro';
 import BookingBand from '../../components/BookingBand.astro';
 import { CASE_STUDIES, COMPANY } from '../../config';
 
-// One detail page per Results card, so every card has a destination before the write-up exists.
+// One page per Results card; each links on to the next, wrapping round.
 export function getStaticPaths() {
-  return CASE_STUDIES.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+  return CASE_STUDIES.map((c, i) => ({
+    params: { slug: c.slug },
+    props: { c, next: CASE_STUDIES[(i + 1) % CASE_STUDIES.length] },
+  }));
 }
-const { c } = Astro.props;
+const { c, next } = Astro.props;
+const facts = [
+  { k: 'Sector', v: c.sector },
+  { k: 'Based in', v: c.base },
+  { k: 'Live in', v: c.live },
+];
 ---
-<Base title={`${c.title}: ${COMPANY}`}>
-  <NotYet label="Case study" title={c.title} lede={`${c.fix} We measure: ${c.measure.toLowerCase()}.`} />
+<Base title={`${c.client}: ${c.title} | ${COMPANY}`} description={c.summary}>
+  <section class="band top">
+    <div class="wrap">
+      <a class="back" href="/case-studies"><svg class="arr"><use href="#i-arrow" /></svg> All case studies</a>
+      <p class="who"><Logo name={c.client} />{c.client}</p>
+      <h1>{c.title}</h1>
+      <p class="lede">{c.summary}</p>
+      <dl class="facts">
+        {facts.map((f) => <div><dt>{f.k}</dt><dd>{f.v}</dd></div>)}
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap body">
+      <div class="results">
+        <h2 class="sr">Results</h2>
+        <ul class="stats">
+          {c.results.map((r) => (
+            <li class="card">
+              <p class="move"><span class="was"><span class="sr">From </span>{r.before}</span><svg class="arr" aria-hidden="true"><use href="#i-arrow" /></svg><b><span class="sr">to </span>{r.after}</b></p>
+              <p class="lbl">{r.label}</p>
+            </li>
+          ))}
+        </ul>
+        <p class="note">Measured over: {c.period.charAt(0).toLowerCase() + c.period.slice(1)}</p>
+      </div>
+
+      <div class="cols">
+        <div class="story">
+          <h2>The problem</h2>
+          <p class="scene">{c.scene} {c.stakes}</p>
+          {c.story.map((p) => <p>{p}</p>)}
+        </div>
+        <div>
+          <h2>What we built</h2>
+          <ol class="built">
+            {c.built.map((b, i) => (
+              <li>
+                <span class="k">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{b.h}</h3>
+                <p>{b.p}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      <figure class="card ink quote">
+        <blockquote><q>{c.quote}</q></blockquote>
+        <figcaption class="by"><Logo name={c.client} />{c.client}</figcaption>
+      </figure>
+
+      <a class="next" href={`/case-studies/${next.slug}`}>
+        <span class="caps">Next case study</span>
+        <span class="t">{next.client}: {next.title} <svg class="arr"><use href="#i-arrow" /></svg></span>
+      </a>
+    </div>
+  </section>
   <BookingBand />
 </Base>
+
+<style>
+  .top{padding-block:72px 80px}
+  .top .wrap{container-type:inline-size;display:grid;gap:22px;justify-items:start}
+  .back{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--dim);transition:color .3s ease}
+  .back .arr{width:14px;height:14px;transform:rotate(180deg)}
+  .who{display:flex;align-items:center;gap:.6em;margin-top:12px;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ac)}
+  h1{color:#fff;max-width:900px;font-size:clamp(34px,8cqi,60px);line-height:1.05;letter-spacing:-.035em}
+  .facts{display:flex;flex-wrap:wrap;gap:14px 48px;margin:10px 0 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);justify-self:stretch}
+  .facts dt{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  .facts dd{margin:4px 0 0;color:#fff;font-weight:700}
+  @media (hover:hover){.back:hover{color:#fff}}
+
+  .body{display:grid;gap:72px}
+  .results{display:grid;gap:16px}
+  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .stats .card{gap:8px}
+  .move{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+  .was{font-size:20px;font-weight:700;color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+  .move .arr{width:16px;height:16px;color:var(--muted)}
+  .move b{font-size:40px;line-height:1.1;font-weight:800;letter-spacing:-.03em;color:var(--act)}
+  .lbl{font-size:15px;color:var(--ink);font-weight:700}
+
+  .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+  .cols h2{font-size:clamp(26px,3vw,34px);margin-bottom:24px}
+  .story{display:grid;gap:18px;font-size:17px;line-height:1.7}
+  .story h2{margin-bottom:6px}
+  .scene{font-size:20px;line-height:1.45;font-weight:700;color:var(--ink);letter-spacing:-.01em;padding-left:20px;border-left:3px solid var(--ac)}
+  .built{margin:0;padding:0;list-style:none;display:grid;gap:0}
+  .built li{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:12px;row-gap:6px;padding-block:20px;border-top:1px solid var(--line)}
+  .built li:first-child{border-top:0;padding-top:0}
+  .k{grid-row:span 2;font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--act);padding-top:3px}
+  .built h3{font-size:18px}
+  .built p{font-size:15px}
+
+  .quote{padding:44px 48px;gap:24px}
+  blockquote{margin:0}
+  q{quotes:"\201C" "\201D";font-size:clamp(22px,2.6vw,30px);line-height:1.35;font-weight:700;color:#fff;letter-spacing:-.02em}
+  q::before,q::after{color:var(--ac)}
+  .by{display:flex;align-items:center;gap:.6em;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--dim)}
+
+  .next{display:grid;gap:8px;justify-self:end;text-align:right}
+  .next .t{display:inline-flex;align-items:center;justify-content:flex-end;gap:10px;font-size:clamp(20px,2.4vw,26px);font-weight:800;letter-spacing:-.02em;color:var(--ink);position:relative}
+  .next .t::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1);will-change:transform}
+  .next .arr{flex:none;color:var(--act)}
+  @media (hover:hover){
+    .next:hover .t::after{transform:scaleX(1)}
+    .next:hover .arr{animation:arr-fade-through .5s cubic-bezier(.5,0,.2,1)}
+  }
+
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  @media (max-width:1000px){
+    .cols{grid-template-columns:minmax(0,1fr);gap:56px}
+  }
+  @media (max-width:900px){
+    .stats{grid-template-columns:minmax(0,1fr)}
+    .body{gap:56px}
+    .top{padding-block:56px 64px}
+  }
+  @media (max-width:560px){
+    .quote{padding:32px 24px}
+    .next{justify-self:stretch;text-align:left}
+    .next .t{justify-content:flex-start}
+  }
+</style>
