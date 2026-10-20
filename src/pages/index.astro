@@ -11,8 +11,10 @@ import BookingBand from '../components/BookingBand.astro';
 import { CLIENTS, COMPANY } from '../config';
 ---
 <Base title={`${COMPANY}: automation for staffing and recruiting firms`}>
-  <Hero />
-  <Marks label="Past clients" items={CLIENTS} />
+  <div class="intro">
+    <Hero />
+    <Marks label="Past clients" items={CLIENTS} />
+  </div>
   <Why />
   <BuildGrid />
   <Results />
@@ -20,3 +22,8 @@ import { CLIENTS, COMPANY } from '../config';
   <Feedback />
   <BookingBand />
 </Base>
+
+<style>
+  /* hero and client strip fill the first screen below the 69px nav, so the white section after them starts below the fold */
+  .intro{display:flex;flex-direction:column;min-height:calc(100svh - 69px)}
+</style>
