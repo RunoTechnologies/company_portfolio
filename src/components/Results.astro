@@ -29,7 +29,7 @@ const start = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD
           <div class="fix">
             <p><b>Automated:</b> {c.fix}</p>
             <div class="foot">
-              <span class="view">View case study <svg class="arr"><use href="#i-arrow" /></svg></span>
+              <span class="view"><span class="lbl">View case study</span> <svg class="arr"><use href="#i-arrow" /></svg></span>
             </div>
           </div>
         </a>
@@ -67,13 +67,16 @@ const start = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD
   .fix{padding:20px 28px 24px;display:grid;gap:10px;background:rgba(17,179,200,.12);border-top:1px solid rgba(255,255,255,.12);transition:background-color .3s ease}
   .fix p{color:#fff}
   .foot{display:flex;justify-content:flex-end}
-  .view{flex:none;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;white-space:nowrap;transition:opacity .25s ease,translate .25s cubic-bezier(.2,.7,.2,1)}
+  .view{flex:none;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;white-space:nowrap}
   .view .arr{width:14px;height:14px}
   .case:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
-  /* the link label shows on hover or keyboard focus; touch screens have no hover, so it stays visible there */
+  /* Hovering the card draws the label's accent underline and runs the arrow through, as on the site's buttons. */
+  .view .lbl{position:relative}
+  .view .lbl::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  .case:focus-visible .lbl::after{transform:scaleX(1)}
   @media (hover:hover){
-    .view{opacity:0;translate:-6px 0}
-    .case:hover .view,.case:focus-visible .view{opacity:1;translate:0 0}
+    .case:hover .lbl::after{transform:scaleX(1)}
+    .case:hover .view .arr{animation:arr-fade-through .5s cubic-bezier(.5,0,.2,1)}
     .case:hover{border-color:var(--ac)}
     .case:hover .fix{background:rgba(17,179,200,.22)}
   }
