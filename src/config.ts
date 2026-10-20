@@ -12,8 +12,16 @@ export const NAV = [
   { label: 'About', href: '/about' },
 ];
 
-// Placeholders: replace with past clients' names before launch.
-export const CLIENTS = ['Client 01', 'Client 02', 'Client 03', 'Client 04', 'Client 05', 'Client 06'];
+// Logos are white-on-transparent marks in public/clients/, drawn in the strip's text colour;
+// ratio is the mark's width over its height.
+export const CLIENTS = [
+  { name: 'Carisbrook Partners', logo: '/clients/carisbrook.png', ratio: 88 / 128 },
+  { name: 'Chroma Recruitment', logo: '/clients/chroma.png', ratio: 114 / 128 },
+  { name: 'Gresham Hunt', logo: '/clients/gresham.png', ratio: 43 / 128 },
+  { name: '3D Recruit Education', logo: '/clients/3d-recruit.png', ratio: 113 / 128 },
+  { name: 'Chadwick Nott', logo: '/clients/chadwick.png', ratio: 178 / 128 },
+  { name: 'Red Kite Waste', logo: '/clients/red-kite.png', ratio: 153 / 128 },
+];
 
 // Build-grid card anchors on the home page, shared with the footer.
 export const SOLUTIONS = [

@@ -1,6 +1,7 @@
 ---
 // A navy strip of names on a belt sliding left to right, continuing the hero.
-interface Props { label: string; items: string[] }
+interface Item { name: string; logo: string; ratio: number }
+interface Props { label: string; items: Item[] }
 const { label, items } = Astro.props;
 // Each belt half must outrun the widest viewport, so short lists repeat; speed stays ~5 s per name.
 const loop = Array.from({ length: Math.max(1, Math.ceil(12 / items.length)) }, () => items).flat();
@@ -10,8 +11,8 @@ const loop = Array.from({ length: Math.max(1, Math.ceil(12 / items.length)) }, (
     <p class="caps">{label}</p>
     <div class="belt" style={`--dur:${loop.length * 5}s`}>
       <div class="track">
-        <ul class="row">{loop.map((i, k) => <li class:list={{ rep: k >= items.length }} aria-hidden={k >= items.length ? 'true' : undefined}>{i}</li>)}</ul>
-        <ul class="row" aria-hidden="true">{loop.map((i) => <li>{i}</li>)}</ul>
+        <ul class="row">{loop.map((i, k) => <li class:list={{ rep: k >= items.length }} aria-hidden={k >= items.length ? 'true' : undefined}><span class="logo" style={`--logo:url(${i.logo});--ar:${i.ratio}`}></span>{i.name}</li>)}</ul>
+        <ul class="row" aria-hidden="true">{loop.map((i) => <li><span class="logo" style={`--logo:url(${i.logo});--ar:${i.ratio}`}></span>{i.name}</li>)}</ul>
       </div>
     </div>
   </div>
@@ -22,6 +23,9 @@ const loop = Array.from({ length: Math.max(1, Math.ceil(12 / items.length)) }, (
   .band{border-top:1px solid rgba(255,255,255,.08)}
   .marks{padding-block:56px;display:grid;gap:28px;justify-items:center;text-align:center}
   .row{display:flex;justify-content:center;gap:16px 44px;font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--dim)}
+  .row li{display:flex;align-items:center;gap:.5em}
+  /* the mark is a mask over the text colour, so every logo reads in the strip's one tone */
+  .logo{flex:none;height:1.3em;aspect-ratio:var(--ar);background:currentColor;-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat}
   .belt{justify-self:stretch;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
   .track{display:flex;width:max-content;animation:belt var(--dur) linear infinite}
   .belt:hover .track{animation-play-state:paused}
@@ -34,6 +38,6 @@ const loop = Array.from({ length: Math.max(1, Math.ceil(12 / items.length)) }, (
     .belt{-webkit-mask-image:none;mask-image:none}
     .track{width:auto;justify-content:center}
     .row{flex-wrap:wrap;white-space:normal;padding-right:0}
-    .row[aria-hidden],.rep{display:none}
+    .row[aria-hidden],.row .rep{display:none}
   }
 </style>
