@@ -16,7 +16,7 @@ const start = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD
   <div class="wrap">
     <div class="head">
       <div class="col">
-        <h2>Your week, before and after</h2>
+        <h2>Where your desk loses money. <span class="ac">And what we change.</span></h2>
       </div>
     </div>
     <div class="grid">
@@ -59,6 +59,7 @@ const start = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD
 
 <style>
   .wrap{display:grid;gap:40px}
+  h2 .ac{color:var(--act)}
   .case{padding:0;gap:0;grid-template-rows:1fr auto;overflow:hidden;transition:border-color .3s ease}
   .pain{padding:26px 28px 22px;display:grid;gap:10px;align-content:start}
   .case .scene{font-size:17px;line-height:1.45;font-weight:700;color:#fff;letter-spacing:-.01em}
