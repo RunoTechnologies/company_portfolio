@@ -23,8 +23,8 @@ const LOGOS: Record<string, { label: string; box: string; svg: string }> = {
     <div class="wrap founder">
       <img src={FOUNDER.photo} alt={`${FOUNDER.name}, founder of ${COMPANY}`} width="800" height="1000" loading="eager" />
       <div class="bio">
-        <h2>{FOUNDER.name}</h2>
         <p class="role">{FOUNDER.role}</p>
+        <h2>{FOUNDER.name}</h2>
         <p>A whole working life in technology, and today an AI engineer. {FOUNDER.name.split(' ')[0]} talked to hundreds of recruiters during his career and saw the issues they faced from a different perspective. That’s why he brought together the best AI engineers and founded {COMPANY}: to bring much-needed, modernised automations to staffing and recruiting firms, reducing admin, improving talent acquisition and increasing profit margins.</p>
         <p>Every build starts from how your desk actually works and ends with a customised solution to your exact problem and a clear ROI.</p>
         <div class="certs">
@@ -61,7 +61,7 @@ const LOGOS: Record<string, { label: string; box: string; svg: string }> = {
   .founder{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:center}
   img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:24px;background:var(--tint)}
   .bio{display:grid;gap:18px;justify-items:start}
-  .role{margin-top:-8px;font-weight:700;color:var(--act)}
+  .role{margin-bottom:-8px;font-weight:700;color:var(--act)}
   .li{margin-top:6px;display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--ink)}
   .li svg{width:20px;height:20px;fill:#0a66c2;flex:none}
   /* the label draws the nav links' accent underline on hover */
