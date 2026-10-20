@@ -1,60 +1,154 @@
 ---
-// Illustrative targets. The markup carries the final values; the count-up only replays them on scroll.
-const FIGURES = [
-  { to: 31, prefix: '−', suffix: '%', text: 'Cost per sourced candidate, against Indeed and LinkedIn spend' },
-  { to: 17, prefix: '+', suffix: '%', text: 'Offer acceptance after enrichment and a warm-up sequence' },
-  { to: 23, prefix: '+', suffix: '%', text: 'Interview and first-shift show-up rate' },
-  { to: 39, prefix: '−', suffix: '%', text: 'Fraudulent or duplicate applicants reaching a recruiter' },
-  { to: 2, prefix: '', suffix: '×', text: 'Qualified client conversations per month from automated outreach' },
-  { to: 34, prefix: '−', suffix: '%', text: 'Coordinator hours on timesheets, invoicing and compliance' },
+// One card per workflow: the moment it hurts, what it costs if nothing changes, and what the automation
+// does instead. `measure` names the number a build moves; a client's measured before -> after replaces it.
+const CASES = [
+  {
+    when: 'Mon 9:05am',
+    scene: 'The job-board invoice lands. Half the applicants it paid for never answered.',
+    stakes: 'The margin keeps going to Indeed and LinkedIn.',
+    fix: 'Your own database and referrals are worked first; job boards fill only what is left.',
+    measure: 'Cost per sourced candidate',
+  },
+  {
+    when: 'Tue 11:40am',
+    scene: 'The candidate you worked all week took another agency’s offer. They texted back first.',
+    stakes: 'You do the work and a rival takes the fee.',
+    fix: 'Every candidate is enriched and followed up within minutes, then warmed until the offer.',
+    measure: 'Offer acceptance rate',
+  },
+  {
+    when: 'Wed 6:12am',
+    scene: 'Two no-shows for the 7am warehouse shift. The client is already calling.',
+    stakes: 'They start quoting other agencies.',
+    fix: 'Shifts are confirmed the night before and gaps are filled from your bench by 5am.',
+    measure: 'Interview and first-shift show-up rate',
+  },
+  {
+    when: 'Thu 2:30pm',
+    scene: 'A placed worker’s right to work doesn’t check out.',
+    stakes: 'Compliance exposure, and a client who stops trusting your shortlist.',
+    fix: 'Fraudulent and duplicate applicants are stopped at screening, before a recruiter sees them.',
+    measure: 'Bad applicants reaching a recruiter',
+  },
+  {
+    when: 'Thu 4:50pm',
+    scene: 'No time for business development this month. Again.',
+    stakes: 'The pipeline is empty the week your biggest client leaves.',
+    fix: 'Automated outreach books qualified client conversations onto your calendar.',
+    measure: 'Qualified client conversations a month',
+  },
+  {
+    when: 'Fri 5:30pm',
+    scene: '14 timesheets still missing. Payroll closes at 6.',
+    stakes: 'Recruiters spend Fridays on admin, then leave for desks that don’t.',
+    fix: 'Timesheets are collected, matched and invoiced by Monday 9am.',
+    measure: 'Coordinator hours on timesheets, invoicing and compliance',
+  },
 ];
+// Starting values for the calculator: inputs a visitor overwrites, not claims about anyone's desk.
+const INPUTS = [
+  { id: 'ns', label: 'No-shows a week', value: 4, step: 1 },
+  { id: 'mg', label: 'Margin per shift (£)', value: 45, step: 5 },
+  { id: 'hr', label: 'Admin hours a week, whole team', value: 30, step: 1 },
+  { id: 'rt', label: 'Cost per hour (£)', value: 18, step: 1 },
+];
+const v = Object.fromEntries(INPUTS.map((f) => [f.id, f.value]));
+const start = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 })
+  .format(52 * (v.ns * v.mg + v.hr * v.rt));
 ---
 <section class="sec band res">
   <div class="wrap">
     <div class="head">
       <div class="col">
         <p class="eyebrow dot">Results</p>
-        <h2>What changes when the admin is automated</h2>
+        <h2>Your week, before and after</h2>
       </div>
-      <p class="note">Illustrative targets from the solution set. Client figures replace these before launch.</p>
+      <p class="note">Every build names the number it moves and reports it weekly.</p>
     </div>
     <div class="grid">
-      {FIGURES.map((f) => (
-        <div class="card stat">
-          <b class="num" data-to={f.to} data-prefix={f.prefix} data-suffix={f.suffix}>{f.prefix}{f.to}{f.suffix}</b>
-          <p>{f.text}</p>
+      {CASES.map((c) => (
+        <div class="card case">
+          <div class="pain">
+            <span class="when">{c.when}</span>
+            <p class="scene">{c.scene}</p>
+            <p class="stakes"><b>If nothing changes:</b> {c.stakes}</p>
+          </div>
+          <div class="fix">
+            <p><b>Automated:</b> {c.fix}</p>
+            <span class="measure">We measure: {c.measure}</span>
+          </div>
         </div>
       ))}
     </div>
+    <form class="calc" aria-labelledby="calc-h">
+      <div class="calc-head">
+        <h3 id="calc-h">What this week costs you in a year</h3>
+        <p class="note">Put in your numbers.</p>
+      </div>
+      <div class="fields">
+        {INPUTS.map((f) => (
+          <label>
+            <span>{f.label}</span>
+            <input id={`calc-${f.id}`} type="number" inputmode="decimal" min="0" step={f.step} value={f.value} />
+          </label>
+        ))}
+      </div>
+      <p class="total" aria-live="polite">
+        <b id="calc-out">{start}</b>
+        <span>a year in lost shift margin and admin time</span>
+      </p>
+    </form>
   </div>
 </section>
 
 <style>
   .wrap{display:grid;gap:40px}
-  .stat{padding:30px 28px}
-  .num{display:block;font-size:56px;line-height:1;font-weight:800;letter-spacing:-.04em;color:var(--act);font-variant-numeric:tabular-nums}
-  @media (max-width:560px){.num{font-size:48px}}
-  /* the figure is the point, so it is what grows; the card takes the accent tint */
-  .stat{transition:background-color .3s ease,border-color .3s ease}
-  .num{transform-origin:left bottom;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .case{padding:0;gap:0;grid-template-rows:1fr auto;overflow:hidden;transition:border-color .3s ease}
+  .pain{padding:26px 28px 22px;display:grid;gap:10px;align-content:start}
+  .when{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .case .scene{font-size:17px;line-height:1.45;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+  .case .stakes{font-size:14px}
+  .stakes b{color:var(--ink)}
+  .fix{padding:20px 28px 24px;display:grid;gap:10px;background:var(--pale);border-top:1px solid var(--line);transition:background-color .3s ease}
+  .fix p{color:var(--ink)}
+  .measure{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--act)}
   @media (hover:hover){
-    .stat:hover{background:var(--pale);border-color:var(--ac)}
+    .case:hover{border-color:var(--ac)}
+    .case:hover .fix{background:color-mix(in srgb,var(--ac) 24%,#fff)}
   }
-  @media (hover:hover) and (prefers-reduced-motion:no-preference){
-    .stat:hover .num{transform:scale(1.1)}
+
+  .calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr) auto;gap:28px;align-items:end;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:16px}
+  .calc h3{color:#fff}
+  .calc-head{display:grid;gap:6px}
+  .fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+  .fields label{display:grid;gap:6px;font-size:13px;color:var(--dim);align-content:end}
+  .fields input{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:16px;font-variant-numeric:tabular-nums}
+  .fields input:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+  .total{display:grid;gap:4px;min-width:200px}
+  .total b{font-size:40px;line-height:1;font-weight:800;letter-spacing:-.03em;color:var(--ac);font-variant-numeric:tabular-nums}
+  .total span{font-size:13px;color:var(--dim)}
+  @media (max-width:1000px){
+    .calc{grid-template-columns:minmax(0,1fr)}
+    .total{min-width:0}
+  }
+  @media (max-width:560px){
+    .fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .pain{padding:22px 22px 18px}
+    .fix{padding:18px 22px 20px}
   }
 </style>
 
 <script>
-  import { countUp, reduce } from '../scripts/motion.js';
-  if (!reduce && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (!e.isIntersecting) continue;
-        io.unobserve(e.target);
-        countUp(e.target as HTMLElement, 1200);
-      }
-    }, { threshold: 0.6 });
-    document.querySelectorAll('.res .num').forEach((el) => io.observe(el));
+  const form = document.querySelector<HTMLFormElement>('.res .calc');
+  if (form) {
+    const val = (id: string) => Math.max(0, Number((form.querySelector(`#calc-${id}`) as HTMLInputElement).value) || 0);
+    const out = form.querySelector('#calc-out')!;
+    const gbp = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 });
+    const update = () => {
+      out.textContent = gbp.format(52 * (val('ns') * val('mg') + val('hr') * val('rt')));
+    };
+    form.addEventListener('input', update);
+    form.addEventListener('submit', (e) => e.preventDefault());
+    update();
   }
 </script>
