@@ -1,0 +1,11 @@
+---
+// A client's mark as a mask over the text colour, so every logo reads in its surrounding tone.
+import { CLIENTS } from '../config';
+interface Props { name: string }
+const c = CLIENTS.find((x) => x.name === Astro.props.name);
+---
+{c && <span class="logo" aria-hidden="true" style={`--logo:url(${c.logo});--ar:${c.ratio}`}></span>}
+
+<style>
+  .logo{flex:none;height:1.3em;aspect-ratio:var(--ar);background:currentColor;-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat}
+</style>

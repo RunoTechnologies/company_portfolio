@@ -1,13 +1,8 @@
 ---
-// Placeholders: replace the quote text with each client's signed-off words before launch.
-const QUOTES = [
-  { q: 'We stopped paying for Indeed sponsorships in month two. The sourced pool was cheaper and the candidates actually picked up.', who: 'Chroma Recruitment' },
-  { q: 'Show-up rate went from a coin flip to something we can plan a shift around.', who: 'Red Kite Waste' },
-  { q: 'The screening step alone saved my team a day a week of chasing people who never existed.', who: '3D Recruit Education' },
-  { q: 'I was sceptical of anything with AI in the name. This is just good plumbing.', who: 'Gresham Hunt' },
-  { q: 'Follow-ups that used to slip through the cracks now go out on time, every time, without anyone chasing them.', who: 'Chadwick Nott' },
-  { q: 'Our consultants spend their week on conversations with candidates, not on admin.', who: 'Carisbrook Partners' },
-];
+import { CASE_STUDIES } from '../config';
+
+// The case studies' client quotes, so each is signed off in one place.
+const QUOTES = CASE_STUDIES.map((c) => ({ q: c.quote, who: c.client }));
 ---
 <section class="sec quo">
   <div class="wrap">
