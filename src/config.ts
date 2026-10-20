@@ -13,10 +13,12 @@ export const NAV = [
 ];
 
 // The about page's founder block; the photo is a 4:5 crop in public/.
+// Placeholder: the LinkedIn link shows once linkedin holds the profile URL.
 export const FOUNDER = {
   name: 'Aleksandar Radovic',
   role: 'Founder and AI engineer',
   photo: '/founder.jpg',
+  linkedin: '',
   certs: ['Anthropic', 'Microsoft', 'Amazon Web Services'],
 };
 

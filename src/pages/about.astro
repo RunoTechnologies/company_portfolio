@@ -18,6 +18,12 @@ import { COMPANY, FOUNDER } from '../config';
         <p class="eyebrow dot">Founder</p>
         <h2>{FOUNDER.name}</h2>
         <p class="role">{FOUNDER.role}</p>
+        {FOUNDER.linkedin && (
+          <a class="li" href={FOUNDER.linkedin} target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" /></svg>
+            <span class="u">Connect on LinkedIn</span>
+          </a>
+        )}
         <p>A whole working life in technology, and today an AI engineer. {FOUNDER.name.split(' ')[0]} founded {COMPANY} to bring that engineering to staffing and recruiting firms, where sourcing, screening, follow-up and back-office work still take most of a consultant’s week.</p>
         <p>Every build starts from how your desk actually works and ends with a number you can check against the week before.</p>
         <div class="certs">
@@ -42,6 +48,12 @@ import { COMPANY, FOUNDER } from '../config';
   img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:24px;background:var(--tint)}
   .bio{display:grid;gap:18px;justify-items:start}
   .role{margin-top:-8px;font-weight:700;color:var(--act)}
+  .li{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--ink)}
+  .li svg{width:20px;height:20px;fill:#0a66c2;flex:none}
+  /* the label draws the nav links' accent underline on hover */
+  .li .u{position:relative}
+  .li .u::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1);will-change:transform}
+  @media (hover:hover){.li:hover .u::after{transform:scaleX(1)}}
   .bio > p:not(.eyebrow):not(.role){max-width:620px;font-size:17px}
   .certs{display:grid;gap:12px;width:100%;margin-top:10px}
   .certs ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
