@@ -18,11 +18,11 @@ export const FOUNDER = {
   role: 'Founder and AI engineer',
   photo: '/founder.jpg',
   linkedin: 'https://www.linkedin.com/in/aleksandar-radovic-134201174/',
-  // issuer keys the logo drawn on the about page
+  // issuer keys the logo drawn on the about page; the card shows short, with the full name as its tooltip
   certs: [
-    { issuer: 'anthropic', name: 'Claude Certified Architect – Professional', code: 'CCAR-P' },
-    { issuer: 'microsoft', name: 'Microsoft Certified: Agentic AI Business Solutions Architect Expert', code: 'AB-100' },
-    { issuer: 'aws', name: 'AWS Certified Generative AI Developer – Professional', code: 'AIP-C01' },
+    { issuer: 'anthropic', name: 'Claude Certified Architect – Professional', short: 'Claude Certified Architect', code: 'CCAR-P' },
+    { issuer: 'microsoft', name: 'Microsoft Certified: Agentic AI Business Solutions Architect Expert', short: 'Agentic AI Solutions Architect', code: 'AB-100' },
+    { issuer: 'aws', name: 'AWS Certified Generative AI Developer – Professional', short: 'Generative AI Developer', code: 'AIP-C01' },
   ],
 };
 
