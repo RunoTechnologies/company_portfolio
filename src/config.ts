@@ -12,6 +12,20 @@ export const NAV = [
   { label: 'About', href: '/about' },
 ];
 
+// The about page's founder block; the photo is a 4:5 crop in public/.
+export const FOUNDER = {
+  name: 'Aleksandar Radovic',
+  role: 'Founder and AI engineer',
+  photo: '/founder.jpg',
+  linkedin: 'https://www.linkedin.com/in/aleksandar-radovic-134201174/',
+  // issuer keys the logo drawn on the about page; the card shows short, with the full name as its tooltip
+  certs: [
+    { issuer: 'anthropic', name: 'Claude Certified Architect – Professional', short: 'Claude Certified Architect', code: 'CCAR-P' },
+    { issuer: 'microsoft', name: 'Microsoft Certified: Agentic AI Business Solutions Architect Expert', short: 'Agentic AI Solutions Architect', code: 'AB-100' },
+    { issuer: 'aws', name: 'AWS Certified Generative AI Developer – Professional', short: 'Generative AI Developer', code: 'AIP-C01' },
+  ],
+};
+
 // Logos are white-on-transparent marks in public/clients/, drawn in the strip's text colour;
 // ratio is the mark's width over its height.
 export const CLIENTS = [
