@@ -107,7 +107,8 @@ const start = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD
     const out = form.querySelector('#calc-out')!;
     const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 });
     const update = () => {
-      out.textContent = usd.format(52 * (val('ns') * val('mg') + val('hr') * val('rt')));
+      const total = 52 * (val('ns') * val('mg') + val('hr') * val('rt'));
+      out.textContent = Number.isFinite(total) ? usd.format(total) : '—';
     };
     form.addEventListener('input', update);
     form.addEventListener('submit', (e) => e.preventDefault());
