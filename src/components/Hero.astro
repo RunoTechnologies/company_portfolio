@@ -17,8 +17,8 @@ import { CAL_URL } from '../config';
 
 <style>
   /* navy like the CTA band, so the page opens and closes on the same ground */
-  /* fills the first screen below the 69px nav, so the white section after it starts below the fold */
-  .hero{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;min-height:calc(100svh - 69px);padding-block:120px 96px;text-align:center;background:var(--ink);color:#c5cdd9}
+  /* grows to fill the first screen with the client strip (see .intro on the home page), content centred */
+  .hero{position:relative;overflow:hidden;flex:1 0 auto;display:flex;flex-direction:column;justify-content:center;padding-block:120px 96px;text-align:center;background:var(--ink);color:#c5cdd9}
   .glow{position:absolute;left:50%;top:-220px;width:1200px;height:820px;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(17,179,200,.3) 0%,rgba(17,179,200,.12) 35%,rgba(17,179,200,0) 70%);pointer-events:none}
   /* width:100% because the auto margins would otherwise shrink a flex item, and inline-size containment shrinks it to nothing */
   .wrap{position:relative;width:100%;container-type:inline-size;display:grid;justify-items:center;gap:28px}
