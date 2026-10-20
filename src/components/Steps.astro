@@ -6,7 +6,7 @@ const STEPS = [
   { phase: 'ADOPT', title: 'Optimise and hand over', sub: 'Make it stick.', checks: ['A month beside the team on live traffic', 'Weekly numbers against the target', 'Handover when the desk trusts it'] },
 ];
 ---
-<section class="sec proc" id="process">
+<section class="sec band proc" id="process">
   <div class="wrap">
     <div class="head">
       <div class="col">
@@ -16,7 +16,7 @@ const STEPS = [
     </div>
     <div class="steps">
       {STEPS.map((s, i) => (
-        <div class="card ink step">
+        <div class="card step">
           <p class="phase">{String(i + 1).padStart(2, '0')} <b>{s.phase}</b></p>
           <h3>{s.title}</h3>
           <p class="sub">{s.sub}</p>
@@ -30,11 +30,11 @@ const STEPS = [
 <style>
   .wrap{display:grid;gap:48px}
   .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;position:relative;padding-top:28px}
-  .steps::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--rail)}
-  .step::before{content:"";position:absolute;top:-37px;left:50%;width:11px;height:11px;border-radius:50%;background:var(--ac);border:3px solid var(--bg);transform:translateX(-50%)}
-  .phase{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--dim)}
-  .phase b{color:var(--ac);font-weight:700}
-  .sub{color:#fff;font-weight:700;font-size:15px}
+  .steps::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(255,255,255,.14)}
+  .step::before{content:"";position:absolute;top:-37px;left:50%;width:11px;height:11px;border-radius:50%;background:var(--ac);border:3px solid var(--ink);transform:translateX(-50%)}
+  .phase{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
+  .phase b{color:var(--act);font-weight:700}
+  .sub{color:var(--ink);font-weight:700;font-size:15px}
   .checks{display:grid;gap:10px;font-size:15px;padding-block:6px}
   .checks li{display:flex;gap:12px;align-items:flex-start}
   .checks .ic{flex:0 0 18px;width:18px;height:18px;margin-top:4px}
