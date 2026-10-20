@@ -1,62 +1,18 @@
 ---
-// One card per workflow: the moment it hurts, what it costs if nothing changes, and what the automation
-// does instead. `measure` names the number a build moves; a client's measured before -> after replaces it.
-const CASES = [
-  {
-    when: 'Mon 9:05am',
-    scene: 'The job-board invoice lands. Half the applicants it paid for never answered.',
-    stakes: 'The margin keeps going to Indeed and LinkedIn.',
-    fix: 'Your own database and referrals are worked first; job boards fill only what is left.',
-    measure: 'Cost per sourced candidate',
-  },
-  {
-    when: 'Tue 11:40am',
-    scene: 'The candidate you worked all week took another agency’s offer. They texted back first.',
-    stakes: 'You do the work and a rival takes the fee.',
-    fix: 'Every candidate is enriched and followed up within minutes, then warmed until the offer.',
-    measure: 'Offer acceptance rate',
-  },
-  {
-    when: 'Wed 6:12am',
-    scene: 'Two no-shows for the 7am warehouse shift. The client is already calling.',
-    stakes: 'They start quoting other agencies.',
-    fix: 'Shifts are confirmed the night before and gaps are filled from your bench by 5am.',
-    measure: 'Interview and first-shift show-up rate',
-  },
-  {
-    when: 'Thu 2:30pm',
-    scene: 'A placed worker’s right to work doesn’t check out.',
-    stakes: 'Compliance exposure, and a client who stops trusting your shortlist.',
-    fix: 'Fraudulent and duplicate applicants are stopped at screening, before a recruiter sees them.',
-    measure: 'Bad applicants reaching a recruiter',
-  },
-  {
-    when: 'Thu 4:50pm',
-    scene: 'No time for business development this month. Again.',
-    stakes: 'The pipeline is empty the week your biggest client leaves.',
-    fix: 'Automated outreach books qualified client conversations onto your calendar.',
-    measure: 'Qualified client conversations a month',
-  },
-  {
-    when: 'Fri 5:30pm',
-    scene: '14 timesheets still missing. Payroll closes at 6.',
-    stakes: 'Recruiters spend Fridays on admin, then leave for desks that don’t.',
-    fix: 'Timesheets are collected, matched and invoiced by Monday 9am.',
-    measure: 'Coordinator hours on timesheets, invoicing and compliance',
-  },
-];
+import { CASE_STUDIES } from '../config';
+
 // Starting values for the calculator: inputs a visitor overwrites, not claims about anyone's desk.
 const INPUTS = [
   { id: 'ns', label: 'No-shows a week', value: 4, step: 1 },
-  { id: 'mg', label: 'Margin per shift (£)', value: 45, step: 5 },
+  { id: 'mg', label: 'Margin per shift ($)', value: 45, step: 5 },
   { id: 'hr', label: 'Admin hours a week, whole team', value: 30, step: 1 },
-  { id: 'rt', label: 'Cost per hour (£)', value: 18, step: 1 },
+  { id: 'rt', label: 'Cost per hour ($)', value: 25, step: 1 },
 ];
 const v = Object.fromEntries(INPUTS.map((f) => [f.id, f.value]));
-const start = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', minimumFractionDigits: 0, maximumFractionDigits: 0 })
+const start = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 })
   .format(52 * (v.ns * v.mg + v.hr * v.rt));
 ---
-<section class="sec res">
+<section class="sec res" id="results">
   <div class="wrap">
     <div class="head">
       <div class="col">
@@ -66,18 +22,20 @@ const start = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP
       <p class="note">Every build names the number it moves and reports it weekly.</p>
     </div>
     <div class="grid">
-      {CASES.map((c) => (
-        <div class="card ink case">
+      {CASE_STUDIES.map((c) => (
+        <a class="card ink case" href={`/case-studies/${c.slug}`}>
           <div class="pain">
-            <span class="when">{c.when}</span>
             <p class="scene">{c.scene}</p>
             <p class="stakes"><b>If nothing changes:</b> {c.stakes}</p>
           </div>
           <div class="fix">
             <p><b>Automated:</b> {c.fix}</p>
-            <span class="measure">We measure: {c.measure}</span>
+            <div class="foot">
+              <span class="measure">We measure: {c.measure}</span>
+              <span class="view">View case study <svg class="arr"><use href="#i-arrow" /></svg></span>
+            </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
     <form class="calc" aria-labelledby="calc-h">
@@ -105,14 +63,20 @@ const start = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP
   .wrap{display:grid;gap:40px}
   .case{padding:0;gap:0;grid-template-rows:1fr auto;overflow:hidden;transition:border-color .3s ease}
   .pain{padding:26px 28px 22px;display:grid;gap:10px;align-content:start}
-  .when{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
   .case .scene{font-size:17px;line-height:1.45;font-weight:700;color:#fff;letter-spacing:-.01em}
   .case .stakes{font-size:14px}
   .stakes b{color:#fff}
   .fix{padding:20px 28px 24px;display:grid;gap:10px;background:rgba(17,179,200,.12);border-top:1px solid rgba(255,255,255,.12);transition:background-color .3s ease}
   .fix p{color:#fff}
+  .foot{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
   .measure{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ac)}
+  .view{flex:none;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;white-space:nowrap;transition:opacity .25s ease,translate .25s cubic-bezier(.2,.7,.2,1)}
+  .view .arr{width:14px;height:14px}
+  .case:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+  /* the link label shows on hover or keyboard focus; touch screens have no hover, so it stays visible there */
   @media (hover:hover){
+    .view{opacity:0;translate:-6px 0}
+    .case:hover .view,.case:focus-visible .view{opacity:1;translate:0 0}
     .case:hover{border-color:var(--ac)}
     .case:hover .fix{background:rgba(17,179,200,.22)}
   }
@@ -142,9 +106,9 @@ const start = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP
   if (form) {
     const val = (id: string) => Math.max(0, Number((form.querySelector(`#calc-${id}`) as HTMLInputElement).value) || 0);
     const out = form.querySelector('#calc-out')!;
-    const gbp = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 });
     const update = () => {
-      out.textContent = gbp.format(52 * (val('ns') * val('mg') + val('hr') * val('rt')));
+      out.textContent = usd.format(52 * (val('ns') * val('mg') + val('hr') * val('rt')));
     };
     form.addEventListener('input', update);
     form.addEventListener('submit', (e) => e.preventDefault());

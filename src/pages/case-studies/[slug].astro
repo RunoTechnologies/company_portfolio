@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import NotYet from '../../components/NotYet.astro';
+import BookingBand from '../../components/BookingBand.astro';
+import { CASE_STUDIES, COMPANY } from '../../config';
+
+// One detail page per Results card, so every card has a destination before the write-up exists.
+export function getStaticPaths() {
+  return CASE_STUDIES.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+}
+const { c } = Astro.props;
+---
+<Base title={`${c.title}: ${COMPANY}`}>
+  <NotYet label="Case study" title={c.title} lede={`${c.fix} We measure: ${c.measure.toLowerCase()}.`} />
+  <BookingBand />
+</Base>
