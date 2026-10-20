@@ -26,13 +26,13 @@ const LOGOS: Record<string, { label: string; box: string; svg: string }> = {
         <p class="eyebrow dot">Founder</p>
         <h2>{FOUNDER.name}</h2>
         <p class="role">{FOUNDER.role}</p>
-        <p>A whole working life in technology, and today an AI engineer. {FOUNDER.name.split(' ')[0]} talked to hundreds of recruiters during his career and saw the issues they faced from a different perspective. That’s why he founded {COMPANY}: to bring that engineering to staffing and recruiting firms, where sourcing, screening, follow-up and back-office work still take most of a consultant’s week.</p>
+        <p>A whole working life in technology, and today an AI engineer. {FOUNDER.name.split(' ')[0]} talked to hundreds of recruiters during his career and saw the issues they faced from a different perspective. That’s why he founded {COMPANY}: to bring much-needed, modernised automations to staffing and recruiting firms, reducing admin, improving talent acquisition and increasing profit margins.</p>
         <p>Every build starts from how your desk actually works and ends with a number you can check against the week before.</p>
         <div class="certs">
           <p class="caps">AI certifications</p>
           <ul>
             {FOUNDER.certs.map((c) => (
-              <li class="card" tabindex="0" title={c.name}>
+              <li class="card" tabindex="0" title={`${c.name} (${c.code})`}>
                 <div class="head">
                   <svg class="logo" viewBox={LOGOS[c.issuer].box} role="img" aria-label={LOGOS[c.issuer].label} set:html={LOGOS[c.issuer].svg} />
                   <span class="code">{c.code}</span>
