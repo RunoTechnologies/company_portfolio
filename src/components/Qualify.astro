@@ -1,5 +1,7 @@
 ---
 import { CAL_URL, QUALIFY } from '../config';
+
+const cut = QUALIFY.find((q) => q.decline)!;
 ---
 <dialog class="qualify" data-cal={CAL_URL} aria-labelledby="q-title">
   <form>
@@ -8,7 +10,7 @@ import { CAL_URL, QUALIFY } from '../config';
     </button>
     <div class="head">
       <h2 id="q-title">Two quick questions before the calendar</h2>
-      <p>So the call is pitched at the size of your firm.</p>
+      <p>It helps us match the call to where your firm is today.</p>
     </div>
     {QUALIFY.map((q) => (
       <fieldset>
@@ -20,6 +22,9 @@ import { CAL_URL, QUALIFY } from '../config';
         </div>
       </fieldset>
     ))}
+    <p class="decline" data-key={cut.key} data-value={cut.decline} role="status" hidden>
+      Thanks for your interest. We work with firms past $1M in annual revenue, and we'd gladly work with you once you grow.
+    </p>
     <button class="btn" type="submit"><span class="lbl">Continue to the calendar</span><span class="chip"><svg class="arr"><use href="#i-arrow" /></svg></span></button>
   </form>
 </dialog>
@@ -43,7 +48,10 @@ import { CAL_URL, QUALIFY } from '../config';
   label:hover span{border-color:var(--rail)}
   input:checked + span{border-color:var(--act);background:var(--pale);font-weight:700}
   input:focus-visible + span{outline:2px solid var(--act);outline-offset:3px}
+  .decline{padding:16px 20px;border-radius:14px;background:var(--pale);color:var(--ink);font-size:15px}
   .btn{justify-self:start;border:0;font-family:inherit;cursor:pointer}
+  /* no pointer events, so the hover animation stays off too */
+  .btn:disabled{opacity:.4;pointer-events:none}
   @media (max-width:560px){form{padding:32px 24px}h2{font-size:22px}.btn{white-space:normal}}
 </style>
 
@@ -52,12 +60,21 @@ import { CAL_URL, QUALIFY } from '../config';
   const dialog = document.querySelector<HTMLDialogElement>('.qualify')!;
   const form = dialog.querySelector('form')!;
   const cal = dialog.dataset.cal!;
+  const decline = form.querySelector<HTMLElement>('.decline')!;
+  const go = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+
+  // below the cut the note shows on submit and the button stays disabled until an answer changes; read from the form
+  // each time, since a reload or Back can restore the radios without a change event
+  const declined = () => new FormData(form).get(decline.dataset.key!) === decline.dataset.value;
+  const reset = () => { decline.hidden = true; go.disabled = false; };
+  form.addEventListener('change', reset);
 
   document.addEventListener('click', (e) => {
     const a = (e.target as Element).closest('a');
     if (!a || a.getAttribute('href') !== cal) return;
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
+    reset();
     dialog.showModal();
   });
 
@@ -69,6 +86,11 @@ import { CAL_URL, QUALIFY } from '../config';
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    if (declined()) {
+      decline.hidden = false;
+      go.disabled = true;
+      return;
+    }
     const url = new URL(cal);
     for (const [key, value] of new FormData(form)) {
       url.searchParams.set(key, String(value));
