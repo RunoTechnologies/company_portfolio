@@ -80,9 +80,9 @@ export const CASE_STUDIES = [
       { h: 'Cost per candidate, per desk', p: 'Spend and sourced candidates are tallied weekly in the CRM, so each desk lead sees the number the build is meant to move.' },
     ],
     results: [
-      { label: 'Cost per sourced candidate', before: '£74', after: '£29' },
+      { label: 'Cost per sourced candidate', before: '$98', after: '$39' },
       { label: 'Shortlists filled from the database and referrals', before: '18%', after: '61%' },
-      { label: 'Monthly job-board spend', before: '£11,200', after: '£4,100' },
+      { label: 'Monthly job-board spend', before: '$14,900', after: '$5,500' },
     ],
     period: 'First full quarter after launch, against the quarter before.',
     quote: 'We stopped paying for Indeed sponsorships in month two. The sourced pool was cheaper and the candidates actually picked up.',
