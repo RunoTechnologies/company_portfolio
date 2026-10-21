@@ -4,7 +4,7 @@ import Logo from '../../components/Logo.astro';
 import BookingBand from '../../components/BookingBand.astro';
 import { CASE_STUDIES, COMPANY } from '../../config';
 
-// One page per Results card; each links on to the next, wrapping round.
+// One page per case study; each links on to the next, wrapping round.
 export function getStaticPaths() {
   return CASE_STUDIES.map((c, i) => ({
     params: { slug: c.slug },
