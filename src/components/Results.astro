@@ -1,4 +1,5 @@
 ---
+import Shot from './Shot.astro';
 import { CASE_STUDIES } from '../config';
 
 // Starting values for the calculator: inputs a visitor overwrites, not claims about anyone's desk.
@@ -27,7 +28,7 @@ const start = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD
             <p class="stakes"><b>If nothing changes:</b> {c.stakes}</p>
           </div>
           <div class="fix">
-            <p><b>Automated:</b> {c.fix}</p>
+            <Shot src={`/shots/${c.slug}.png`} alt={c.fix}><p><b>Automated:</b> {c.fix}</p></Shot>
             <div class="foot">
               <span class="view"><span class="lbl">View case study</span> <svg class="arr"><use href="#i-arrow" /></svg></span>
             </div>

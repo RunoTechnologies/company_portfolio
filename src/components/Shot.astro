@@ -1,0 +1,19 @@
+---
+// A screenshot of real work in a uniform frame, shown once its file is in public/. Until then the
+// dev server draws a dashed slot naming the file, and a build renders the slot's fallback instead.
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+interface Props { src: string; alt: string }
+const { src, alt } = Astro.props;
+const ready = existsSync(join(process.cwd(), 'public', src));
+---
+{ready
+  ? <img class="shot" src={src} alt={alt} loading="lazy" decoding="async" />
+  : import.meta.env.DEV
+    ? <span class="shot slot">Screenshot: public{src}</span>
+    : <slot />}
+
+<style>
+  .shot{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:10px;border:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+  .slot{display:grid;place-items:center;padding:12px;box-sizing:border-box;border-style:dashed;font-family:var(--mono);font-size:12px;text-align:center;opacity:.7}
+</style>
