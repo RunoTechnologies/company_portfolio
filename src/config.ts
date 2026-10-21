@@ -70,7 +70,7 @@ export const CASE_STUDIES = [
     live: '6 weeks',
     summary: 'Chroma’s care and engineering desks were buying applicants from job boards while 38,000 candidates sat untouched in their own CRM. Now the database is worked first, and a sponsored ad only goes live when it comes up short.',
     story: [
-      'Every new role went straight onto a sponsored Indeed listing and out through two LinkedIn Recruiter seats. For care home managers and design engineers that bought volume, but about half the applicants never replied to a first call, and the job-board bill had become the desks’ biggest cost after salaries.',
+      'Every new role went straight onto a sponsored Indeed listing and out through two LinkedIn Recruiter seats. About half the applicants never replied to a first call, and the job-board bill had become the desks’ biggest cost after salaries.',
       'Meanwhile the CRM held eight years of past candidates, many already vetted and some already placed once. Nobody searched it, because a consultant searching the database is a consultant not on the phone.',
     ],
     built: [
