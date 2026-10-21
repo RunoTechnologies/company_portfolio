@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Mark from '../components/Mark.astro';
+import Qualify from '../components/Qualify.astro';
 import Sprite from '../components/Sprite.astro';
 import { CAL_URL, COMPANY, DESCRIPTION, NAV, SOLUTIONS } from '../config';
 
@@ -69,6 +70,8 @@ const year = new Date().getFullYear();
       <p class="fbot">© {year} {COMPANY} · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
     </div>
   </footer>
+
+  <Qualify />
 
   <script>
     // A same-page link in the mobile menu would otherwise leave the sheet open over the content.

@@ -1,6 +1,12 @@
 // Placeholders: replace with the trading name and the real Cal.com handle and event slug.
 export const COMPANY = 'Runo Technologies';
 export const CAL_URL = 'https://cal.com/runotech/intro';
+
+// Asked before the calendar opens; each answer goes to Cal.com under the key as a prefill and as booking metadata.
+export const QUALIFY = [
+  { key: 'employees', label: 'Number of employees', options: ['1–10', '11–50', '51–200', '201–500', '500+'] },
+  { key: 'revenue', label: 'Annual revenue', options: ['Under £1M', '£1–5M', '£5–20M', '£20–50M', '£50M+'] },
+];
 export const DESCRIPTION =
   'Sourcing, screening, follow-up and back-office automation for staffing and recruiting firms.';
 
