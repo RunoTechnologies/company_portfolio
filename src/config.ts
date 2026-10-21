@@ -6,7 +6,6 @@ export const DESCRIPTION =
 
 export const NAV = [
   { label: 'Solutions', href: '/#solutions' },
-  { label: 'Results', href: '/#results' },
   { label: 'Process', href: '/#process' },
   { label: 'Case studies', href: '/case-studies' },
   { label: 'About', href: '/about' },
@@ -48,8 +47,8 @@ export const SOLUTIONS = [
   { id: 'crm', label: 'Custom CRM' },
 ];
 
-// Results cards on the home page, each written up at /case-studies/<slug> for one of the CLIENTS.
-// scene/stakes/fix feed the card; the rest is the case study, whose first result is the headline number.
+// Case studies, each written up at /case-studies/<slug> for one of the CLIENTS; their quotes feed the home page.
+// scene/stakes open the case study and fix is its one-line summary; the first result is the headline number.
 // Drafts: every figure and quote needs the named client's sign-off before launch.
 export const CASE_STUDIES = [
   {

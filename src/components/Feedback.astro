@@ -5,11 +5,11 @@ import { CASE_STUDIES } from '../config';
 // The case studies' client quotes, so each is signed off in one place.
 const QUOTES = CASE_STUDIES.map((c) => ({ q: c.quote, who: c.client }));
 ---
-<section class="sec quo">
+<section class="sec band quo">
   <div class="wrap">
     <div class="head">
       <div class="col">
-        <h2>From owners and ops leads</h2>
+        <h2><svg class="ic"><use href="#i-quote" /></svg>From owners and ops leads</h2>
       </div>
     </div>
     <div class="view">
@@ -30,14 +30,16 @@ const QUOTES = CASE_STUDIES.map((c) => ({ q: c.quote, who: c.client }));
 
 <style>
   .wrap{display:grid;gap:40px}
+  h2{display:inline-flex;align-items:center;gap:14px}
+  h2 .ic{width:28px;height:28px}
   .view{overflow:hidden}
   .track{display:flex;gap:20px;transition:transform .7s cubic-bezier(.4,0,.2,1)}
-  .qcard{flex:0 0 calc((100% - 40px)/3);min-width:0;background:var(--ink);border:1px solid var(--ink);border-radius:16px;padding:32px 28px;display:grid;gap:22px;align-content:space-between}
+  .qcard{flex:0 0 calc((100% - 60px)/4);min-width:0;background:#fff;border:1px solid #fff;border-radius:14px;padding:22px 22px;display:grid;gap:16px;align-content:space-between}
   blockquote{margin:0}
-  q{quotes:"\201C" "\201D";font-size:20px;line-height:1.45;font-weight:700;color:#fff;letter-spacing:-.02em}
-  .who{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--dim)}
+  q{quotes:"\201C" "\201D";font-size:16px;line-height:1.45;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+  .who{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted)}
   /* the client's mark takes the byline rule's place in the same 24px box and line height, so names wrap and cards size as before */
-  .who :global(.logo){display:inline-block;vertical-align:middle;width:24px;aspect-ratio:auto;margin-right:12px;color:#fff;transition:color .3s ease}
+  .who :global(.logo){display:inline-block;vertical-align:middle;width:24px;aspect-ratio:auto;margin-right:12px;color:var(--ink);transition:color .3s ease}
   /* the track clips anything that moves out of the card, so the quote marks and the client's mark carry the hover */
   .qcard{transition:border-color .3s ease}
   q::before,q::after{transition:color .3s ease}
@@ -48,7 +50,8 @@ const QUOTES = CASE_STUDIES.map((c) => ({ q: c.quote, who: c.client }));
   .dots{display:flex;gap:8px;justify-content:center}
   .dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:var(--rail);cursor:pointer}
   .dots button.on{background:var(--ac)}
-  @media (max-width:1100px){.qcard{flex-basis:calc((100% - 20px)/2)}}
+  @media (max-width:1100px){.qcard{flex-basis:calc((100% - 40px)/3)}}
+  @media (max-width:800px){.qcard{flex-basis:calc((100% - 20px)/2)}}
   @media (max-width:560px){.qcard{flex-basis:100%}}
 </style>
 

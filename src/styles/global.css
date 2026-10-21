@@ -27,8 +27,10 @@ svg{display:block}
 /* layout */
 .wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 .sec{padding-block:96px}
-/* the booking card follows a white section, whose bottom padding already sets the gap above it */
+/* after a white section the booking card leans on that section's bottom padding; after a band it needs its own gap
+   (a band's component script, which Astro renders right after it, may sit between the two) */
 .tail{padding-block:0 96px}
+.band + .tail,.band + script + .tail{padding-top:96px}
 /* navy bands, like the hero: section text goes light, the white cards inside keep the ink */
 .band{background:var(--ink);color:#c5cdd9}
 .band h2{color:#fff}
@@ -143,6 +145,7 @@ footer .brand{--ink:#fff}
   .grid,.fgrid{grid-template-columns:minmax(0,1fr)}
   .sec{padding-block:72px}
   .tail{padding-block:0 72px}
+  .band + .tail,.band + script + .tail{padding-top:72px}
 }
 @media (max-width:560px){
   .nav-in{gap:12px}
