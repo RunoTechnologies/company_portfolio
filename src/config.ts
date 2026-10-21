@@ -12,11 +12,12 @@ export const NAV = [
   { label: 'About', href: '/about' },
 ];
 
-// The about page's founder block; the photo is a 4:5 crop in public/.
+// The about page's founder block; the photo is a 4:5 crop in public/, the avatar a 128px square of the face for the hero.
 export const FOUNDER = {
   name: 'Aleksandar Radovic',
   role: 'Founder and AI engineer',
   photo: '/founder.jpg',
+  avatar: '/founder-avatar.jpg',
   linkedin: 'https://www.linkedin.com/in/aleksandar-radovic-134201174/',
   // issuer keys the logo drawn on the about page; the card shows short, with the full name as its tooltip
   certs: [
