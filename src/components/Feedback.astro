@@ -1,4 +1,5 @@
 ---
+import Logo from './Logo.astro';
 import { CASE_STUDIES } from '../config';
 
 // The case studies' client quotes, so each is signed off in one place.
@@ -16,7 +17,7 @@ const QUOTES = CASE_STUDIES.map((c) => ({ q: c.quote, who: c.client }));
         {QUOTES.map((x) => (
           <figure class="qcard">
             <blockquote><q>{x.q}</q></blockquote>
-            <figcaption class="who">{x.who}</figcaption>
+            <figcaption class="who"><Logo name={x.who} />{x.who}</figcaption>
           </figure>
         ))}
       </div>
@@ -35,14 +36,14 @@ const QUOTES = CASE_STUDIES.map((c) => ({ q: c.quote, who: c.client }));
   blockquote{margin:0}
   q{quotes:"\201C" "\201D";font-size:20px;line-height:1.45;font-weight:700;color:#fff;letter-spacing:-.02em}
   .who{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--dim)}
-  /* the track clips anything that moves out of the card, so the quote marks and byline rule carry the hover */
+  /* the client's mark takes the byline rule's place in the same 24px box and line height, so names wrap and cards size as before */
+  .who :global(.logo){display:inline-block;vertical-align:middle;width:24px;aspect-ratio:auto;margin-right:12px;color:#fff;transition:color .3s ease}
+  /* the track clips anything that moves out of the card, so the quote marks and the client's mark carry the hover */
   .qcard{transition:border-color .3s ease}
   q::before,q::after{transition:color .3s ease}
-  .who::before{content:"";display:inline-block;vertical-align:middle;width:24px;height:2px;margin-right:12px;background:var(--rail) linear-gradient(var(--ac),var(--ac)) no-repeat left/0 100%;transition:background-size .35s cubic-bezier(.2,.7,.2,1)}
   @media (hover:hover){
     .qcard:hover{border-color:var(--ac)}
-    .qcard:hover q::before,.qcard:hover q::after{color:var(--ac)}
-    .qcard:hover .who::before{background-size:100% 100%}
+    .qcard:hover q::before,.qcard:hover q::after,.qcard:hover .who :global(.logo){color:var(--ac)}
   }
   .dots{display:flex;gap:8px;justify-content:center}
   .dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:var(--rail);cursor:pointer}
