@@ -220,6 +220,6 @@ export const CASE_STUDIES = [
       { label: 'Days from week end to invoice', before: '6', after: '1' },
     ],
     period: 'Three months after launch, against the three months before.',
-    quote: 'Our consultants spend their week on conversations with candidates, not on admin.',
+    quote: 'Friday used to be the day we chased timesheets. Now it’s the day we get back on the phone to candidates.',
   },
 ];
