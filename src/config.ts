@@ -163,7 +163,7 @@ export const CASE_STUDIES = [
       { label: 'Days from application to cleared to work', before: '9', after: '4' },
     ],
     period: 'The autumn term after launch, against the summer term before.',
-    quote: 'The screening step alone saved my team a day a week of chasing people who never existed.',
+    quote: 'What impressed me was the honesty. Where a cheaper off-the-shelf tool already did the job, Aleksandar told us so.',
   },
   {
     slug: 'client-pipeline',
