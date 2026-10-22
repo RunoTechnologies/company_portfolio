@@ -99,11 +99,11 @@ export const CASE_STUDIES = [
     live: '5 weeks',
     summary: 'Newly qualified solicitors and paralegals register with three or four agencies at once, and the first one to call usually wins. Chadwick Nott now answers every application in minutes and keeps candidates warm through to the offer.',
     story: [
-      'On a busy week a new application could wait a day for a consultant to read it. By then the candidate had spoken to two other agencies, and one of them had a role in front of a firm already.',
+      'On a busy week a new application could wait a day for a consultant to read it. By then the candidate had spoken to two other agencies, and one of them had already put them forward for a role. Speed matters more than it looks: an MIT study of sales leads found the odds of qualifying a lead fell 21-fold when the first call came after thirty minutes instead of five.',
       'The quieter loss came later. Between second interview and offer, candidates heard nothing for days, counteroffers went unanswered and some accepted elsewhere before the offer letter arrived.',
     ],
     built: [
-      { h: 'Five-minute first contact', p: 'Each application is matched to its CRM record and public profile, the consultant gets a one-paragraph brief on PQE, practice area and location, and the candidate gets a text within five minutes.' },
+      { h: 'Five-minute first contact', p: 'Each application is matched to its CRM record and public profile, the consultant gets a one-paragraph brief on experience, specialism and location, and the candidate gets a text within five minutes.' },
       { h: 'Follow-up after every stage', p: 'Candidates hear from their consultant after each interview with feedback and the next step, written for their practice area and sent without anyone remembering to.' },
       { h: 'Offer-stage warming', p: 'Between final interview and start date, the system checks in, prepares candidates for a counteroffer and flags any candidate who goes quiet for 48 hours.' },
     ],
