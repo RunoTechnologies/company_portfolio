@@ -65,9 +65,6 @@ export const CASE_STUDIES = [
     stakes: 'The margin keeps going to Indeed and LinkedIn.',
     fix: 'Your own database and referrals are worked first; a custom sourcing pipeline fills what is left.',
     client: 'Chroma Recruitment',
-    sector: 'Tech and engineering',
-    base: 'Manchester',
-    live: '8 weeks',
     summary: 'Chroma’s tech and engineering desks were buying applicants from job boards while 38,000 candidates sat untouched in their own CRM. Now the database is worked first, and a sourcing pipeline we built finds the rest when it comes up short.',
     story: [
       'Every new role went straight onto a sponsored Indeed listing and out through two LinkedIn Recruiter seats. About half the applicants never replied to a first call, and the job-board bill had become the desks’ biggest cost after salaries.',
@@ -95,9 +92,6 @@ export const CASE_STUDIES = [
     stakes: 'You do the work and a rival takes the fee.',
     fix: 'Every candidate is enriched and followed up within minutes, then warmed until the offer.',
     client: 'Chadwick Nott',
-    sector: 'Legal',
-    base: 'London, with five regional offices',
-    live: '5 weeks',
     summary: 'Newly qualified solicitors and paralegals register with three or four agencies at once, and the first one to call usually wins. Chadwick Nott now answers every application in minutes and keeps candidates warm through to the offer.',
     story: [
       'On a busy week a new application could wait a day for a consultant to read it. By then the candidate had spoken to two other agencies, and one of them had a role in front of a firm already.',
@@ -123,9 +117,6 @@ export const CASE_STUDIES = [
     stakes: 'They start quoting other agencies.',
     fix: 'Shifts are confirmed the night before and gaps are filled from your bench by 4am.',
     client: 'Red Kite Waste',
-    sector: 'Waste management and recycling',
-    base: 'North Yorkshire, placing UK-wide',
-    live: '4 weeks',
     summary: 'Red Kite supplies interim LGV drivers and plant operatives to depots and recycling plants that start at 5am. Every shift is now confirmed the night before, and a dropped one is refilled from the bench before the gates open.',
     story: [
       'Confirmations were phone calls the afternoon before, squeezed in around everything else. A driver who did not pick up was assumed to be coming, and the first sign of a gap was the depot manager ringing at quarter past six.',
@@ -151,9 +142,6 @@ export const CASE_STUDIES = [
     stakes: 'Compliance exposure, and a client who stops trusting your shortlist.',
     fix: 'Fraudulent and duplicate applicants are stopped at screening, before a recruiter sees them.',
     client: '3D Recruit Education',
-    sector: 'Primary and secondary education',
-    base: 'East Sussex, covering Sussex and Kent',
-    live: '7 weeks',
     summary: 'Every supply teacher and teaching assistant 3D Recruit places has to clear safeguarding checks before they set foot in a school. The checks that catch fake and duplicate applicants now run at application, before a consultant spends a minute on them.',
     story: [
       'Job-board applications had started to include invented teaching qualifications, the same identity documents behind several names and old candidates re-registering under new email addresses. Most were caught, but only after a consultant had phoned them, booked a registration interview and chased references.',
@@ -180,9 +168,6 @@ export const CASE_STUDIES = [
     stakes: 'The pipeline is empty the week your biggest client leaves.',
     fix: 'Automated outreach books qualified client conversations onto your calendar.',
     client: 'Gresham Hunt',
-    sector: 'Financial services: finance, audit, risk and compliance',
-    base: 'City of London and Amsterdam',
-    live: '6 weeks',
     summary: 'Gresham Hunt’s consultants win their own clients, which means business development stops whenever searches get busy. Outreach now runs every week whatever the desk is doing, and books the replies into consultants’ calendars.',
     story: [
       'A consultant on three live searches has no hours left for new clients. When the searches closed together, the desk spent the next two months rebuilding a pipeline from scratch.',
@@ -208,9 +193,6 @@ export const CASE_STUDIES = [
     stakes: 'Recruiters spend Fridays on admin, then leave for desks that don’t.',
     fix: 'Timesheets are collected, matched and invoiced by Monday 9am.',
     client: 'Carisbrook Partners',
-    sector: 'Financial markets',
-    base: 'London',
-    live: '8 weeks',
     summary: 'Carisbrook places contractors into middle-office, trade support and compliance roles at banks and hedge funds, each client with its own approval process. Timesheets, invoices and contractor compliance now run without a Friday of chasing.',
     story: [
       'About 140 contractors submitted weekly timesheets by email, spreadsheet and three different client portals. Every Friday a coordinator and two consultants chased the missing ones, then keyed approved hours into invoices by hand.',
