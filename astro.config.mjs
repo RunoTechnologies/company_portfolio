@@ -7,5 +7,6 @@ export default defineConfig({
   redirects: {
     '/process': '/#process',
     '/solutions': '/#solutions',
+    '/case-studies/show-up': '/case-studies/niche-talent',
   },
 });
