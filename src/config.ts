@@ -1,6 +1,6 @@
-// Placeholders: replace with the trading name and the real Cal.com handle and event slug.
+// Placeholder: replace with the trading name.
 export const COMPANY = 'Runo Technologies';
-export const CAL_URL = 'https://cal.com/runotech/intro';
+export const CAL_URL = 'https://cal.com/runotech/30min';
 
 // Asked before the calendar opens; each answer goes to Cal.com under the key as a prefill and as booking metadata.
 // Picking a question's `decline` option shows a not-yet note in place of the calendar button.
