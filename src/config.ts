@@ -139,14 +139,14 @@ export const CASE_STUDIES = [
   {
     slug: 'fraud-screening',
     title: 'Fraud stopped at screening',
-    scene: 'A placed worker’s right to work doesn’t check out.',
-    stakes: 'Compliance exposure, and a client who stops trusting your shortlist.',
+    scene: 'The supply teacher you placed this morning fails their right-to-work check.',
+    stakes: 'Now the school wants to know who else on your shortlist slipped through.',
     fix: 'Fraudulent and duplicate applicants are stopped at screening, before a recruiter sees them.',
     client: '3D Recruit Education',
     summary: 'Every supply teacher and teaching assistant 3D Recruit places has to clear safeguarding checks before they set foot in a school. The checks that catch fake and duplicate applicants now run at application, before a consultant spends a minute on them.',
     story: [
-      'Job-board applications had started to include invented teaching qualifications, the same identity documents behind several names and old candidates re-registering under new email addresses. Most were caught, but only after a consultant had phoned them, booked a registration interview and chased references.',
-      'In schools a miss is not just an awkward call. One candidate whose right to work failed after a booking had been confirmed was enough for a head teacher to ask how the shortlist was being checked.',
+      'More and more job-board applicants were not who they said they were: teaching qualifications that did not exist, one identity document behind several names, and candidates turned away once who came back under a new email address. Most were caught, but only at the end of screening, after a consultant had phoned them, booked a registration interview and chased their references. One in six applicants who reached a consultant later failed a check.',
+      'The ones that got through cost more than time. Schools rely on the agency’s checks to meet their own safeguarding duty, and a single booking cancelled on the morning over a failed right-to-work check was enough for a head teacher to ask how every name on the shortlist had been vetted.',
     ],
     built: [
       { h: 'Identity at the door', p: 'Applicants verify their right to work with a share code and upload ID at application. Documents already used under another name are flagged.' },
