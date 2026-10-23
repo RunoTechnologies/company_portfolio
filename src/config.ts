@@ -190,8 +190,8 @@ export const CASE_STUDIES = [
   {
     slug: 'back-office',
     title: 'A back office that runs itself',
-    scene: '14 timesheets still missing. Payroll closes at 6.',
-    stakes: 'Recruiters spend Fridays on admin, then leave for desks that don’t.',
+    scene: 'Friday, 4pm. Fourteen timesheets are still missing, and payroll closes at 6.',
+    stakes: 'Your consultants spend the afternoon chasing signatures instead of candidates.',
     fix: 'Timesheets are collected, matched and invoiced by Monday 9am.',
     client: 'Carisbrook Partners',
     summary: 'Carisbrook places contractors into middle-office, trade support and compliance roles at banks and hedge funds, each client with its own approval process. Timesheets, invoices and contractor compliance now run without a Friday of chasing.',
@@ -201,7 +201,7 @@ export const CASE_STUDIES = [
     ],
     built: [
       { h: 'Timesheet collection', p: 'Contractors get a Thursday reminder with one-tap submission, and the client’s approver is chased automatically until hours are signed off.' },
-      { h: 'Matching', p: 'Approved hours are matched to each placement’s rate card and purchase order, and only mismatches reach a person.' },
+      { h: 'Hours checked against the contract', p: 'Each approved timesheet is checked against the placement’s agreed rate and the client’s purchase order. Anything that doesn’t add up, such as unagreed overtime or a spent purchase order, goes to a person; the rest goes straight to invoicing.' },
       { h: 'Invoicing by Monday 9am', p: 'Invoices are raised in the accounting system and uploaded to each client’s vendor portal before the week starts.' },
       { h: 'Contractor compliance', p: 'Contract end dates, right-to-work expiries and IR35 status determinations are tracked, with reminders to the consultant and the contractor weeks ahead.' },
     ],
