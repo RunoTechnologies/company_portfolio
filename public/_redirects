@@ -1,0 +1,7 @@
+# The process and solutions pages folded into home-page sections.
+/process /#process 301
+/process/ /#process 301
+/solutions /#solutions 301
+/solutions/ /#solutions 301
+/case-studies/show-up /case-studies/niche-talent/ 301
+/case-studies/show-up/ /case-studies/niche-talent/ 301
