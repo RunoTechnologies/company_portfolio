@@ -1,0 +1,25 @@
+---
+// Served by Cloudflare for any missing path (wrangler.jsonc not_found_handling), so it must build to /404.html.
+import Base from '../layouts/Base.astro';
+import { COMPANY } from '../config';
+---
+<Base title={`Page not found: ${COMPANY}`} description="That address does not exist on this site. The home page and the case studies are one click away.">
+  <section class="band top">
+    <div class="wrap">
+      <p class="eyebrow dot">404</p>
+      <h1>That page isn’t here.</h1>
+      <p class="lede">The address may be mistyped or out of date. Everything on this site is a click from the home page.</p>
+      <p class="go"><a class="tlink" href="/">Home</a><a class="tlink" href="/case-studies">Case studies</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .top{padding-block:120px 112px}
+  .top .wrap{display:grid;gap:22px;justify-items:start}
+  h1{color:#fff;max-width:900px;font-size:clamp(34px,6vw,60px);line-height:1.05;letter-spacing:-.035em}
+  .lede{max-width:560px;font-size:18px}
+  .go{display:flex;gap:28px;flex-wrap:wrap}
+  .tlink{color:#fff;text-decoration:underline;text-decoration-color:var(--ac);text-underline-offset:6px} /* global .tlink is ink, invisible on the band */
+  @media (max-width:560px){.top{padding-block:80px 72px}}
+</style>

@@ -1,11 +1,15 @@
 import { defineConfig, fontProviders } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://runotech.com',
   output: 'static',
+  trailingSlash: 'never',
+  integrations: [sitemap()],
   // Redirects live in public/_redirects so Cloudflare answers them with a real 301.
   // Pages carry 15–26 KB of CSS, cheaper inline than as two extra round trips.
-  build: { inlineStylesheets: 'always' },
+  // One file per page (/about.html), so Cloudflare serves /about directly instead of redirecting to /about/.
+  build: { inlineStylesheets: 'always', format: 'file' },
   prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
   experimental: {
     // Downloaded and hashed at build time, so the site makes no third-party request.
