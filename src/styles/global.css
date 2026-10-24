@@ -4,7 +4,7 @@
   --bg:#fff; --tint:#f4f7fb; --card:#f8fafc; --line:#e2e8f0; --rail:#cfd8e3;
   --ink:#0b1526; --body:#3b4557; --muted:#6b7689; --dim:#8a94a6;
   --ac:#11b3c8; --act:#0b93a6; --pale:#e3f7fa;
-  --sans:"Plus Jakarta Sans",ui-sans-serif,"Segoe UI",Helvetica,Arial,sans-serif;
+  --sans:var(--font-sans);
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   color-scheme:light only;
 }
