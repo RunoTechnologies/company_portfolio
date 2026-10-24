@@ -2,10 +2,13 @@
 import Logo from './Logo.astro';
 import { CASE_STUDIES } from '../config';
 
-// The case studies' client quotes, so each is signed off in one place.
-const QUOTES = CASE_STUDIES.map((c) => ({ q: c.quote, who: c.client }));
+// Only the clients' names and marks are in the HTML. The quotes themselves come from
+// /data/proof.json after load, a path robots.txt disallows, so the page is indexed without
+// them; data-nosnippet keeps whatever a renderer still sees out of search snippets.
+const WHO = CASE_STUDIES.map((c) => c.client);
 ---
-<section class="sec band quo">
+<section class="sec band quo" data-nosnippet>
+  <noscript><style>.quo{display:none}</style></noscript>
   <div class="wrap">
     <div class="head">
       <div class="col">
@@ -14,16 +17,16 @@ const QUOTES = CASE_STUDIES.map((c) => ({ q: c.quote, who: c.client }));
     </div>
     <div class="view">
       <div class="track">
-        {QUOTES.map((x) => (
-          <figure class="qcard">
-            <blockquote><q>{x.q}</q></blockquote>
-            <figcaption class="who"><Logo name={x.who} />{x.who}</figcaption>
+        {WHO.map((who) => (
+          <figure class="qcard" data-who={who}>
+            <blockquote><q></q></blockquote>
+            <figcaption class="who"><Logo name={who} />{who}</figcaption>
           </figure>
         ))}
       </div>
     </div>
     <div class="dots">
-      {QUOTES.map((_, i) => <button type="button" class:list={{ on: i === 0 }} aria-label={`Show quote ${i + 1}`}></button>)}
+      {WHO.map((_, i) => <button type="button" class:list={{ on: i === 0 }} aria-label={`Show quote ${i + 1}`}></button>)}
     </div>
   </div>
 </section>
@@ -35,8 +38,10 @@ const QUOTES = CASE_STUDIES.map((c) => ({ q: c.quote, who: c.client }));
   .view{overflow:hidden}
   .track{display:flex;gap:20px;transition:transform .7s cubic-bezier(.4,0,.2,1)}
   .qcard{flex:0 0 calc((100% - 60px)/4);min-width:0;background:#fff;border:1px solid #fff;border-radius:14px;padding:22px 22px;display:grid;gap:16px;align-content:space-between}
-  blockquote{margin:0}
+  /* five lines of quote at the narrowest card, so the cards keep their height while the quotes load */
+  blockquote{margin:0;min-height:116px}
   q{quotes:"\201C" "\201D";font-size:16px;line-height:1.45;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+  q:empty{quotes:none}
   .who{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted)}
   /* the client's mark takes the byline rule's place in the same 24px box and line height, so names wrap and cards size as before */
   .who :global(.logo){display:inline-block;vertical-align:middle;width:24px;aspect-ratio:auto;margin-right:12px;color:var(--ink);transition:color .3s ease}
@@ -57,10 +62,22 @@ const QUOTES = CASE_STUDIES.map((c) => ({ q: c.quote, who: c.client }));
 
 <script>
   import { reduce } from '../scripts/motion.js';
+  const sec = document.querySelector<HTMLElement>('.quo');
   const view = document.querySelector<HTMLElement>('.quo .view');
   const track = document.querySelector<HTMLElement>('.quo .track');
-  if (view && track) {
+  if (sec && view && track) {
     const cards = [...track.children] as HTMLElement[];
+    // Fill the quotes in by client name; without them the section has nothing to say, so it goes.
+    fetch('/data/proof.json')
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((d: { quotes: { who: string; q: string }[] }) => {
+        for (const c of cards) {
+          const q = d.quotes.find((x) => x.who === c.dataset.who)?.q;
+          const el = c.querySelector('q');
+          if (q && el) el.textContent = q;
+        }
+      })
+      .catch(() => { sec.hidden = true; });
     const dots = [...document.querySelectorAll<HTMLButtonElement>('.quo .dots button')];
     let idx = 0;
     let hold = false;
