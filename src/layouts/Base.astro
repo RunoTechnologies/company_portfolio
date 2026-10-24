@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets';
 import '../styles/global.css';
 import Mark from '../components/Mark.astro';
 import Qualify from '../components/Qualify.astro';
@@ -19,9 +20,7 @@ const year = new Date().getFullYear();
   <title>{title}</title>
   <meta name="description" content={description}>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+  <Font cssVariable="--font-sans" preload />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
