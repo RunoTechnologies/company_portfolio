@@ -6,8 +6,8 @@ import Qualify from '../components/Qualify.astro';
 import Sprite from '../components/Sprite.astro';
 import { CAL_URL, COMPANY, DESCRIPTION, NAV, SOLUTIONS } from '../config';
 
-interface Props { title: string; description?: string; type?: 'website' | 'article' }
-const { title, description = DESCRIPTION, type = 'website' } = Astro.props;
+interface Props { title: string; description?: string; type?: 'website' | 'article'; noindex?: boolean }
+const { title, description = DESCRIPTION, type = 'website', noindex = false } = Astro.props;
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/'; // the public URL: build.format 'file' names pages /about.html
 const canonical = new URL(path, Astro.site).href;
 const card = new URL('/og.png', Astro.site).href; // scripts/og-card.mjs draws it
@@ -22,6 +22,7 @@ const year = new Date().getFullYear();
   <title>{title}</title>
   <meta name="description" content={description}>
   <link rel="canonical" href={canonical}>
+  {noindex && <meta name="robots" content="noindex">}
   <meta property="og:type" content={type}>
   <meta property="og:site_name" content={COMPANY}>
   <meta property="og:title" content={title}>
