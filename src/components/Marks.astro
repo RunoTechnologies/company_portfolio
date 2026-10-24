@@ -1,7 +1,8 @@
 ---
+import type { ImageMetadata } from 'astro';
 import Logo from './Logo.astro';
 // A navy strip of names on a belt sliding left to right, continuing the hero.
-interface Item { name: string; logo: string; ratio: number }
+interface Item { name: string; logo: ImageMetadata; ratio: number }
 interface Props { label: string; items: Item[] }
 const { label, items } = Astro.props;
 // Each belt half must outrun the widest viewport, so short lists repeat; speed stays ~5 s per name.

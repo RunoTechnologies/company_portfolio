@@ -1,3 +1,12 @@
+import founderPhoto from './assets/founder.jpg';
+import founderAvatar from './assets/founder-avatar.jpg';
+import carisbrook from './assets/clients/carisbrook.png';
+import chroma from './assets/clients/chroma.png';
+import gresham from './assets/clients/gresham.png';
+import recruit3d from './assets/clients/3d-recruit.png';
+import chadwick from './assets/clients/chadwick.png';
+import redKite from './assets/clients/red-kite.png';
+
 // Placeholder: replace with the trading name.
 export const COMPANY = 'Runo Technologies';
 export const CAL_URL = 'https://cal.com/runotech/consult';
@@ -18,12 +27,12 @@ export const NAV = [
   { label: 'About', href: '/about' },
 ];
 
-// The about page's founder block; the photo is a 4:5 crop in public/, the avatar a 128px square of the face for the hero.
+// The about page's founder block; the photo is a 4:5 crop in src/assets/, the avatar a 128px square of the face for the hero.
 export const FOUNDER = {
   name: 'Aleksandar Radovic',
   role: 'Founder and AI engineer',
-  photo: '/founder.jpg',
-  avatar: '/founder-avatar.jpg',
+  photo: founderPhoto,
+  avatar: founderAvatar,
   linkedin: 'https://www.linkedin.com/in/aleksandar-radovic-134201174/',
   // issuer keys the logo drawn on the about page; the card shows short, with the full name as its tooltip
   certs: [
@@ -33,15 +42,15 @@ export const FOUNDER = {
   ],
 };
 
-// Logos are white-on-transparent marks in public/clients/, drawn in the strip's text colour;
+// Logos are white-on-transparent marks in src/assets/clients/, drawn in the strip's text colour;
 // ratio is the mark's width over its height.
 export const CLIENTS = [
-  { name: 'Carisbrook Partners', logo: '/clients/carisbrook.png', ratio: 88 / 128 },
-  { name: 'Chroma Recruitment', logo: '/clients/chroma.png', ratio: 114 / 128 },
-  { name: 'Gresham Hunt', logo: '/clients/gresham.png', ratio: 43 / 128 },
-  { name: '3D Recruit Education', logo: '/clients/3d-recruit.png', ratio: 113 / 128 },
-  { name: 'Chadwick Nott', logo: '/clients/chadwick.png', ratio: 178 / 128 },
-  { name: 'Red Kite Waste', logo: '/clients/red-kite.png', ratio: 153 / 128 },
+  { name: 'Carisbrook Partners', logo: carisbrook, ratio: 88 / 128 },
+  { name: 'Chroma Recruitment', logo: chroma, ratio: 114 / 128 },
+  { name: 'Gresham Hunt', logo: gresham, ratio: 43 / 128 },
+  { name: '3D Recruit Education', logo: recruit3d, ratio: 113 / 128 },
+  { name: 'Chadwick Nott', logo: chadwick, ratio: 178 / 128 },
+  { name: 'Red Kite Waste', logo: redKite, ratio: 153 / 128 },
 ];
 
 // Build-grid card anchors on the home page, shared with the footer.
