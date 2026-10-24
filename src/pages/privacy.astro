@@ -1,12 +1,45 @@
 ---
 import Base from '../layouts/Base.astro';
-import NotYet from '../components/NotYet.astro';
-import { COMPANY } from '../config';
+import Legal from '../components/Legal.astro';
+import { COMPANY, LEGAL } from '../config';
 ---
-<Base title={`Privacy: ${COMPANY}`}>
-  <NotYet
-    label="Privacy"
-    title="Privacy policy."
-    lede="The privacy policy goes here before launch: what the site and the booking form collect, who processes it, and how to ask for it to be removed."
-  />
+<Base title={`Privacy: ${COMPANY}`} description={`What the ${COMPANY} website and booking flow collect, who processes it, how long it is kept and how to have it removed.`}>
+  <Legal label="Privacy" title="Privacy policy." lede="What this site and our booking flow collect, where it goes, how long we keep it, and how to ask for it to be corrected or removed.">
+    <h2>Who we are</h2>
+    <p>{LEGAL.entity}, trading as {COMPANY}, runs this website at runotech.com. Our registered address is {LEGAL.address}. We decide how and why the personal data described here is used, which makes us its controller. Questions about this policy go to {LEGAL.email}.</p>
+
+    <h2>Visiting the site</h2>
+    <p>The site is built as static pages, sets no cookies of its own and loads nothing from third parties: its fonts and scripts are served from runotech.com. It is served by Cloudflare, which processes your IP address, browser details and the pages you request in order to deliver them and to defend against abuse. Cloudflare keeps those logs for a short period under its own retention rules.</p>
+
+    <h2>Booking a consultation</h2>
+    <p>Before the calendar opens we ask two questions: your firm’s number of employees and its annual revenue bracket. If the answers put your firm outside the work we take on, no booking is made and nothing is sent. Otherwise the two answers are added to the booking link and saved with your booking so the person you meet knows the size of firm they are talking to.</p>
+    <p>The booking itself runs on Cal.com, which collects your name, email address, the time you choose and anything you add in the notes, and sends the confirmation and reminders. Cal.com processes that data under <a href="https://cal.com/privacy">its own privacy policy</a>. The booking details then sit in the calendar, email and customer-record tools we use to run the firm.</p>
+
+    <h2>Working with us</h2>
+    <p>If you email us or become a client, we keep the correspondence, proposals, contracts and invoices needed to do the work and to meet accounting and tax obligations. Candidate and client data from your own systems stays in those systems or in systems you approve, and we handle it on your instructions under the data processing terms in your engagement.</p>
+
+    <h2>Why we are allowed to use it</h2>
+    <ul>
+      <li>Taking steps toward a contract, and performing one: your booking, enquiries and engagements.</li>
+      <li>Our legitimate interest in running and securing the site and in following up a consultation you booked.</li>
+      <li>Legal obligations, such as keeping accounting records.</li>
+    </ul>
+    <p>We do not sell personal data and we do not use it for advertising.</p>
+
+    <h2>Who receives it</h2>
+    <p>Cloudflare for hosting and security, Cal.com for scheduling, and the calendar, email and customer-record providers we use day to day. Each one processes data either on our instructions or under its own policy as described above. Some of these providers operate outside the country you are in. Where data leaves the UK or the European Economic Area it does so under an adequacy decision or standard contractual clauses.</p>
+
+    <h2>How long we keep it</h2>
+    <ul>
+      <li>Booking and enquiry details: up to two years after our last contact, unless an engagement follows.</li>
+      <li>Client records: for the engagement, then for as long as accounting and tax law requires.</li>
+      <li>Hosting logs: held by Cloudflare under its own short retention period.</li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>You can ask for a copy of the personal data we hold about you, have it corrected or deleted, restrict or object to how we use it, and receive it in a portable form. Where we rely on consent you can withdraw it at any time. Email {LEGAL.email} and we will answer within one month. You can also complain to the data protection authority where you live.</p>
+
+    <h2>Changes</h2>
+    <p>When this policy changes we update this page and the date at the top.</p>
+  </Legal>
 </Base>
