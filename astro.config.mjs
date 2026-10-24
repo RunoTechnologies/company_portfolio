@@ -5,7 +5,8 @@ export default defineConfig({
   site: 'https://runotech.com',
   output: 'static',
   trailingSlash: 'never',
-  integrations: [sitemap()],
+  // The case studies stay out of search and AI indexes: not in the sitemap, noindex on the page, Disallow for AI crawlers in robots.txt.
+  integrations: [sitemap({ filter: (page) => !page.includes('/case-studies') })],
   // Redirects live in public/_redirects so Cloudflare answers them with a real 301.
   // Pages carry 15–26 KB of CSS, cheaper inline than as two extra round trips.
   // One file per page (/about.html), so Cloudflare serves /about directly instead of redirecting to /about/.

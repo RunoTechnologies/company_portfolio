@@ -1,14 +1,7 @@
 ---
 import { SOLUTIONS } from '../config';
 
-const DETAIL: Record<string, { icon: string; text: string }> = {
-  sourcing: { icon: 'search', text: 'Specialists LinkedIn can’t reach, and everyone else at a fraction of what a Recruiter seat costs.' },
-  'show-up': { icon: 'accept', text: 'Enrichment, a warm-up sequence and automated replies that turn offers into accepted shifts.' },
-  screening: { icon: 'shield', text: 'Identity, work-history and duplicate checks before a recruiter spends a minute on a profile.' },
-  clients: { icon: 'pipe', text: 'Automated outreach and enrichment that opens the week with qualified client conversations.' },
-  'back-office': { icon: 'sheet', text: 'Timesheets, invoicing and compliance that run without a coordinator chasing them.' },
-  crm: { icon: 'crm', text: 'A CRM shaped to your desk when the one you have is the problem.' },
-};
+const ICON: Record<string, string> = { sourcing: 'search', 'show-up': 'accept', screening: 'shield', clients: 'pipe', 'back-office': 'sheet', crm: 'crm' };
 ---
 <section class="sec band build" id="solutions">
   <div class="wrap">
@@ -19,13 +12,12 @@ const DETAIL: Record<string, { icon: string; text: string }> = {
     </div>
     <div class="grid">
       {SOLUTIONS.map((s, i) => {
-        const d = DETAIL[s.id];
         return (
           <div class="card" id={s.id}>
-            <svg class="ic"><use href={`#i-${d.icon}`} /></svg>
+            <svg class="ic"><use href={`#i-${ICON[s.id]}`} /></svg>
             <span class="n">{String(i + 1).padStart(2, '0')}</span>
             <h3>{s.label}</h3>
-            <p>{d.text}</p>
+            <p>{s.text}</p>
           </div>
         );
       })}
