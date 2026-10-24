@@ -53,14 +53,21 @@ export const CLIENTS = [
   { name: 'Red Kite Waste', logo: redKite, ratio: 153 / 128 },
 ];
 
-// Build-grid card anchors on the home page, shared with the footer.
+// Build-grid cards on the home page, shared with the footer and llms.txt; text is the card copy.
 export const SOLUTIONS = [
-  { id: 'sourcing', label: 'Talent sourcing' },
-  { id: 'show-up', label: 'Acceptance and show-up' },
-  { id: 'screening', label: 'Fraud screening' },
-  { id: 'clients', label: 'Client pipeline' },
-  { id: 'back-office', label: 'Back office' },
-  { id: 'crm', label: 'Custom CRM' },
+  { id: 'sourcing', label: 'Talent sourcing', text: 'Specialists LinkedIn can’t reach, and everyone else at a fraction of what a Recruiter seat costs.' },
+  { id: 'show-up', label: 'Acceptance and show-up', text: 'Enrichment, a warm-up sequence and automated replies that turn offers into accepted shifts.' },
+  { id: 'screening', label: 'Fraud screening', text: 'Identity, work-history and duplicate checks before a recruiter spends a minute on a profile.' },
+  { id: 'clients', label: 'Client pipeline', text: 'Automated outreach and enrichment that opens the week with qualified client conversations.' },
+  { id: 'back-office', label: 'Back office', text: 'Timesheets, invoicing and compliance that run without a coordinator chasing them.' },
+  { id: 'crm', label: 'Custom CRM', text: 'A CRM shaped to your desk when the one you have is the problem.' },
+];
+
+// The five-step engagement folded into three phases, drawn by Steps.astro and summarised in llms.txt.
+export const STEPS = [
+  { phase: 'DECIDE', title: 'Consultation and audit', sub: 'Decide what to fund.', checks: ['Free 30-minute consultation', 'Pipeline bottleneck audit', 'A ranked list of automations with clear ROI'] },
+  { phase: 'BUILD', title: 'Design and deploy', sub: 'Build it right.', checks: ['Designed around your desks, never a template', 'Tested end to end', 'A team walkthrough and notes anyone can follow'] },
+  { phase: 'ADOPT', title: 'Monitor and optimise', sub: 'Make it stick.', checks: ['Monitored and maintained as your desks change', 'More of what the numbers say is working'] },
 ];
 
 // Case studies, each written up at /case-studies/<slug> for one of the CLIENTS; their quotes feed the home page.
