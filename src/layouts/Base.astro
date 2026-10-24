@@ -6,9 +6,11 @@ import Qualify from '../components/Qualify.astro';
 import Sprite from '../components/Sprite.astro';
 import { CAL_URL, COMPANY, DESCRIPTION, NAV, SOLUTIONS } from '../config';
 
-interface Props { title: string; description?: string }
-const { title, description = DESCRIPTION } = Astro.props;
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+interface Props { title: string; description?: string; type?: 'website' | 'article' }
+const { title, description = DESCRIPTION, type = 'website' } = Astro.props;
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/'; // the public URL: build.format 'file' names pages /about.html
+const canonical = new URL(path, Astro.site).href;
+const card = new URL('/og.png', Astro.site).href; // scripts/og-card.mjs draws it
 const year = new Date().getFullYear();
 ---
 <!doctype html>
@@ -19,6 +21,17 @@ const year = new Date().getFullYear();
   <meta name="color-scheme" content="light only">
   <title>{title}</title>
   <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  <meta property="og:type" content={type}>
+  <meta property="og:site_name" content={COMPANY}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={card}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content={`${COMPANY}: Stop chasing. Start placing.`}>
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <Font cssVariable="--font-sans" preload />
 </head>
@@ -58,11 +71,11 @@ const year = new Date().getFullYear();
           <p>{DESCRIPTION}</p>
         </div>
         <div>
-          <h4>Pages</h4>
+          <p class="fh">Pages</p>
           <ul>{NAV.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
         </div>
         <div>
-          <h4>Solutions</h4>
+          <p class="fh">Solutions</p>
           <ul>{SOLUTIONS.map((s) => <li><a href={`/#${s.id}`}>{s.label}</a></li>)}</ul>
         </div>
       </div>

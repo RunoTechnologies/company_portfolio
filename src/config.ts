@@ -66,6 +66,7 @@ export const SOLUTIONS = [
 // Case studies, each written up at /case-studies/<slug> for one of the CLIENTS; their quotes feed the home page.
 // scene/stakes open the case study and fix is its one-line summary; the first result is the headline number.
 // Drafts: every figure and quote needs the named client's sign-off before launch.
+// summary is the visible lede; excerpt feeds only the meta and share description.
 export const CASE_STUDIES = [
   {
     slug: 'sourcing-cost',
@@ -75,6 +76,7 @@ export const CASE_STUDIES = [
     fix: 'Your own database and referrals are worked first; a custom sourcing pipeline fills what is left.',
     client: 'Chroma Recruitment',
     summary: 'Chroma’s tech and engineering desks were buying applicants from job boards while 38,000 candidates sat untouched in their own CRM. Now the database is worked first, and a sourcing pipeline we built finds the rest when it comes up short.',
+    excerpt: 'Chroma Recruitment bought job-board applicants while 38,000 candidates sat untouched in its CRM. Now the database is worked first and sourcing fills the gaps.',
     story: [
       'Every new role went straight onto a sponsored Indeed listing and out through two LinkedIn Recruiter seats. About half the applicants never replied to a first call, and the job-board bill had become the desks’ biggest cost after salaries.',
       'Meanwhile the CRM held eight years of past candidates, many already vetted and some already placed once. Nobody searched it, because a consultant searching the database is a consultant not on the phone.',
@@ -102,6 +104,7 @@ export const CASE_STUDIES = [
     fix: 'Every candidate is enriched and followed up within minutes, then warmed until the offer.',
     client: 'Chadwick Nott',
     summary: 'Newly qualified solicitors and paralegals register with three or four agencies at once, and the first one to call usually wins. Chadwick Nott now answers every application in minutes and keeps candidates warm through to the offer.',
+    excerpt: 'Newly qualified solicitors register with three or four agencies at once. Chadwick Nott now answers every application in minutes and keeps candidates warm.',
     story: [
       'On a busy week a new application could wait a day for a consultant to read it. By then the candidate had spoken to two other agencies, and one of them had already put them forward for a role. Speed matters more than it looks: an MIT study of sales leads found the odds of qualifying a lead fell 21-fold when the first call came after thirty minutes instead of five.',
       'The quieter loss came later. Between second interview and offer, candidates heard nothing for days, counteroffers went unanswered and some accepted elsewhere before the offer letter arrived.',
@@ -127,6 +130,7 @@ export const CASE_STUDIES = [
     fix: 'Specialists are found where they actually are: driver groups, training centres and firms winding down.',
     client: 'Red Kite Waste',
     summary: 'Red Kite supplies LGV drivers and plant operatives to waste depots and recycling plants. The specialists its clients ask for most, ADR-certified hazardous-waste drivers and HIAB and grab-lorry operators, are rarely on LinkedIn or Indeed. A sourcing pipeline now finds them where they are.',
+    excerpt: 'Red Kite Waste needs ADR hazardous-waste drivers and HIAB operators who are rarely on LinkedIn or Indeed. A sourcing pipeline now finds them where they are.',
     story: [
       'Specialist orders went onto Indeed like everything else. The applicants held a C licence but not the ADR certificate or lorry-loader ticket the job needed, and consultants spent their mornings ringing people who could not take it.',
       'The drivers who could were posting in driver groups, finishing courses at training centres and working at haulage firms about to close. Nobody at Red Kite had time to watch for them, so specialist orders took weeks or went to a rival.',
@@ -153,6 +157,7 @@ export const CASE_STUDIES = [
     fix: 'Fraudulent and duplicate applicants are stopped at screening, before a recruiter sees them.',
     client: '3D Recruit Education',
     summary: 'Every supply teacher and teaching assistant 3D Recruit places has to clear safeguarding checks before they set foot in a school. The checks that catch fake and duplicate applicants now run at application, before a consultant spends a minute on them.',
+    excerpt: 'Every supply teacher 3D Recruit places must clear safeguarding checks. The checks that catch fake and duplicate applicants now run at application, not after.',
     story: [
       'More and more job-board applicants were not who they said they were: teaching qualifications that did not exist, one identity document behind several names, and candidates turned away once who came back under a new email address. Most were caught, but only at the end of screening, after a consultant had phoned them, booked a registration interview and chased their references. One in six applicants who reached a consultant later failed a check.',
       'The ones that got through cost more than time. Schools rely on the agency’s checks to meet their own safeguarding duty, and a single booking cancelled on the morning over a failed right-to-work check was enough for a head teacher to ask how every name on the shortlist had been vetted.',
@@ -179,6 +184,7 @@ export const CASE_STUDIES = [
     fix: 'Automated outreach books qualified client conversations onto your calendar.',
     client: 'Gresham Hunt',
     summary: 'Gresham Hunt’s consultants win their own clients, which means business development stops whenever searches get busy. Outreach now runs every week whatever the desk is doing, and books the replies into consultants’ calendars.',
+    excerpt: 'Gresham Hunt’s business development stopped when searches got busy. Outreach now runs every week, busy or not, and books replies into consultants’ calendars.',
     story: [
       'A consultant on three live searches has no hours left for new clients. When the searches closed together, the desk spent the next two months rebuilding a pipeline from scratch.',
       'The signals were there all along: a firm fined by the regulator needs a compliance hire, a new chief risk officer rebuilds their team. Nobody had time to watch for them.',
@@ -204,6 +210,7 @@ export const CASE_STUDIES = [
     fix: 'Timesheets are collected, matched and invoiced by Monday 9am.',
     client: 'Carisbrook Partners',
     summary: 'Carisbrook places contractors into middle-office, trade support and compliance roles at banks and hedge funds, each client with its own approval process. Timesheets, invoices and contractor compliance now run without a Friday of chasing.',
+    excerpt: 'Carisbrook places contractors into banks and hedge funds, each with its own approvals. Timesheets, invoices and compliance now run without a Friday of chasing.',
     story: [
       'About 140 contractors submitted weekly timesheets by email, spreadsheet and three different client portals. Every Friday a coordinator and two consultants chased the missing ones, then keyed approved hours into invoices by hand.',
       'Late timesheets meant late invoices and contractors paid late, and contract end dates and right-to-work expiries lived in one person’s calendar.',
