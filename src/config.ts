@@ -19,6 +19,10 @@ export const QUALIFY = [
 ];
 export const DESCRIPTION =
   'Sourcing, screening, follow-up and back-office automation for staffing and recruiting firms.';
+export const EMAIL = 'info@runotech.com';
+export const MARKET = 'United States';
+// The one-sentence definition of the company, for the footer, llms.txt and the structured data.
+export const ABOUT_LINE = `${COMPANY} builds AI automation for staffing and recruiting firms in the ${MARKET}.`;
 
 export const NAV = [
   { label: 'Solutions', href: '/#solutions' },

@@ -1,10 +1,11 @@
-import { CAL_URL, COMPANY, DESCRIPTION, FOUNDER, SOLUTIONS } from './config';
+import { ABOUT_LINE, CAL_URL, COMPANY, DESCRIPTION, EMAIL, FOUNDER, MARKET, SOLUTIONS } from './config';
+
+const AREA = { '@type': 'Country', name: MARKET };
 
 // JSON-LD nodes for the <head>, built from config so the structured data says what the pages say.
 // Base.astro emits the organisation and the founder on every page; the home page adds the
 // services. The case studies get nothing of their own: they are kept out of the indexes.
-// Address, contact email, legal entity, founding date and areaServed are not known yet and
-// are left out rather than guessed.
+// Address, legal entity and founding date are not known yet and are left out rather than guessed.
 
 const ISSUERS: Record<string, string> = { anthropic: 'Anthropic', microsoft: 'Microsoft', aws: 'Amazon Web Services' };
 
@@ -20,13 +21,15 @@ export const organization = (site: URL) => {
     '@id': id.org,
     name: COMPANY,
     url: site.href,
-    description: DESCRIPTION,
+    description: `${ABOUT_LINE} ${DESCRIPTION}`,
     slogan: 'Stop chasing. Start placing.',
     logo: { '@type': 'ImageObject', url: new URL('/favicon.svg', site).href },
     image: new URL('/og.png', site).href,
+    email: EMAIL,
+    areaServed: AREA,
     founder: { '@id': id.person },
     knowsAbout: SOLUTIONS.map((s) => s.label),
-    contactPoint: { '@type': 'ContactPoint', contactType: 'sales', url: CAL_URL, availableLanguage: 'en' },
+    contactPoint: { '@type': 'ContactPoint', contactType: 'sales', email: EMAIL, url: CAL_URL, areaServed: AREA, availableLanguage: 'en' },
   };
 };
 
@@ -60,6 +63,7 @@ export const services = (site: URL) => {
     url: new URL(`/#${s.id}`, site).href,
     serviceType: 'Automation for staffing and recruiting firms',
     provider: { '@id': id.org },
+    areaServed: AREA,
     audience: { '@type': 'BusinessAudience', name: 'Staffing and recruiting agencies' },
   }));
 };

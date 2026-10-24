@@ -1,14 +1,14 @@
 // /llms.txt, the site summarised for AI crawlers and answer engines (llmstxt.org), built from config so it
 // cannot drift from the pages. The case studies are left out on purpose: they are kept out of search and AI indexes.
 import type { APIRoute } from 'astro';
-import { CAL_URL, COMPANY, DESCRIPTION, FOUNDER, SOLUTIONS, STEPS } from '../config';
+import { ABOUT_LINE, CAL_URL, COMPANY, DESCRIPTION, EMAIL, FOUNDER, SOLUTIONS, STEPS } from '../config';
 
 export const GET: APIRoute = ({ site }) => {
   const at = (path: string) => new URL(path, site).href;
   const lines = [
     `# ${COMPANY}`,
     '',
-    `> ${DESCRIPTION} Founder-led: the engineers on your first call are the ones who design and build your automation.`,
+    `> ${ABOUT_LINE} ${DESCRIPTION} Founder-led: the engineers on your first call are the ones who design and build your automation.`,
     '',
     `${COMPANY} builds automation for staffing and recruiting firms so consultants place candidates instead of chasing admin. Every build starts from how the firm’s desks actually work and ends with a customised solution to the exact problem and a clear ROI.`,
     '',
@@ -28,6 +28,7 @@ export const GET: APIRoute = ({ site }) => {
     '',
     `- [Book a free 30-minute consultation](${CAL_URL})`,
     `- [LinkedIn](${FOUNDER.linkedin})`,
+    `- [${EMAIL}](mailto:${EMAIL})`,
     '',
     '## Optional',
     '',
