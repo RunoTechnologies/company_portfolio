@@ -15,7 +15,7 @@ export const CAL_URL = 'https://cal.com/runotech/consult';
 export const LEGAL = {
   entity: '[Registered company name]', // the legal entity that trades as COMPANY
   address: '[Registered address]',
-  email: '[contact email]',
+  email: 'info@runotech.com',
   law: '[Country]', // governing law and courts for the terms
   updated: '24 October 2026',
 };
