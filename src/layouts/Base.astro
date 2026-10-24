@@ -5,9 +5,12 @@ import Mark from '../components/Mark.astro';
 import Qualify from '../components/Qualify.astro';
 import Sprite from '../components/Sprite.astro';
 import { CAL_URL, COMPANY, DESCRIPTION, NAV, SOLUTIONS } from '../config';
+import { organization, person } from '../schema';
 
-interface Props { title: string; description?: string; type?: 'website' | 'article'; noindex?: boolean }
-const { title, description = DESCRIPTION, type = 'website', noindex = false } = Astro.props;
+// schema: extra JSON-LD nodes for this page, added to the organisation and founder every page carries.
+interface Props { title: string; description?: string; type?: 'website' | 'article'; noindex?: boolean; schema?: object[] }
+const { title, description = DESCRIPTION, type = 'website', noindex = false, schema = [] } = Astro.props;
+const graph = { '@context': 'https://schema.org', '@graph': [organization(Astro.site!), person(Astro.site!), ...schema] };
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/'; // the public URL: build.format 'file' names pages /about.html
 const canonical = new URL(path, Astro.site).href;
 const card = new URL('/og.png', Astro.site).href; // scripts/og-card.mjs draws it
@@ -34,6 +37,7 @@ const year = new Date().getFullYear();
   <meta property="og:image:alt" content={`${COMPANY}: Stop chasing. Start placing.`}>
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json" set:html={JSON.stringify(graph)} />
   <Font cssVariable="--font-sans" preload />
 </head>
 <body>
