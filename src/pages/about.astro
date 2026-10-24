@@ -1,4 +1,5 @@
 ---
+import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import BookingBand from '../components/BookingBand.astro';
 import { COMPANY, FOUNDER } from '../config';
@@ -21,7 +22,7 @@ const LOGOS: Record<string, { label: string; box: string; svg: string }> = {
   </section>
   <section class="sec">
     <div class="wrap founder">
-      <img src={FOUNDER.photo} alt={`${FOUNDER.name}, founder of ${COMPANY}`} width="800" height="1000" loading="eager" />
+      <Picture src={FOUNDER.photo} formats={['avif', 'webp']} widths={[440, 880]} sizes="(max-width: 900px) min(440px, calc(100vw - 40px)), 460px" alt={`${FOUNDER.name}, founder of ${COMPANY}`} priority />
       <div class="bio">
         <p class="role">{FOUNDER.role}</p>
         <h2>{FOUNDER.name}</h2>

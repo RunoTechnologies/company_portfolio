@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { CAL_URL, FOUNDER } from '../config';
 ---
 <section class="hero">
@@ -12,7 +13,7 @@ import { CAL_URL, FOUNDER } from '../config';
       <a class="tlink" href="/#process">How the process works <svg class="arr"><use href="#i-arrow" /></svg></a>
     </div>
     <p class="fine">30 minutes. We look at your pipeline and name the bottlenecks worth automating.</p>
-    <a class="by" href="/about"><img src={FOUNDER.avatar} alt={FOUNDER.name} width="40" height="40" /><span>Meet the founder</span><svg class="arr"><use href="#i-arrow" /></svg></a>
+    <a class="by" href="/about"><Image src={FOUNDER.avatar} alt={FOUNDER.name} width={40} densities={[1, 2]} /><span>Meet the founder</span><svg class="arr"><use href="#i-arrow" /></svg></a>
   </div>
 </section>
 
