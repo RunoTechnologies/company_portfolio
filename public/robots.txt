@@ -1,7 +1,9 @@
 # Search engines crawl everything. The case study pages carry a noindex tag instead of a
-# Disallow here, because a crawler has to fetch a page to see the tag.
+# Disallow here, because a crawler has to fetch a page to see the tag. /data/ holds the
+# client quotes the home page loads after the fact, which stay out of every index.
 User-agent: *
 Allow: /
+Disallow: /data/
 
 # AI crawlers and answer engines, by name: the whole site except the case studies.
 User-agent: GPTBot
@@ -19,5 +21,6 @@ User-agent: meta-externalagent
 User-agent: CCBot
 Allow: /
 Disallow: /case-studies
+Disallow: /data/
 
 Sitemap: https://runotech.com/sitemap-index.xml
