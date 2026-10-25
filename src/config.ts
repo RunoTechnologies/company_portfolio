@@ -10,12 +10,13 @@ import redKite from './assets/clients/red-kite.png';
 // Placeholder: replace with the trading name.
 export const COMPANY = 'Runo Technologies';
 export const CAL_URL = 'https://cal.com/runotech/consult';
+export const EMAIL = 'info@runotech.com';
 
 // Facts the privacy and terms pages state. Bracketed values render as written, so an unfilled one is visible on the page.
 export const LEGAL = {
   entity: 'Runo Technologies LLC', // the legal entity that trades as COMPANY
   address: '30 N Gould St, Sheridan, WY 82801, United States',
-  email: 'info@runotech.com',
+  email: EMAIL,
   law: 'Wyoming', // governing law and courts for the terms
   updated: '25 October 2026',
 };
@@ -28,7 +29,6 @@ export const QUALIFY = [
 ];
 export const DESCRIPTION =
   'Sourcing, screening, follow-up and back-office automation for staffing and recruiting firms.';
-export const EMAIL = 'info@runotech.com';
 export const MARKET = 'United States';
 // The one-sentence definition of the company, for the footer, llms.txt and the structured data.
 export const ABOUT_LINE = `${COMPANY} builds AI automation for staffing and recruiting firms in the ${MARKET}.`;

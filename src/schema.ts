@@ -5,7 +5,8 @@ const AREA = { '@type': 'Country', name: MARKET };
 // JSON-LD nodes for the <head>, built from config so the structured data says what the pages say.
 // Base.astro emits the organisation and the founder on every page; the home page adds the
 // services. The case studies get nothing of their own: they are kept out of the indexes.
-// Address, legal entity and founding date are not known yet and are left out rather than guessed.
+// The legal name and registered address stay on the legal pages: the address is a registered agent, not a place of
+// business, so the Organization node carries neither; the founding date is not known.
 
 const ISSUERS: Record<string, string> = { anthropic: 'Anthropic', microsoft: 'Microsoft', aws: 'Amazon Web Services' };
 
