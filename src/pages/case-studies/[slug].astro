@@ -12,7 +12,7 @@ export function getStaticPaths() {
 }
 const { c, next } = Astro.props;
 ---
-<Base title={`${c.client}: ${c.title} | ${COMPANY}`} description={c.excerpt} type="article">
+<Base title={`${c.client}: ${c.title} | ${COMPANY}`} description={c.excerpt} type="article" noindex>
   <section class="band top">
     <div class="wrap">
       <a class="back" href="/case-studies"><svg class="arr"><use href="#i-arrow" /></svg> All case studies</a>

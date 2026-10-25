@@ -4,10 +4,13 @@ import '../styles/global.css';
 import Mark from '../components/Mark.astro';
 import Qualify from '../components/Qualify.astro';
 import Sprite from '../components/Sprite.astro';
-import { CAL_URL, COMPANY, DESCRIPTION, NAV, SOLUTIONS } from '../config';
+import { ABOUT_LINE, CAL_URL, COMPANY, DESCRIPTION, EMAIL, NAV } from '../config';
+import { organization, person } from '../schema';
 
-interface Props { title: string; description?: string; type?: 'website' | 'article' }
-const { title, description = DESCRIPTION, type = 'website' } = Astro.props;
+// schema: extra JSON-LD nodes for this page, added to the organisation and founder every page carries.
+interface Props { title: string; description?: string; type?: 'website' | 'article'; noindex?: boolean; schema?: object[] }
+const { title, description = DESCRIPTION, type = 'website', noindex = false, schema = [] } = Astro.props;
+const graph = { '@context': 'https://schema.org', '@graph': [organization(Astro.site!), person(Astro.site!), ...schema] };
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/'; // the public URL: build.format 'file' names pages /about.html
 const canonical = new URL(path, Astro.site).href;
 const card = new URL('/og.png', Astro.site).href; // scripts/og-card.mjs draws it
@@ -22,6 +25,7 @@ const year = new Date().getFullYear();
   <title>{title}</title>
   <meta name="description" content={description}>
   <link rel="canonical" href={canonical}>
+  {noindex && <meta name="robots" content="noindex">}
   <meta property="og:type" content={type}>
   <meta property="og:site_name" content={COMPANY}>
   <meta property="og:title" content={title}>
@@ -33,6 +37,7 @@ const year = new Date().getFullYear();
   <meta property="og:image:alt" content={`${COMPANY}: Stop chasing. Start placing.`}>
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json" set:html={JSON.stringify(graph)} />
   <Font cssVariable="--font-sans" preload />
 </head>
 <body>
@@ -68,15 +73,15 @@ const year = new Date().getFullYear();
       <div class="fgrid">
         <div>
           <span class="brand"><Mark />{COMPANY}</span>
-          <p>{DESCRIPTION}</p>
+          <p>{ABOUT_LINE}</p>
         </div>
         <div>
           <p class="fh">Pages</p>
           <ul>{NAV.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
         </div>
         <div>
-          <p class="fh">Solutions</p>
-          <ul>{SOLUTIONS.map((s) => <li><a href={`/#${s.id}`}>{s.label}</a></li>)}</ul>
+          <p class="fh">Contact</p>
+          <ul><li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li></ul>
         </div>
       </div>
       <p class="fbot">© {year} {COMPANY} · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
