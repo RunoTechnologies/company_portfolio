@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://runotech.com/sitemap-index.xml

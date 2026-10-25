@@ -131,7 +131,7 @@ footer .brand{--ink:#fff}
 .fgrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:40px}
 .fgrid .brand{align-self:start}
 .fgrid p{font-size:14px;max-width:360px;margin-top:14px}
-.fgrid h4{margin:0 0 14px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.fgrid .fh{margin:0 0 14px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#fff}
 .fgrid ul{display:grid;gap:8px;font-size:14px}
 .fgrid ul a:hover,.fbot a:hover{color:#fff}
 .fbot{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:var(--dim)}

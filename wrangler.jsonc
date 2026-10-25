@@ -3,7 +3,7 @@
   "name": "runotech-website",
   "compatibility_date": "2026-10-01",
   // Static assets only; _redirects and _headers in public/ are applied by Cloudflare, not served.
-  "assets": { "directory": "./dist" },
+  "assets": { "directory": "./dist", "not_found_handling": "404-page" },
   "routes": [{ "pattern": "runotech.com", "custom_domain": true }],
   // The site lives on runotech.com only; branch builds still get preview URLs.
   "workers_dev": false,
