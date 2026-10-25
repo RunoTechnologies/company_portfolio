@@ -1,7 +1,7 @@
 // /llms.txt, the site summarised for AI crawlers and answer engines (llmstxt.org), built from config so it
 // cannot drift from the pages. The case studies are left out on purpose: they are kept out of search and AI indexes.
 import type { APIRoute } from 'astro';
-import { ABOUT_LINE, CAL_URL, COMPANY, DESCRIPTION, EMAIL, FOUNDER, SOLUTIONS, STEPS } from '../config';
+import { ABOUT_LINE, CAL_URL, COMPANY, DESCRIPTION, EMAIL, FAQ, FOUNDER, SOLUTIONS, STEPS } from '../config';
 
 export const GET: APIRoute = ({ site }) => {
   const at = (path: string) => new URL(path, site).href;
@@ -19,6 +19,10 @@ export const GET: APIRoute = ({ site }) => {
     '## How an engagement runs',
     '',
     ...STEPS.map((s, i) => `${i + 1}. ${s.title}: ${s.checks.map((c) => c[0].toLowerCase() + c.slice(1)).join('; ')}.`),
+    '',
+    '## FAQ',
+    '',
+    ...FAQ.map((f) => `- ${f.q} ${f.a}`),
     '',
     '## People',
     '',

@@ -1,0 +1,45 @@
+---
+import { FAQ } from '../config';
+---
+<section class="sec faq" id="faq">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow dot">FAQ</p>
+      <h2>Questions firms ask before the first call</h2>
+    </div>
+    <div class="list">
+      {FAQ.map((f) => (
+        <details class="qa" name="faq">
+          <summary><h3>{f.q}</h3><span class="plus" aria-hidden="true"></span></summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .wrap{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:48px;align-items:start}
+  /* the heading stays in view while the longer list of answers scrolls past it */
+  .col{display:grid;gap:14px;position:sticky;top:100px}
+  .list{border-top:1px solid var(--line)}
+  .qa{border-bottom:1px solid var(--line)}
+  summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0}
+  summary::-webkit-details-marker{display:none}
+  summary h3{font-size:18px;transition:color .3s ease}
+  /* a plus in a ring; open, the ring fills with the accent and the plus turns into a cross */
+  .plus{flex:none;position:relative;width:28px;height:28px;border-radius:50%;border:1px solid var(--rail);transition:transform .3s cubic-bezier(.2,.7,.2,1),background .3s ease,border-color .3s ease}
+  .plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--ink);transform:translate(-50%,-50%)}
+  .plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+  .qa[open] .plus{background:var(--ac);border-color:var(--ac);transform:rotate(45deg)}
+  .qa p{padding:0 52px 24px 0;max-width:640px}
+  @media (hover:hover){
+    summary:hover h3{color:var(--act)}
+    summary:hover .plus{border-color:var(--ac)}
+  }
+  @media (max-width:900px){
+    .wrap{grid-template-columns:minmax(0,1fr)}
+    .col{position:static}
+    .qa p{padding-right:0}
+  }
+</style>

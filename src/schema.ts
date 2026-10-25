@@ -1,10 +1,10 @@
-import { ABOUT_LINE, CAL_URL, COMPANY, DESCRIPTION, EMAIL, FOUNDER, MARKET, SOLUTIONS } from './config';
+import { ABOUT_LINE, CAL_URL, COMPANY, DESCRIPTION, EMAIL, FAQ, FOUNDER, MARKET, SOLUTIONS } from './config';
 
 const AREA = { '@type': 'Country', name: MARKET };
 
 // JSON-LD nodes for the <head>, built from config so the structured data says what the pages say.
 // Base.astro emits the organisation and the founder on every page; the home page adds the
-// services. The case studies get nothing of their own: they are kept out of the indexes.
+// services and the FAQ. The case studies get nothing of their own: they are kept out of the indexes.
 // The legal name and registered address stay on the legal pages: the address is a registered agent, not a place of
 // business, so the Organization node carries neither; the founding date is not known.
 
@@ -68,3 +68,10 @@ export const services = (site: URL) => {
     audience: { '@type': 'BusinessAudience', name: 'Staffing and recruiting agencies' },
   }));
 };
+
+// Google shows FAQ rich results only for government and health sites now; the node is for answer engines.
+export const faq = (site: URL) => ({
+  '@type': 'FAQPage',
+  '@id': new URL('/#faq', site).href,
+  mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+});
