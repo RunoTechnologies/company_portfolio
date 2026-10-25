@@ -1,12 +1,43 @@
 ---
 import Base from '../layouts/Base.astro';
-import NotYet from '../components/NotYet.astro';
-import { COMPANY } from '../config';
+import Legal from '../components/Legal.astro';
+import { COMPANY, LEGAL } from '../config';
 ---
-<Base title={`Terms: ${COMPANY}`}>
-  <NotYet
-    label="Terms"
-    title="Terms of service."
-    lede="The engagement terms go here before launch: scope, fees, data handling and how either side ends the work."
-  />
+<Base title={`Terms: ${COMPANY}`} description={`How ${COMPANY} scopes, builds and supports automation for recruiting firms: fees, ownership, data handling and ending the work.`}>
+  <Legal label="Terms" title="Terms of service." lede="The terms on which we scope, build and support automation for your firm, and how either side ends the work.">
+    <h2>These terms</h2>
+    <p>These terms apply to the free consultation, to every proposal and to every engagement between {LEGAL.entity}, trading as {COMPANY} (“we”), and the firm engaging us (“you”). Each engagement is set out in a written proposal; where a signed proposal and these terms conflict, the proposal wins. Use of this website is also subject to these terms: its content is ours and is provided as general information, not advice for your situation.</p>
+
+    <h2>The consultation</h2>
+    <p>The first consultation is free and commits neither side to anything. What we say in it is guidance based on what you tell us. Nothing is a commitment to build, a price or a promise of results until a proposal is signed.</p>
+
+    <h2>Scope and changes</h2>
+    <p>The proposal states what we will deliver, by when, for what fee, and what we need from you. Changes to scope are agreed in writing, with their effect on fee and timeline, before work on them starts. Work outside the proposal is billed at the rate it states.</p>
+
+    <h2>What you provide</h2>
+    <ul>
+      <li>Timely access to the systems, data and people the work depends on, and a named person who can make decisions.</li>
+      <li>The right to give us access to the data you share, and confirmation that your use of it is lawful.</li>
+      <li>Credentials kept confidential and revoked when the work ends.</li>
+      <li>Review of each deliverable within the review period in the proposal. A deliverable not disputed in that period is accepted.</li>
+    </ul>
+
+    <h2>Fees and payment</h2>
+    <p>Fees are as stated in the proposal. Invoices are due within fourteen days unless the proposal says otherwise. If an invoice is overdue we may pause work after giving notice, and resume once it is paid. Fees exclude VAT and other sales taxes, and exclude third-party costs such as AI model usage, hosting and software subscriptions, which you pay directly or which we pass through at cost.</p>
+
+    <h2>Who owns what</h2>
+    <p>On full payment you own the deliverables built specifically for you: the workflows, prompts, code and configuration. We keep ownership of our pre-existing tools, libraries, templates and know-how, and grant you a perpetual, non-exclusive licence to use them as part of the deliverables. We may describe the engagement in general terms; anything that names you or quotes your figures is published only with your written approval.</p>
+
+    <h2>Confidentiality and data</h2>
+    <p>Each side keeps the other’s confidential information confidential, uses it only for the engagement, and keeps doing so for three years after the engagement ends, or indefinitely for trade secrets. Where we process personal data on your behalf, including candidate and client data, we act on your instructions as a processor under the data processing terms that form part of the proposal. Our <a href="/privacy">privacy policy</a> covers the personal data we hold as controller.</p>
+
+    <h2>Warranties and liability</h2>
+    <p>We perform the work with reasonable skill and care and fix defects reported within thirty days of delivery at no charge. Automation outcomes depend on your data, your processes and the third-party systems involved, so figures in proposals and case studies describe what happened elsewhere and are not a guarantee. Neither side is liable to the other for indirect or consequential loss, including lost profit or lost placements. Our total liability under an engagement is limited to the fees you paid for it in the twelve months before the claim. Nothing here limits liability that the law does not allow to be limited.</p>
+
+    <h2>Ending the work</h2>
+    <p>Either side may end an engagement with thirty days’ written notice. You pay for work done up to the end date and we hand over the deliverables that are complete and paid for. Either side may end an engagement immediately if the other commits a material breach and does not remedy it within fourteen days of being told.</p>
+
+    <h2>General</h2>
+    <p>These terms are governed by the law of {LEGAL.law}, and its courts have exclusive jurisdiction. Neither side is liable for failing to perform because of events beyond its reasonable control. We may update these terms; the version in force when a proposal is signed applies to that engagement. Questions go to {LEGAL.email}.</p>
+  </Legal>
 </Base>

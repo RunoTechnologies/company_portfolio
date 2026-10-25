@@ -11,6 +11,15 @@ import redKite from './assets/clients/red-kite.png';
 export const COMPANY = 'Runo Technologies';
 export const CAL_URL = 'https://cal.com/runotech/consult';
 
+// Facts the privacy and terms pages state. Bracketed values render as written, so an unfilled one is visible on the page.
+export const LEGAL = {
+  entity: 'Runo Technologies LLC', // the legal entity that trades as COMPANY
+  address: '30 N Gould St, Sheridan, WY 82801, United States',
+  email: 'info@runotech.com',
+  law: 'Wyoming', // governing law and courts for the terms
+  updated: '25 October 2026',
+};
+
 // Asked before the calendar opens; each answer goes to Cal.com under the key as a prefill and as booking metadata.
 // Picking a question's `decline` option shows a not-yet note in place of the calendar button.
 export const QUALIFY = [
