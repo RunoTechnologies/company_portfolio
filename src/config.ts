@@ -88,8 +88,6 @@ export const STEPS = [
 // contradict a page; systems, prices and timelines are left out until they are given.
 export const FAQ = [
   { q: 'Who do you work with?', a: `Staffing and recruiting firms in the ${MARKET} past $1M in annual revenue. If you are not there yet, we would gladly work with you once you grow.` },
-  { q: 'What do you automate?', a: 'Talent sourcing, offer acceptance and show-up, fraud screening, the client pipeline and the back office: timesheets, invoicing and compliance. When the CRM itself is the problem, we build one shaped to your desks.' },
-  { q: 'How does an engagement start?', a: 'With a free 30-minute consultation and an audit of where your pipeline stalls. You get a ranked list of automations with the return on each, and decide what to fund.' },
   { q: 'Will it work with our ATS and CRM?', a: 'Every build is designed around the desks and systems you already run, never a template, and tested end to end before your team gets a walkthrough. If the CRM is the bottleneck, we build a custom one.' },
   { q: 'What does it cost?', a: 'The consultation and audit are free. Each automation is then scoped on its own, with the audit’s ranked list showing the return before you commit to anything.' },
   { q: 'Who builds it, and what happens after launch?', a: 'The engineers on your first call design and build it. After launch it is monitored and maintained as your desks change, and we extend what the numbers show is working.' },

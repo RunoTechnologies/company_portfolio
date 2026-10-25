@@ -9,9 +9,12 @@ import { FAQ } from '../config';
     </div>
     <div class="list">
       {FAQ.map((f) => (
-        <details class="qa" name="faq">
-          <summary><h3>{f.q}</h3><span class="plus" aria-hidden="true"></span></summary>
-          <p>{f.a}</p>
+        <details class="qa">
+          <summary>
+            <h3>{f.q}</h3>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+          </summary>
+          <div class="body"><div class="inner"><p>{f.a}</p></div></div>
         </details>
       ))}
     </div>
@@ -20,26 +23,57 @@ import { FAQ } from '../config';
 
 <style>
   .wrap{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:48px;align-items:start}
-  /* the heading stays in view while the longer list of answers scrolls past it */
-  .col{display:grid;gap:14px;position:sticky;top:100px}
+  .col{display:grid;gap:14px}
   .list{border-top:1px solid var(--line)}
   .qa{border-bottom:1px solid var(--line)}
   summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0}
   summary::-webkit-details-marker{display:none}
   summary h3{font-size:18px;transition:color .3s ease}
-  /* a plus in a ring; open, the ring fills with the accent and the plus turns into a cross */
-  .plus{flex:none;position:relative;width:28px;height:28px;border-radius:50%;border:1px solid var(--rail);transition:transform .3s cubic-bezier(.2,.7,.2,1),background .3s ease,border-color .3s ease}
-  .plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--ink);transform:translate(-50%,-50%)}
-  .plus::after{transform:translate(-50%,-50%) rotate(90deg)}
-  .qa[open] .plus{background:var(--ac);border-color:var(--ac);transform:rotate(45deg)}
-  .qa p{padding:0 52px 24px 0;max-width:640px}
+  /* a chevron in a ring; open, the ring takes the accent and the chevron turns to point up */
+  .chev{flex:none;width:28px;height:28px;padding:6px;border-radius:50%;border:1px solid var(--rail);fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .3s ease,stroke .3s ease}
+  .qa.open .chev{transform:rotate(180deg);border-color:var(--ac);stroke:var(--act)}
+  /* the answer slides: its row grows from 0fr to 1fr, and the script keeps the open attribute set until the slide ends */
+  .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s cubic-bezier(.2,.7,.2,1)}
+  .qa.open .body{grid-template-rows:1fr}
+  .inner{min-height:0;overflow:hidden}
+  .inner p{padding:0 52px 24px 0;max-width:640px}
   @media (hover:hover){
     summary:hover h3{color:var(--act)}
-    summary:hover .plus{border-color:var(--ac)}
+    summary:hover .chev{border-color:var(--ac)}
   }
   @media (max-width:900px){
     .wrap{grid-template-columns:minmax(0,1fr)}
-    .col{position:static}
-    .qa p{padding-right:0}
+    .inner p{padding-right:0}
   }
 </style>
+
+<script>
+  // A details element shows and hides its content in one step, so the summary click is handled here: opening sets
+  // the attribute and then the class that starts the slide; closing runs the slide first and drops the attribute
+  // when it ends. Without a transition (reduced motion) the attribute changes at once. One answer is open at a time.
+  const items = [...document.querySelectorAll<HTMLDetailsElement>('.qa')];
+  const close = (qa: HTMLDetailsElement) => {
+    const body = qa.querySelector<HTMLElement>('.body')!;
+    qa.classList.remove('open');
+    if (body.getAnimations().length) {
+      body.addEventListener('transitionend', () => { if (!qa.classList.contains('open')) qa.open = false; }, { once: true });
+    } else qa.open = false;
+  };
+  const open = (qa: HTMLDetailsElement) => {
+    qa.open = true;
+    void qa.querySelector<HTMLElement>('.body')!.offsetHeight; // lay out the closed row first, so the change transitions
+    qa.classList.add('open');
+  };
+  for (const qa of items) {
+    // the browser opens a details itself for a find-in-page match in the answer; show that answer too
+    qa.addEventListener('toggle', () => { if (qa.open) qa.classList.add('open'); });
+    qa.querySelector('summary')!.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (qa.classList.contains('open')) close(qa);
+      else {
+        for (const other of items) if (other !== qa && other.classList.contains('open')) close(other);
+        open(qa);
+      }
+    });
+  }
+</script>
