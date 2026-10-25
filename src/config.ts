@@ -89,8 +89,9 @@ export const STEPS = [
 export const FAQ = [
   { q: 'Who do you work with?', a: `Staffing and recruiting firms in the ${MARKET} past $1M in annual revenue. If you are not there yet, we would gladly work with you once you grow.` },
   { q: 'Will it work with our ATS and CRM?', a: 'Every build is designed around the desks and systems you already run, never a template, and tested end to end before your team gets a walkthrough. If the CRM is the bottleneck, we build a custom one.' },
-  { q: 'What does it cost?', a: 'The consultation and audit are free. Each automation is then scoped on its own, with the audit’s ranked list showing the return before you commit to anything.' },
-  { q: 'Who builds it, and what happens after launch?', a: 'The engineers on your first call design and build it. After launch it is monitored and maintained as your desks change, and we extend what the numbers show is working.' },
+  { q: 'What does it cost?', a: 'The consultation is free. For more complex pipelines and use cases, an audit is an affordable option for finding the bottlenecks. Implementation has no fixed cost: every solution is built for the individual use case, so it is scoped on its own.' },
+  { q: 'Who builds it, and what happens after launch?', a: 'The engineers on your first call design and build it. After launch it is monitored and maintained as your desks change.' },
+  { q: 'I’m not technical. Will I be able to use and maintain this?', a: 'You don’t need to be. We handle the build and set systems up to run with minimal hands-on management, and our ongoing support means you’re never left alone.' },
 ];
 
 // Case studies, each written up at /case-studies/<slug> for one of the CLIENTS; their quotes feed the home page.
