@@ -13,11 +13,11 @@ export const CAL_URL = 'https://cal.com/runotech/consult';
 
 // Facts the privacy and terms pages state. Bracketed values render as written, so an unfilled one is visible on the page.
 export const LEGAL = {
-  entity: '[Registered company name]', // the legal entity that trades as COMPANY
-  address: '[Registered address]',
+  entity: 'Runo Technologies LLC', // the legal entity that trades as COMPANY
+  address: '30 N Gould St, Sheridan, WY 82801, United States',
   email: 'info@runotech.com',
-  law: '[Country]', // governing law and courts for the terms
-  updated: '24 October 2026',
+  law: 'Wyoming', // governing law and courts for the terms
+  updated: '25 October 2026',
 };
 
 // Asked before the calendar opens; each answer goes to Cal.com under the key as a prefill and as booking metadata.
