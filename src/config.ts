@@ -46,7 +46,7 @@ export const FOUNDER = {
   role: 'Founder and AI engineer',
   photo: founderPhoto,
   avatar: founderAvatar,
-  linkedin: 'https://www.linkedin.com/in/aleksandar-radovic-134201174/',
+  linkedin: 'https://www.linkedin.com/in/alexander-radovic-134201174/',
   // issuer keys the logo drawn on the about page; the card shows short, with the full name as its tooltip
   certs: [
     { issuer: 'anthropic', name: 'Claude Certified Architect – Professional', short: 'Claude Certified Architect', code: 'CCAR-P' },
