@@ -6,11 +6,12 @@ import Why from '../components/Why.astro';
 import BuildGrid from '../components/BuildGrid.astro';
 import Steps from '../components/Steps.astro';
 import Feedback from '../components/Feedback.astro';
+import Faq from '../components/Faq.astro';
 import BookingBand from '../components/BookingBand.astro';
 import { CLIENTS, COMPANY } from '../config';
-import { services } from '../schema';
+import { faq, services } from '../schema';
 ---
-<Base title={`${COMPANY}: automation for staffing and recruiting firms`} description={`${COMPANY} builds sourcing, screening, follow-up and back-office automation for staffing and recruiting firms, so consultants place instead of chase.`} schema={services(Astro.site!)}>
+<Base title={`${COMPANY}: automation for staffing and recruiting firms`} description={`${COMPANY} builds sourcing, screening, follow-up and back-office automation for staffing and recruiting firms, so consultants place instead of chase.`} schema={[...services(Astro.site!), faq(Astro.site!)]}>
   <div class="intro">
     <Hero />
     <Marks label="Past clients" items={CLIENTS} />
@@ -19,6 +20,7 @@ import { services } from '../schema';
   <BuildGrid />
   <Steps />
   <Feedback />
+  <Faq />
   <BookingBand />
 </Base>
 

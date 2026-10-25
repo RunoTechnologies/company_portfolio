@@ -83,6 +83,17 @@ export const STEPS = [
   { phase: 'ADOPT', title: 'Monitor and optimise', sub: 'Make it stick.', checks: ['Monitored and maintained as your desks change', 'More of what the numbers say is working'] },
 ];
 
+// The home page FAQ, also the FAQPage node in the schema and a section of llms.txt. Each answer states only what the
+// site states elsewhere (market, the revenue cut in Qualify.astro, the solutions, the steps), so nothing here can
+// contradict a page; systems, prices and timelines are left out until they are given.
+export const FAQ = [
+  { q: 'Who do you work with?', a: `Staffing and recruiting firms in the ${MARKET} past $1M in annual revenue. If you are not there yet, we would gladly work with you once you grow.` },
+  { q: 'Will it work with our ATS and CRM?', a: 'Every build is designed around the desks and systems you already run, never a template, and tested end to end before your team gets a walkthrough. If the CRM is the bottleneck, we build a custom one.' },
+  { q: 'What does it cost?', a: 'The consultation is free. For more complex pipelines and use cases, an audit is an affordable option for finding the bottlenecks. Implementation has no fixed cost: every solution is built for the individual use case, so it is scoped on its own.' },
+  { q: 'Who builds it, and what happens after launch?', a: 'The engineers on your first call design and build it. After launch it is monitored and maintained as your desks change.' },
+  { q: 'I’m not technical. Will I be able to use and maintain this?', a: 'You don’t need to be. We handle the build and set systems up to run with minimal hands-on management, and our ongoing support means you’re never left alone.' },
+];
+
 // Case studies, each written up at /case-studies/<slug> for one of the CLIENTS; their quotes feed the home page.
 // scene/stakes open the case study and fix is its one-line summary; the first result is the headline number.
 // Drafts: every figure and quote needs the named client's sign-off before launch.
