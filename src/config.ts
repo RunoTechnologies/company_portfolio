@@ -42,11 +42,11 @@ export const NAV = [
 
 // The about page's founder block; the photo is a 4:5 crop in src/assets/, the avatar a 128px square of the face for the hero.
 export const FOUNDER = {
-  name: 'Aleksandar Radovic',
+  name: 'Alexander Radovic',
   role: 'Founder and AI engineer',
   photo: founderPhoto,
   avatar: founderAvatar,
-  linkedin: 'https://www.linkedin.com/in/aleksandar-radovic-134201174/',
+  linkedin: 'https://www.linkedin.com/in/alexander-radovic-134201174/',
   // issuer keys the logo drawn on the about page; the card shows short, with the full name as its tooltip
   certs: [
     { issuer: 'anthropic', name: 'Claude Certified Architect – Professional', short: 'Claude Certified Architect', code: 'CCAR-P' },
@@ -205,7 +205,7 @@ export const CASE_STUDIES = [
       { label: 'Days from application to cleared to work', before: '9', after: '4' },
     ],
     period: 'The autumn term after launch, against the summer term before.',
-    quote: 'What impressed me was the honesty. Where a cheaper off-the-shelf tool already did the job, Aleksandar told us so.',
+    quote: 'What impressed me was the honesty. Where a cheaper off-the-shelf tool already did the job, Alexander told us so.',
   },
   {
     slug: 'client-pipeline',
