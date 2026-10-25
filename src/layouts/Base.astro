@@ -4,7 +4,7 @@ import '../styles/global.css';
 import Mark from '../components/Mark.astro';
 import Qualify from '../components/Qualify.astro';
 import Sprite from '../components/Sprite.astro';
-import { ABOUT_LINE, CAL_URL, COMPANY, DESCRIPTION, EMAIL, NAV, SOLUTIONS } from '../config';
+import { ABOUT_LINE, CAL_URL, COMPANY, DESCRIPTION, EMAIL, NAV } from '../config';
 import { organization, person } from '../schema';
 
 // schema: extra JSON-LD nodes for this page, added to the organisation and founder every page carries.
@@ -74,15 +74,14 @@ const year = new Date().getFullYear();
         <div>
           <span class="brand"><Mark />{COMPANY}</span>
           <p>{ABOUT_LINE}</p>
-          <p><a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
         </div>
         <div>
           <p class="fh">Pages</p>
           <ul>{NAV.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
         </div>
         <div>
-          <p class="fh">Solutions</p>
-          <ul>{SOLUTIONS.map((s) => <li><a href={`/#${s.id}`}>{s.label}</a></li>)}</ul>
+          <p class="fh">Contact</p>
+          <ul><li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li></ul>
         </div>
       </div>
       <p class="fbot">© {year} {COMPANY} · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
