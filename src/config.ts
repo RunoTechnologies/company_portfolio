@@ -50,7 +50,7 @@ export const FOUNDER = {
   // issuer keys the logo drawn on the about page; the card shows short, with the full name as its tooltip
   certs: [
     { issuer: 'anthropic', name: 'Claude Certified Architect – Professional', short: 'Claude Certified Architect', code: 'CCAR-P' },
-    { issuer: 'microsoft', name: 'Microsoft Certified: Agentic AI Business Solutions Architect Expert', short: 'Agentic AI Solutions Architect', code: 'AB-100' },
+    { issuer: 'microsoft', name: 'Microsoft Certified: Azure AI Apps and Agents Developer Associate', short: 'AI Apps and Agents Developer', code: 'AI-103' },
     { issuer: 'aws', name: 'AWS Certified Generative AI Developer – Professional', short: 'Generative AI Developer', code: 'AIP-C01' },
   ],
 };
