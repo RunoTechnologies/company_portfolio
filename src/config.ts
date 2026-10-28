@@ -78,7 +78,7 @@ export const SOLUTIONS = [
 
 // The five-step engagement folded into three phases, drawn by Steps.astro and summarised in llms.txt.
 export const STEPS = [
-  { phase: 'DECIDE', title: 'Consultation and audit', sub: 'Decide what to fund.', checks: ['Free 30-minute consultation', 'Pipeline bottleneck audit', 'A ranked list of automations with clear ROI'] },
+  { phase: 'DECIDE', title: 'Consultation and audit', sub: 'Decide what to fund.', checks: ['Free 30-minute consultation', 'Pipeline bottleneck audit', 'A cost/benefit automation matrix with clear ROI'] },
   { phase: 'BUILD', title: 'Design and deploy', sub: 'Build it right.', checks: ['Designed around your desks, never a template', 'Tested end to end', 'A team walkthrough and notes anyone can follow'] },
   { phase: 'ADOPT', title: 'Monitor and optimise', sub: 'Make it stick.', checks: ['Monitored and maintained as your desks change', 'More of what the numbers say is working'] },
 ];
